@@ -25,7 +25,7 @@ export const site = {
   // TODO: replace with your city
   location: 'City, Pakistan',
   resumeHref: '/resume.pdf',
-  url: 'https://example.com', // TODO: your domain, used for SEO tags
+  url: 'https://mehtab-portfolio-vert.vercel.app', // swap for a custom domain if you add one
 } as const
 
 /**
