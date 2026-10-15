@@ -69,11 +69,11 @@ export function TechStack() {
         <div ref={holder} className="mt-14 md:mt-20" aria-hidden>
           {playable ? (
             near ? (
-              <Suspense fallback={<div className="h-[480px] border border-line-strong" />}>
+              <Suspense fallback={<div className="h-[573px]" />}>
                 <PhysicsPit items={techStack.items} hint={techStack.hint} />
               </Suspense>
             ) : (
-              <div className="h-[480px] border border-line-strong" />
+              <div className="h-[573px]" />
             )
           ) : (
             <StaticGrid />

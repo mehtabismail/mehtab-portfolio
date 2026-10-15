@@ -127,44 +127,49 @@ export default function PhysicsPit({ items, hint }: Props) {
   }, [items, round])
 
   return (
-    <div
-      ref={box}
-      className="relative h-[480px] cursor-grab overflow-hidden border border-line-strong bg-surface/40 active:cursor-grabbing"
-      aria-hidden
-    >
-      <div className="absolute inset-0 blueprint-grid opacity-70" />
-      <span className="absolute top-4 right-5 label-mono text-faint">g = 9.81 m/s²</span>
-
+    <div aria-hidden>
       <div
-        className={`pointer-events-none absolute top-4 left-5 flex items-center gap-2 label-mono text-accent transition-opacity duration-700 ${touched ? 'opacity-0' : 'opacity-100'}`}
+        ref={box}
+        className="relative h-[520px] cursor-grab overflow-hidden border border-line-strong bg-surface/40 active:cursor-grabbing"
       >
-        <MousePointer2 className="size-3.5 animate-bounce" />
-        {hint}
+        <div className="absolute inset-0 blueprint-grid opacity-70" />
+        <span className="absolute top-4 right-5 label-mono text-faint">g = 9.81 m/s²</span>
+
+        <div
+          className={`pointer-events-none absolute top-4 left-5 flex items-center gap-2 label-mono text-accent transition-opacity duration-700 ${touched ? 'opacity-0' : 'opacity-100'}`}
+        >
+          <MousePointer2 className="size-3.5 animate-bounce" />
+          {hint}
+        </div>
+
+        {items.map((tech, i) => (
+          <TechChip
+            key={`${round}-${tech.name}`}
+            ref={(node) => {
+              chips.current[i] = node
+            }}
+            tech={tech}
+            className="pointer-events-none absolute top-0 left-0 will-change-transform"
+          />
+        ))}
       </div>
 
-      {items.map((tech, i) => (
-        <TechChip
-          key={`${round}-${tech.name}`}
-          ref={(node) => {
-            chips.current[i] = node
+      {/* Controls sit below the box so they never cover a chip */}
+      <div className="mt-3 flex items-center justify-between gap-4">
+        <span className="label-mono text-faint">{items.length} tools · drag to rearrange</span>
+        <button
+          type="button"
+          tabIndex={-1}
+          onClick={() => {
+            setTouched(false)
+            setRound((r) => r + 1)
           }}
-          tech={tech}
-          className="pointer-events-none absolute top-0 left-0 will-change-transform"
-        />
-      ))}
-
-      <button
-        type="button"
-        tabIndex={-1}
-        onClick={() => {
-          setTouched(false)
-          setRound((r) => r + 1)
-        }}
-        className="absolute right-4 bottom-4 z-10 flex items-center gap-2 border border-line-strong bg-bg/80 px-3 py-2 label-mono text-muted backdrop-blur transition-colors hover:border-accent hover:text-ink"
-      >
-        <RotateCcw className="size-3.5" />
-        Drop again
-      </button>
+          className="flex items-center gap-2 border border-line-strong px-3 py-2 label-mono text-muted transition-colors hover:border-accent hover:text-ink"
+        >
+          <RotateCcw className="size-3.5" />
+          Drop again
+        </button>
+      </div>
     </div>
   )
 }

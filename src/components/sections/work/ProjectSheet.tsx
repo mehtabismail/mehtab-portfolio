@@ -1,5 +1,5 @@
 import type { Project } from '../../../content/site'
-import { pad, projectTitle } from '../../../lib/project'
+import { pad, projectOrigin, projectTitle } from '../../../lib/project'
 import { Reveal } from '../../ui/Reveal'
 import { ProjectCover } from '../../work/ProjectCover'
 import { ProjectLinks } from '../../work/ProjectLinks'
@@ -13,6 +13,7 @@ interface Props {
 /** One numbered case study: sticky index on the left, cover and spec table on the right. */
 export function ProjectSheet({ project, index }: Props) {
   const title = projectTitle(project)
+  const origin = projectOrigin(project)
 
   return (
     <article
@@ -34,6 +35,11 @@ export function ProjectSheet({ project, index }: Props) {
             >
               {title}
             </h3>
+            {origin && (
+              <p className={`mt-2 label-mono ${project.madeAt ? 'text-accent' : 'text-faint'}`}>
+                {origin}
+              </p>
+            )}
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <span className="border border-accent/60 px-2.5 py-1 label-mono text-accent">
                 {project.category}

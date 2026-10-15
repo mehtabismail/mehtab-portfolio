@@ -1,4 +1,4 @@
-import { DraftingCompass, PenTool, Rocket, Search, type LucideIcon } from 'lucide-react'
+import { DraftingCompass, Rocket, Search, type LucideIcon } from 'lucide-react'
 import { m, useMotionValueEvent, useReducedMotion, useScroll, useSpring } from 'motion/react'
 import { useRef, useState, type UIEvent } from 'react'
 import { processFlow, type ProcessIcon, type ProcessStep } from '../../../content/site'
@@ -9,7 +9,6 @@ import { SectionHeading } from '../../ui/SectionHeading'
 const ICONS: Record<ProcessIcon, LucideIcon> = {
   discover: Search,
   architect: DraftingCompass,
-  design: PenTool,
   ship: Rocket,
 }
 
@@ -74,7 +73,7 @@ function StepFlow() {
         className="absolute top-[5px] right-0 left-0 h-px origin-left bg-accent shadow-[0_0_12px_var(--color-accent)]"
         style={{ scaleX: reduce ? 1 : fill }}
       />
-      <ol className="grid grid-cols-4 gap-6">
+      <ol className="grid grid-cols-3 gap-6">
         {steps.map((step, i) => {
           const active = i < reached
           return (

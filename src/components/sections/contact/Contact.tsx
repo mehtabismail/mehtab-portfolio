@@ -1,6 +1,6 @@
 import { m, useReducedMotion } from 'motion/react'
 import { ArrowUpRight, Copy } from 'lucide-react'
-import { contact, hero, site, socials } from '../../../content/site'
+import { contact, site, socials } from '../../../content/site'
 import { useCopyEmail } from '../../../hooks/useCopyEmail'
 import { Reveal } from '../../ui/Reveal'
 import { ContactForm } from './ContactForm'
@@ -66,16 +66,9 @@ export function Contact() {
                   </button>
                 </dd>
               </div>
-              <div className="border-b border-line py-5">
+              <div className="col-span-2 border-b border-line py-5">
                 <dt className="label-mono text-faint">Location</dt>
                 <dd className="mt-2 text-ink">{site.location}</dd>
-              </div>
-              <div className="border-b border-line py-5">
-                <dt className="label-mono text-faint">Status</dt>
-                <dd className="mt-2 flex items-start gap-2 text-ink">
-                  <span className="mt-2 size-2 shrink-0 rounded-full bg-accent" aria-hidden />
-                  {hero.availability}
-                </dd>
               </div>
               <div className="col-span-2 py-5">
                 <dt className="label-mono text-faint">Elsewhere</dt>

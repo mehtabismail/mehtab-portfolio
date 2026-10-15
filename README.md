@@ -47,7 +47,9 @@ Everything in `site.ts` ships in the site's JavaScript, so a hidden client name 
 - **Approved by the client:** add `name: 'Real Name'`, set `showName: true`, and optionally rename the `slug`.
 
 - `featured: true` puts a project in the home page showcase; every project appears on `/work/`.
-- `arch` describes the little architecture diagram: nodes sit on a 0–100 grid, and `core: true` highlights a node in amber.
+- `figure` is the project's system diagram, defined in [`src/content/figures.ts`](src/content/figures.ts). Nodes sit on a grid of `tier` (row, 0 = top) and `lane` (column 0–2, halves allowed); connectors route themselves, `async: true` makes one dashed, `accent: true` highlights a node, and `groups` draw a labelled boundary. The hero picks one figure at random per visit (every named project plus the system-level ones in `systemFigures`), and the covers show each project's own.
+- `links` can include `live`, `appStore`, `googlePlay`, `caseStudy` and `repo`.
+- `madeAt: 'Company'` shows "Built at Company" (Bling and KAVE: ZAPTA Technologies); `own: true` shows "Own project". Leave both out to show neither.
 - `cover` (optional) is a screenshot in `public/`, e.g. `'/work/liora.webp'`. Use WebP or AVIF at about 1600×1000. With a cover, the diagram moves to a small "Detail A" inset.
 
 ### Files you add to `public/`

@@ -2,7 +2,7 @@ import { m, useReducedMotion } from 'motion/react'
 import { hero, site } from '../../../content/site'
 import { SectionButton } from '../../ui/Button'
 import { RoleCycler } from './RoleCycler'
-import { SystemDiagram } from './SystemDiagram'
+import { HeroFigure } from './HeroFigure'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -23,16 +23,8 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-center pt-16"
     >
       <div className="container-site grid items-center gap-14 py-14 xl:grid-cols-12 xl:gap-8 xl:py-20">
-        <div className="xl:col-span-7">
-          <m.p {...rise(0)} className="flex items-center gap-2.5 label-mono text-muted">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
-              <span className="relative inline-flex size-2 rounded-full bg-accent" />
-            </span>
-            {hero.availability}
-          </m.p>
-
-          <h1 id="hero-title" className="mt-8 font-display">
+        <div className="xl:col-span-6">
+          <h1 id="hero-title" className="font-display">
             <m.span
               {...rise(0.1)}
               className="block text-2xl font-normal tracking-tight text-muted sm:text-3xl"
@@ -71,7 +63,9 @@ export function Hero() {
           >
             <span className="h-3 w-px bg-current" />
             <span className="h-px flex-1 bg-current opacity-60" />
-            <span className="shrink-0 label-mono text-[10px]">idea → architecture → pixel</span>
+            <span className="shrink-0 label-mono text-[10px]">
+              idea → architecture → production
+            </span>
             <span className="h-px flex-1 bg-current opacity-60" />
             <span className="h-3 w-px bg-current" />
           </m.div>
@@ -96,8 +90,8 @@ export function Hero() {
           </m.div>
         </div>
 
-        <div className="xl:col-span-5">
-          <SystemDiagram reduce={reduce} />
+        <div className="xl:col-span-6 xl:-mr-8">
+          <HeroFigure />
         </div>
       </div>
 

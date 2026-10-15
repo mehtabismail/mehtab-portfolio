@@ -1,6 +1,6 @@
 import type { Project } from '../../content/site'
 import { pad, projectTitle } from '../../lib/project'
-import { ArchThumb } from './ArchThumb'
+import { SystemFigureView } from '../figure/SystemFigureView'
 
 interface Props {
   project: Project
@@ -11,15 +11,15 @@ interface Props {
 
 /**
  * Cover framed like a drawing sheet. Uses the project's image when provided;
- * otherwise the architecture diagram becomes the artwork. With an image, the
- * diagram is shown as an inset "Detail A" callout.
+ * otherwise the project's system figure becomes the artwork. With an image,
+ * the figure is shown as an inset "Detail A" callout.
  */
 export function ProjectCover({ project, index, compact = false }: Props) {
   const title = projectTitle(project)
 
   return (
     <figure className="group/cover relative overflow-hidden border border-line bg-surface">
-      <div className="relative aspect-[16/10]">
+      <div className="relative aspect-[5/4]">
         {project.cover ? (
           <img
             src={project.cover}
@@ -38,10 +38,9 @@ export function ProjectCover({ project, index, compact = false }: Props) {
                   'radial-gradient(60% 60% at 50% 45%, var(--color-accent-dim), transparent 70%)',
               }}
             />
-            <ArchThumb
-              arch={project.arch}
-              className="absolute inset-0 m-auto h-[72%] w-[86%] transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover/cover:scale-[1.04]"
-            />
+            <div className="absolute inset-6 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover/cover:scale-[1.03] sm:inset-8">
+              <SystemFigureView figure={project.figure} className="size-full" />
+            </div>
           </div>
         )}
 
@@ -50,7 +49,7 @@ export function ProjectCover({ project, index, compact = false }: Props) {
 
         {project.cover && (
           <div className="absolute right-5 bottom-5 w-[38%] max-w-[220px] border border-line-strong bg-bg/85 backdrop-blur">
-            <ArchThumb arch={project.arch} className="h-auto w-full" />
+            <SystemFigureView figure={project.figure} className="h-auto w-full p-2" />
             <span className="block border-t border-line px-2 py-1 label-mono text-[9px] text-faint">
               Detail A — architecture
             </span>

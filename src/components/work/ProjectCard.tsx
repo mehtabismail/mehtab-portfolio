@@ -2,7 +2,7 @@ import { AnimatePresence, m, useReducedMotion } from 'motion/react'
 import { Plus } from 'lucide-react'
 import { useId, useState } from 'react'
 import type { Project } from '../../content/site'
-import { projectTitle } from '../../lib/project'
+import { projectOrigin, projectTitle } from '../../lib/project'
 import { ProjectCover } from './ProjectCover'
 import { ProjectLinks } from './ProjectLinks'
 import { SpecList } from './SpecList'
@@ -30,6 +30,11 @@ export function ProjectCard({ project, index }: Props) {
         </h2>
         {project.year && <span className="pt-2 label-mono text-faint">{project.year}</span>}
       </div>
+      {projectOrigin(project) && (
+        <p className={`mt-1 label-mono ${project.madeAt ? 'text-accent' : 'text-faint'}`}>
+          {projectOrigin(project)}
+        </p>
+      )}
       <ul className="mt-3 flex flex-wrap gap-2" aria-label="Categories">
         {project.categories.map((c) => (
           <li

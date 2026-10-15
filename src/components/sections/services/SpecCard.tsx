@@ -1,12 +1,12 @@
 import { AnimatePresence, m, useReducedMotion } from 'motion/react'
-import { CodeXml, Network, PenTool, Plus, type LucideIcon } from 'lucide-react'
+import { CodeXml, Network, Plus, Smartphone, type LucideIcon } from 'lucide-react'
 import { useId, useState, type PointerEvent } from 'react'
 import type { Service, ServiceIcon } from '../../../content/site'
 
 const ICONS: Record<ServiceIcon, LucideIcon> = {
   code: CodeXml,
   architecture: Network,
-  design: PenTool,
+  mobile: Smartphone,
 }
 
 interface Props {

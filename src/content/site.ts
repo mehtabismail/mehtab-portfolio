@@ -3,6 +3,9 @@
  * edits needed. Items marked TODO are placeholders waiting for real details.
  */
 
+import type { SystemFigure } from './figureTypes.ts'
+import { figures } from './figures.ts'
+
 export type SocialKey = 'github' | 'linkedin' | 'x' | 'upwork' | 'fiverr'
 
 export interface SocialLink {
@@ -37,7 +40,7 @@ export const seo = {
     '/': {
       title: 'Mehtab Ismail — Full-Stack Developer & System Architect',
       description:
-        'Freelance full-stack developer who also handles system architecture, technical documentation and UI design — taking products from idea to shipped code.',
+        'Freelance full-stack developer who also handles system architecture and technical documentation — taking products from idea to shipped code.',
     },
     '/work/': {
       title: 'All work — Mehtab Ismail',
@@ -67,17 +70,16 @@ export const socials: SocialLink[] = [
 
 export const hero = {
   greeting: "Hi, I'm",
-  availability: 'Available for freelance projects',
-  roles: ['Full-Stack Developer', 'System Architect', 'UI Designer', 'Technical Writer'],
+  roles: ['Full-Stack Developer', 'React Native Developer', 'System Architect', 'Technical Writer'],
   statement:
-    'I turn product ideas into documented, scalable platforms — from architecture to pixel.',
+    'I turn product ideas into documented, scalable platforms — from architecture to production.',
   primaryCta: { label: 'Hire me', target: 'contact' },
   secondaryCta: { label: 'See my work', target: 'work' },
 }
 
 /* ───────────────────────────── What I do ───────────────────────────── */
 
-export type ServiceIcon = 'code' | 'architecture' | 'design'
+export type ServiceIcon = 'code' | 'architecture' | 'mobile'
 
 export interface Service {
   /** short discipline code shown in the card's title block */
@@ -92,7 +94,7 @@ export interface Service {
 export const about = {
   heading: 'What I do',
   intro:
-    "I'm a freelance full-stack developer. On client projects I also own the system architecture, the technical documentation and the UI design — so one person carries the product from idea to shipped code.",
+    "I'm a freelance full-stack developer. On client projects I also own the system architecture and the technical documentation — so one person carries the product from idea to shipped code.",
 }
 
 export const services: Service[] = [
@@ -110,6 +112,7 @@ export const services: Service[] = [
       'Expo',
       'TypeScript',
       'Node.js',
+      'NestJS',
       'PostgreSQL',
       'MongoDB',
       'REST APIs',
@@ -133,13 +136,22 @@ export const services: Service[] = [
     ],
   },
   {
-    code: 'UI-DSN',
-    icon: 'design',
-    title: 'UI/UX Design',
-    tagline: 'Interfaces that are ready to build',
+    code: 'MOB-DEV',
+    icon: 'mobile',
+    title: 'Mobile Apps',
+    tagline: 'React Native apps, shipped to both stores',
     description:
-      'Mobile and web interfaces designed in Figma, backed by design systems that keep the product consistent as it grows.',
-    tools: ['Figma', 'Design systems', 'Prototyping', 'Mobile UI', 'Web UI', 'Component libraries'],
+      'iOS and Android apps in React Native: real-time features, in-app purchases, smooth animations, and the release pipeline to the App Store and Google Play.',
+    tools: [
+      'React Native',
+      'Expo',
+      'Redux Toolkit',
+      'WebRTC',
+      'In-app purchases',
+      'Reanimated',
+      'Fastlane',
+      'App Store & Play Store',
+    ],
   },
 ]
 
@@ -147,16 +159,6 @@ export const services: Service[] = [
 
 export type ProjectCategory =
   'Mobile' | 'Web' | 'Architecture' | 'Documentation' | 'Audit' | 'Automation'
-
-export interface ArchNode {
-  id: string
-  label: string
-  /** position on a 0–100 grid */
-  x: number
-  y: number
-  /** highlight this node in amber */
-  core?: boolean
-}
 
 /**
  * PRIVACY SWITCH. Everything in this file ships in the site's JavaScript, so a
@@ -174,6 +176,10 @@ export type Project = ProjectNaming & {
   alias: string
   /** shown on the home page "Selected work" list */
   featured: boolean
+  /** company you built it at (shows "Built at …"); leave out for your own projects */
+  madeAt?: string
+  /** true for your own products — shows an "Own project" tag */
+  own?: boolean
   category: ProjectCategory
   categories: ProjectCategory[]
   year?: string
@@ -186,60 +192,37 @@ export type Project = ProjectNaming & {
   outcome: string
   /** Optional cover image in /public (WebP/AVIF), e.g. '/work/liora.webp' */
   cover?: string
-  arch: { nodes: ArchNode[]; edges: [string, string][] }
-  links: { live?: string; caseStudy?: string; repo?: string }
+  /** architecture drawing for the cover — see src/content/figures.ts */
+  figure: SystemFigure
+  links: {
+    live?: string
+    appStore?: string
+    googlePlay?: string
+    caseStudy?: string
+    repo?: string
+  }
 }
 
 export const work = {
   heading: 'Selected work',
   intro:
-    'Case studies from products I have designed, architected, documented and built. Some client names are withheld.',
+    'Case studies from products I have architected, documented and built — each with the system behind it.',
   allHeading: 'All work',
   allIntro: 'Everything I can share, filterable by the kind of work involved.',
 }
 
 /*
- * DRAFT COPY: written from the short descriptions in your brief. Check every
- * field — especially stack and outcome — before publishing.
+ * DRAFT COPY: written from your brief and CV. Check every field — especially
+ * stack and outcome — before publishing.
  */
 export const projects: Project[] = [
   {
-    slug: 'liora',
-    name: 'Liora',
-    alias: 'Cycle-tracking app',
-    showName: true, // confirmed public 2026-10-15
-    featured: true,
-    category: 'Mobile',
-    categories: ['Mobile', 'Web', 'Architecture'],
-    summary: 'A cycle-tracking app for women and girls, on mobile and web.',
-    problem:
-      'Women and girls need a simple, private way to track their cycle, on their phone and on the web.',
-    role: 'Product owner: architecture, UI design and the full-stack build.',
-    architecture:
-      'A mobile app and a web client sharing one backend API and one data model, so a user’s history is the same everywhere.',
-    stack: ['React Native', 'Expo', 'React', 'TypeScript', 'Node.js'], // TODO: verify
-    outcome: '', // TODO: add a concrete outcome (users, launch status, store rating…)
-    arch: {
-      nodes: [
-        { id: 'mobile', label: 'Mobile', x: 18, y: 22 },
-        { id: 'web', label: 'Web', x: 18, y: 78 },
-        { id: 'api', label: 'API', x: 55, y: 50, core: true },
-        { id: 'db', label: 'DB', x: 88, y: 50 },
-      ],
-      edges: [
-        ['mobile', 'api'],
-        ['web', 'api'],
-        ['api', 'db'],
-      ],
-    },
-    links: {},
-  },
-  {
-    // Real name: MarketNest — add `name` and set showName: true once the client approves.
-    slug: 'multi-vendor-marketplace',
+    slug: 'arca',
+    name: 'ARCA',
     alias: 'Multi-vendor marketplace',
-    showName: false,
+    showName: true,
     featured: true,
+    own: true,
     category: 'Architecture',
     categories: ['Architecture', 'Documentation', 'Web'],
     summary: 'Architecture and documentation for a multi-vendor e-commerce platform.',
@@ -247,154 +230,231 @@ export const projects: Project[] = [
       'A marketplace where many independent vendors sell through one storefront needs clear boundaries between vendors, orders and payouts before anyone writes code.',
     role: 'System architecture and technical documentation.',
     architecture:
-      'Vendor, catalogue, order and payout domains separated behind one API, written up as specs the build team works from.',
+      'Storefront, vendor portal and admin all go through one API gateway. Catalog, orders and payouts are separate domain services over a shared Postgres, with order events handled by background workers.',
     stack: ['System design', 'API design', 'Technical specs'], // TODO: verify
     outcome: '', // TODO: add a concrete outcome
-    arch: {
-      nodes: [
-        { id: 'store', label: 'Store', x: 14, y: 50 },
-        { id: 'api', label: 'API', x: 42, y: 50, core: true },
-        { id: 'vendor', label: 'Vendors', x: 76, y: 16 },
-        { id: 'orders', label: 'Orders', x: 76, y: 50 },
-        { id: 'payouts', label: 'Payouts', x: 76, y: 84 },
-      ],
-      edges: [
-        ['store', 'api'],
-        ['api', 'vendor'],
-        ['api', 'orders'],
-        ['api', 'payouts'],
-      ],
-    },
+    figure: figures.arca,
     links: {},
   },
   {
-    // Real name: Bling — add `name` and set showName: true once the client approves.
-    slug: 'dhl-marketplace',
-    alias: 'Marketplace with DHL logistics',
-    showName: false,
+    slug: 'bling',
+    name: 'Bling',
+    alias: 'Luxury-watch marketplace',
+    showName: true,
     featured: true,
-    category: 'Documentation',
-    categories: ['Documentation', 'Web'],
-    summary: 'Client-facing documentation for an e-commerce marketplace’s DHL integration.',
+    madeAt: 'ZAPTA Technologies',
+    category: 'Mobile',
+    categories: ['Mobile', 'Web', 'Architecture', 'Documentation'],
+    year: '2025–26',
+    summary:
+      'A bilingual luxury-watch marketplace for Saudi Arabia: the buyer and seller app, admin and partner dashboards, and the backend behind them.',
     problem:
-      'A non-technical client needed to understand what happens to an order between checkout and DHL delivery.',
-    role: 'Client-facing technical documentation for the logistics integration.',
+      'Buying and selling luxury watches online only works with trust — authenticated items, safe payments, offers and negotiation, and tracked delivery — in Arabic and English.',
+    role: 'Lead developer at ZAPTA Technologies across the mobile app, dashboards and backend, including the DHL logistics integration and its client-facing documentation.',
     architecture:
-      'Orders hand shipments to a DHL integration layer that creates labels and syncs tracking back to the order.',
-    stack: ['DHL API', 'Integration docs', 'Sequence diagrams'], // TODO: verify
+      'An Expo app (Redux Toolkit + RTK Query) and Next.js admin and partner dashboards share a NestJS API on Postgres via Prisma. Socket.IO powers chat, Redis and pg-boss run background jobs, and integrations cover payments (CPay, Tabby, Tamara, wallet), carriers including DHL, authenticity checks (Entrupy, LegitGrails), WatchCharts pricing and ZATCA e-invoicing.',
+    stack: [
+      'Expo',
+      'React Native',
+      'Redux Toolkit',
+      'Next.js',
+      'NestJS',
+      'Prisma',
+      'PostgreSQL',
+      'Redis',
+      'Socket.IO',
+      'DHL API',
+    ],
     outcome: '', // TODO: add a concrete outcome
-    arch: {
-      nodes: [
-        { id: 'checkout', label: 'Checkout', x: 10, y: 30 },
-        { id: 'orders', label: 'Orders', x: 48, y: 30, core: true },
-        { id: 'dhl', label: 'DHL', x: 86, y: 30 },
-        { id: 'track', label: 'Tracking', x: 60, y: 80 },
-      ],
-      edges: [
-        ['checkout', 'orders'],
-        ['orders', 'dhl'],
-        ['dhl', 'track'],
-        ['track', 'orders'],
-      ],
-    },
+    figure: figures.bling,
     links: {},
+  },
+  {
+    slug: 'kave',
+    name: 'KAVE',
+    alias: 'Short-stay rental marketplace',
+    showName: true,
+    featured: true,
+    madeAt: 'ZAPTA Technologies',
+    category: 'Mobile',
+    categories: ['Mobile', 'Architecture'],
+    year: '2026',
+    summary:
+      'An Airbnb-style short-stay rental marketplace for iOS and Android — KAVE Living for guests and hosts, and KAVE Ops for the operations team.',
+    problem:
+      'Guests need to find, book and pay for stays; hosts need to list and manage properties; and the operations team needs to inspect properties and handle service requests on site, often without a signal.',
+    role: 'Lead developer at ZAPTA Technologies: architecture and build of both apps.',
+    architecture:
+      'KAVE Living is built from feature-first modules: every request goes through one API client with retries and token refresh, with TanStack Query for server state and Zustand for multi-step flows like booking. Bookings, Moyasar and Apple Pay payments, socket messaging, an AI concierge and add-on service requests share one REST backend, in English and Arabic (RTL). KAVE Ops is offline-first — inspections and service requests are queued in a local SQLite outbox and synced when the connection returns.',
+    stack: [
+      'Expo',
+      'React Native',
+      'TypeScript',
+      'Expo Router',
+      'TanStack Query',
+      'Zustand',
+      'Socket.IO',
+      'Moyasar · Apple Pay',
+      'SQLite offline sync',
+      'Sentry',
+    ],
+    outcome: '', // TODO: add a concrete outcome
+    figure: figures.kave,
+    links: {},
+  },
+  {
+    slug: 'liora',
+    name: 'Liora',
+    alias: 'Cycle-tracking app',
+    showName: true,
+    featured: true,
+    own: true,
+    category: 'Mobile',
+    categories: ['Mobile', 'Web', 'Architecture'],
+    summary: 'A cycle-tracking app for women and girls, on mobile and web.',
+    problem:
+      'Women and girls need a simple, private way to track their cycle, on their phone and on the web.',
+    role: 'Product owner: architecture and the full-stack build.',
+    architecture:
+      'Mobile and web clients share one API. Accounts, cycle predictions and reminders are separate concerns over one data model, and reminders go out as push notifications.',
+    stack: ['React Native', 'Expo', 'React', 'TypeScript', 'Node.js'], // TODO: verify
+    outcome: '', // TODO: add a concrete outcome (users, launch status, store rating…)
+    figure: figures.liora,
+    links: {},
+  },
+  {
+    slug: 'portfolio',
+    name: 'This portfolio',
+    alias: 'This portfolio',
+    showName: true,
+    featured: true,
+    own: true,
+    category: 'Web',
+    categories: ['Web', 'Architecture'],
+    year: '2026',
+    summary:
+      'The site you’re on: a prerendered React portfolio with live system diagrams and a physics playground.',
+    problem: 'Show how I work — architecture, documentation and build — not just a list of skills.',
+    role: 'Architecture and build, end to end.',
+    architecture:
+      'All content lives in one TypeScript file. A Vite build on Vercel prerenders both pages to static HTML, the edge network serves them, and React hydrates them in the browser. The contact form posts to Formspree.',
+    stack: ['React 19', 'Vite', 'TypeScript', 'Tailwind CSS', 'Motion', 'matter.js', 'Vercel'],
+    outcome:
+      'Lighthouse 100 for accessibility, best practices and SEO, and 99 for mobile performance under real throttling.',
+    figure: figures.portfolio,
+    links: { live: 'https://mehtab-portfolio-vert.vercel.app' },
+  },
+  {
+    slug: 'iscroll',
+    name: 'ISCROLL',
+    alias: 'Kiwi marketplace app',
+    showName: true,
+    featured: false,
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2024',
+    summary:
+      'An online marketplace for New Zealanders: a safe place to buy and sell, with easy communication between traders.',
+    problem: 'Kiwi buyers and sellers needed a safe place to trade and talk to each other.',
+    role: 'React Native development.',
+    architecture:
+      'A React Native app using Redux and RTK Query for data and MMKV for a fast offline cache. Vehicle listings pull details from CarJam’s APIs.',
+    stack: ['TypeScript', 'React Native', 'Redux', 'RTK Query', 'MMKV', 'CarJam APIs'],
+    outcome: 'Live on the App Store and Google Play.',
+    figure: figures.iscroll,
+    links: {
+      appStore: 'https://apps.apple.com/pk/app/isqroll/id6479675690',
+      googlePlay: 'https://play.google.com/store/apps/details?id=com.isqroll&hl=en',
+    },
+  },
+  {
+    slug: 'mish',
+    name: 'MISH — Carpooling',
+    alias: 'Carpooling app',
+    showName: true,
+    featured: false,
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2023',
+    summary:
+      'A ride-sharing app where people sign up as drivers or riders and book seats on trips.',
+    problem:
+      'Riders needed a simple way to find and pay for a seat on a trip someone was already driving.',
+    role: 'React Native development.',
+    architecture:
+      'Rider and driver apps share one API for trips and seat bookings, with Google Maps for routes and a confirmed seat purchase before the trip.',
+    stack: ['JavaScript', 'React Native', 'Redux Toolkit', 'Google Maps'],
+    outcome: 'Live on the App Store and Google Play.',
+    figure: figures.mish,
+    links: {
+      appStore: 'http://apps.apple.com/nz/app/mish-carpooling/id1661264457',
+      googlePlay: 'https://play.google.com/store/apps/details?id=com.mish',
+    },
+  },
+  {
+    slug: 'vigourme',
+    name: 'VigourMe',
+    alias: 'Anonymous health app',
+    showName: true,
+    featured: false,
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2021',
+    summary: 'A healthcare app that makes intimate well-being support accessible and anonymous.',
+    problem: 'People needed private, anonymous access to well-being support from their phone.',
+    role: 'React Native development.',
+    architecture:
+      'A React Native app on Firebase: anonymous sign-in, Firestore for consultations, and cloud functions for triggers and push notifications.',
+    stack: ['JavaScript', 'React Native', 'Redux', 'Firebase'],
+    outcome: 'Published on Google Play.',
+    figure: figures.vigourme,
+    links: {
+      googlePlay: 'https://play.google.com/store/apps/details?id=com.vigourmeconsultancy',
+    },
   },
   {
     slug: 'outreach-agent',
     name: 'Business outreach agent',
     alias: 'Business outreach agent',
-    showName: true, // descriptive title, not a client name
-    featured: true,
+    showName: true,
+    featured: false,
+    own: true,
     category: 'Automation',
     categories: ['Automation', 'Web'],
     summary: 'An automated lead-generation agent that builds sample sites and sends outreach.',
     problem: 'Finding businesses and pitching each one by hand doesn’t scale.',
-    role: 'Design and build of the whole pipeline.',
+    role: 'Planned and built the whole pipeline.',
     architecture:
       'A pipeline that finds businesses, generates a sample website for each one, then sends personalised outreach with a link to it.',
     stack: ['Node.js', 'TypeScript'], // TODO: verify
     outcome: '', // TODO: add a concrete outcome
-    arch: {
-      nodes: [
-        { id: 'find', label: 'Find', x: 6, y: 50 },
-        { id: 'build', label: 'Build site', x: 40, y: 50, core: true },
-        { id: 'send', label: 'Outreach', x: 80, y: 50 },
-        { id: 'leads', label: 'Leads', x: 92, y: 14 },
-      ],
-      edges: [
-        ['find', 'build'],
-        ['build', 'send'],
-        ['send', 'leads'],
-      ],
-    },
-    links: {},
-  },
-  {
-    // Real name: KAVE — add `name` and set showName: true once the client approves.
-    slug: 'mobile-app-audit',
-    alias: 'Enterprise mobile app audit',
-    showName: false,
-    featured: false,
-    category: 'Audit',
-    categories: ['Audit', 'Mobile'],
-    summary: 'An enterprise code audit of a React Native / Expo app.',
-    problem:
-      'An enterprise team wanted an independent view of their React Native codebase: what was risky, and what to fix first.',
-    role: 'Code audit and written findings.',
-    architecture:
-      'Reviewed app structure, state and data flow, API usage, build setup and dependencies; findings delivered as a prioritised report.',
-    stack: ['React Native', 'Expo', 'TypeScript'],
-    outcome: '', // TODO: add a concrete outcome
-    arch: {
-      nodes: [
-        { id: 'ui', label: 'UI', x: 16, y: 24 },
-        { id: 'state', label: 'State', x: 16, y: 76 },
-        { id: 'app', label: 'App', x: 50, y: 50, core: true },
-        { id: 'api', label: 'API', x: 84, y: 50 },
-      ],
-      edges: [
-        ['ui', 'app'],
-        ['state', 'app'],
-        ['app', 'api'],
-      ],
-    },
+    figure: figures.outreach,
     links: {},
   },
   {
     slug: 'work-log',
     name: 'Work-log automation',
     alias: 'Work-log automation',
-    showName: true, // descriptive title, not a client name
+    showName: true,
     featured: false,
+    own: true,
     category: 'Automation',
     categories: ['Automation', 'Documentation'],
     summary: 'Tooling that maintains dev logs and client meeting records.',
     problem: 'Keeping a client-facing record of work and meetings by hand is easy to skip.',
-    role: 'Design and build.',
+    role: 'Planned and built end to end.',
     architecture:
       'Work entries and meeting notes are captured in a structured log, then rendered into a report the client can read.',
     stack: ['Markdown', 'Node.js'], // TODO: verify
     outcome: '', // TODO: add a concrete outcome
-    arch: {
-      nodes: [
-        { id: 'work', label: 'Work', x: 14, y: 26 },
-        { id: 'meet', label: 'Meetings', x: 14, y: 74 },
-        { id: 'log', label: 'Log', x: 50, y: 50, core: true },
-        { id: 'report', label: 'Report', x: 86, y: 50 },
-      ],
-      edges: [
-        ['work', 'log'],
-        ['meet', 'log'],
-        ['log', 'report'],
-      ],
-    },
+    figure: figures.worklog,
     links: {},
   },
 ]
 
 /* ───────────────────────────── Process ───────────────────────────── */
 
-export type ProcessIcon = 'discover' | 'architect' | 'design' | 'ship'
+export type ProcessIcon = 'discover' | 'architect' | 'ship'
 
 export interface ProcessStep {
   title: string
@@ -406,7 +466,7 @@ export interface ProcessStep {
 export const processFlow = {
   heading: 'How I work',
   intro:
-    'Most developers start at step four. I start at step one, so the code is built on decisions that are already made and written down.',
+    'Most developers start at the last step. I start at the first, so the code is built on decisions that are already made and written down.',
   // DRAFT: edit the descriptions and deliverables to match how you actually work.
   steps: [
     {
@@ -422,13 +482,6 @@ export const processFlow = {
       description:
         'System design and a written spec — data model, APIs, integrations — so everyone builds from the same plan.',
       deliverables: ['Architecture diagram', 'Technical spec', 'API contracts'],
-    },
-    {
-      title: 'Design',
-      icon: 'design',
-      description:
-        'Interfaces in Figma on a small design system, reviewed with you before a line of UI code is written.',
-      deliverables: ['Figma screens', 'Design system', 'Clickable prototype'],
     },
     {
       title: 'Build & Ship',
@@ -448,13 +501,21 @@ export type TechIconKey =
   | 'expo'
   | 'typescript'
   | 'javascript'
+  | 'redux'
+  | 'tailwind'
   | 'nodejs'
+  | 'nestjs'
   | 'postgresql'
   | 'mongodb'
-  | 'tailwind'
-  | 'figma'
+  | 'firebase'
+  | 'socketio'
+  | 'webrtc'
+  | 'nginx'
+  | 'caddy'
   | 'git'
   | 'github'
+  | 'githubactions'
+  | 'fastlane'
   | 'vercel'
 
 export interface Tech {
@@ -465,7 +526,7 @@ export interface Tech {
 export const techStack = {
   heading: 'Tech stack',
   hint: 'Play with me — drag and throw',
-  // TODO: confirm this list. Icons available: see TechIconKey above.
+  // Icons available: see TechIconKey above (add new ones in TechChip.tsx).
   items: [
     { name: 'React', icon: 'react' },
     { name: 'Next.js', icon: 'nextjs' },
@@ -473,13 +534,21 @@ export const techStack = {
     { name: 'Expo', icon: 'expo' },
     { name: 'TypeScript', icon: 'typescript' },
     { name: 'JavaScript', icon: 'javascript' },
+    { name: 'Redux Toolkit', icon: 'redux' },
+    { name: 'Tailwind CSS', icon: 'tailwind' },
     { name: 'Node.js', icon: 'nodejs' },
+    { name: 'NestJS', icon: 'nestjs' },
     { name: 'PostgreSQL', icon: 'postgresql' },
     { name: 'MongoDB', icon: 'mongodb' },
-    { name: 'Tailwind CSS', icon: 'tailwind' },
-    { name: 'Figma', icon: 'figma' },
+    { name: 'Firebase', icon: 'firebase' },
+    { name: 'Socket.IO', icon: 'socketio' },
+    { name: 'WebRTC', icon: 'webrtc' },
+    { name: 'Nginx', icon: 'nginx' },
+    { name: 'Caddy', icon: 'caddy' },
     { name: 'Git', icon: 'git' },
     { name: 'GitHub', icon: 'github' },
+    { name: 'GitHub Actions', icon: 'githubactions' },
+    { name: 'Fastlane', icon: 'fastlane' },
     { name: 'Vercel', icon: 'vercel' },
   ] satisfies Tech[],
 }
@@ -497,8 +566,8 @@ export const contact = {
   formspreeId: 'xzedkaqa',
   projectTypes: [
     'Full-stack build',
+    'Mobile app',
     'Architecture & documentation',
-    'UI/UX design',
     'Code audit',
     'Something else',
   ],
@@ -522,10 +591,10 @@ export const experience = {
   entries: [
     {
       year: 'Now',
-      role: 'Freelance Full-Stack Developer & Architect',
-      org: 'Self-employed',
+      role: 'Senior React Native Developer',
+      org: 'ZAPTA Technologies',
       summary:
-        'Building web and mobile products for clients, including architecture, technical documentation and UI design.',
+        'Since September 2025. Leading two products end to end — the Bling luxury-watch marketplace and the KAVE short-stay rental apps — across mobile, dashboards and backend.',
     },
     {
       year: '2022–25',
