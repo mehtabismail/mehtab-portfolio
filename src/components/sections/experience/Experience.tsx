@@ -28,7 +28,7 @@ export function Experience() {
           {/* Table header, desktop only */}
           <div
             aria-hidden
-            className="hidden grid-cols-[150px_minmax(0,1fr)_minmax(0,1.1fr)] gap-10 border-b border-line pb-3 pl-14 label-mono text-faint md:grid"
+            className="hidden grid-cols-[180px_minmax(0,1fr)_minmax(0,1.1fr)] gap-10 border-b border-line pb-3 pl-14 label-mono text-faint md:grid"
           >
             <span>Rev · Date</span>
             <span>Role</span>
@@ -51,7 +51,7 @@ export function Experience() {
               {experience.entries.map((entry, i) => (
                 <li
                   key={`${entry.year}-${entry.role}-${i}`}
-                  className="relative border-b border-line py-10 pl-10 md:grid md:grid-cols-[150px_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:py-12 md:pl-14"
+                  className="relative border-b border-line py-10 pl-10 md:grid md:grid-cols-[180px_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:py-12 md:pl-14"
                 >
                   {/* Rail marker: lights up once the scroll line reaches it */}
                   <m.span
@@ -71,7 +71,7 @@ export function Experience() {
 
                   <Reveal delay={0.05}>
                     <p className="label-mono text-faint">Rev {pad(total - i)}</p>
-                    <p className="mt-1 font-display text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
+                    <p className="mt-1 font-display text-4xl font-semibold tracking-[-0.03em] whitespace-nowrap md:text-[2.75rem]">
                       {entry.year}
                     </p>
                   </Reveal>

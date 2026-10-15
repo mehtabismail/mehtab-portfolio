@@ -23,7 +23,7 @@ export function SpecList({ project }: Props) {
           <dd className="leading-relaxed text-muted">{project[key]}</dd>
         </div>
       ))}
-      <div className={row}>
+      <div className={project.outcome ? row : `${row} border-b`}>
         <dt className={dt}>Stack</dt>
         <dd>
           <ul className="flex flex-wrap gap-2">
@@ -35,12 +35,14 @@ export function SpecList({ project }: Props) {
           </ul>
         </dd>
       </div>
-      <div className={`${row} border-b`}>
-        <dt className={dt}>Outcome</dt>
-        <dd className="border-l-2 border-accent pl-4 leading-relaxed text-ink">
-          {project.outcome}
-        </dd>
-      </div>
+      {project.outcome && (
+        <div className={`${row} border-b`}>
+          <dt className={dt}>Outcome</dt>
+          <dd className="border-l-2 border-accent pl-4 leading-relaxed text-ink">
+            {project.outcome}
+          </dd>
+        </div>
+      )}
     </dl>
   )
 }

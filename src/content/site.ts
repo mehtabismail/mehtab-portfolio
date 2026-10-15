@@ -20,10 +20,8 @@ export interface NavLink {
 export const site = {
   name: 'Mehtab Ismail',
   initials: 'MI',
-  // TODO: replace with the email you want public on the site
-  email: 'hello@example.com',
-  // TODO: replace with your city
-  location: 'City, Pakistan',
+  email: 'mehtabismail.dev@gmail.com',
+  location: 'Lahore, Pakistan',
   resumeHref: '/resume.pdf',
   url: 'https://mehtab-portfolio-vert.vercel.app', // swap for a custom domain if you add one
 } as const
@@ -59,12 +57,12 @@ export const nav: NavLink[] = [
   { label: 'Contact', target: 'contact' },
 ]
 
-// TODO: replace each href with your real profile URL. Remove any you don't use.
+// Remove any entry to hide that link everywhere (side rail, menu, contact).
 export const socials: SocialLink[] = [
-  { key: 'github', label: 'GitHub', href: 'https://github.com/' },
-  { key: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-  { key: 'x', label: 'X (Twitter)', href: 'https://x.com/' },
-  { key: 'upwork', label: 'Upwork', href: 'https://www.upwork.com/' },
+  { key: 'github', label: 'GitHub', href: 'https://github.com/mehtabismail' },
+  { key: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/mehtabismail' },
+  { key: 'x', label: 'X (Twitter)', href: 'https://x.com/MehtabIsmail' },
+  { key: 'upwork', label: 'Upwork', href: 'https://www.upwork.com/freelancers/mehtabismail' },
 ]
 
 export const hero = {
@@ -184,6 +182,7 @@ export type Project = ProjectNaming & {
   role: string
   architecture: string
   stack: string[]
+  /** leave empty ('') to hide the Outcome row until you have a real result */
   outcome: string
   /** Optional cover image in /public (WebP/AVIF), e.g. '/work/liora.webp' */
   cover?: string
@@ -219,7 +218,7 @@ export const projects: Project[] = [
     architecture:
       'A mobile app and a web client sharing one backend API and one data model, so a user’s history is the same everywhere.',
     stack: ['React Native', 'Expo', 'React', 'TypeScript', 'Node.js'], // TODO: verify
-    outcome: 'TODO: add a concrete outcome (users, launch status, store rating…).',
+    outcome: '', // TODO: add a concrete outcome (users, launch status, store rating…)
     arch: {
       nodes: [
         { id: 'mobile', label: 'Mobile', x: 18, y: 22 },
@@ -250,7 +249,7 @@ export const projects: Project[] = [
     architecture:
       'Vendor, catalogue, order and payout domains separated behind one API, written up as specs the build team works from.',
     stack: ['System design', 'API design', 'Technical specs'], // TODO: verify
-    outcome: 'TODO: add a concrete outcome.',
+    outcome: '', // TODO: add a concrete outcome
     arch: {
       nodes: [
         { id: 'store', label: 'Store', x: 14, y: 50 },
@@ -283,7 +282,7 @@ export const projects: Project[] = [
     architecture:
       'Orders hand shipments to a DHL integration layer that creates labels and syncs tracking back to the order.',
     stack: ['DHL API', 'Integration docs', 'Sequence diagrams'], // TODO: verify
-    outcome: 'TODO: add a concrete outcome.',
+    outcome: '', // TODO: add a concrete outcome
     arch: {
       nodes: [
         { id: 'checkout', label: 'Checkout', x: 10, y: 30 },
@@ -314,7 +313,7 @@ export const projects: Project[] = [
     architecture:
       'A pipeline that finds businesses, generates a sample website for each one, then sends personalised outreach with a link to it.',
     stack: ['Node.js', 'TypeScript'], // TODO: verify
-    outcome: 'TODO: add a concrete outcome.',
+    outcome: '', // TODO: add a concrete outcome
     arch: {
       nodes: [
         { id: 'find', label: 'Find', x: 6, y: 50 },
@@ -345,7 +344,7 @@ export const projects: Project[] = [
     architecture:
       'Reviewed app structure, state and data flow, API usage, build setup and dependencies; findings delivered as a prioritised report.',
     stack: ['React Native', 'Expo', 'TypeScript'],
-    outcome: 'TODO: add a concrete outcome.',
+    outcome: '', // TODO: add a concrete outcome
     arch: {
       nodes: [
         { id: 'ui', label: 'UI', x: 16, y: 24 },
@@ -375,7 +374,7 @@ export const projects: Project[] = [
     architecture:
       'Work entries and meeting notes are captured in a structured log, then rendered into a report the client can read.',
     stack: ['Markdown', 'Node.js'], // TODO: verify
-    outcome: 'TODO: add a concrete outcome.',
+    outcome: '', // TODO: add a concrete outcome
     arch: {
       nodes: [
         { id: 'work', label: 'Work', x: 14, y: 26 },
@@ -519,7 +518,7 @@ export interface ExperienceEntry {
 
 export const experience = {
   heading: 'Experience',
-  // Newest first. TODO: replace the placeholder entries with your real history.
+  // Newest first. Taken from the CV (public/resume.pdf).
   entries: [
     {
       year: 'Now',
@@ -529,22 +528,25 @@ export const experience = {
         'Building web and mobile products for clients, including architecture, technical documentation and UI design.',
     },
     {
-      year: 'YYYY',
-      role: 'TODO: Role title',
-      org: 'TODO: Organisation',
-      summary: 'TODO: One or two lines on what you did and what changed because of it.',
+      year: '2022–25',
+      role: 'Senior React Native Developer & Team Lead',
+      org: 'OutsourceNZ',
+      summary:
+        'Promoted to lead a team of 7 React Native developers and owned delivery end to end. Cut product-list render time by 75%.',
     },
     {
-      year: 'YYYY',
-      role: 'TODO: Role title',
-      org: 'TODO: Organisation',
-      summary: 'TODO: One or two lines on what you did and what changed because of it.',
+      year: '2022',
+      role: 'Senior React Native Developer',
+      org: 'OptimusFox',
+      summary:
+        'Built reliable real-time calling with WebRTC and custom ICE servers, plus in-app subscriptions and purchases on iOS and Android.',
     },
     {
-      year: 'YYYY',
-      role: 'TODO: Role title',
-      org: 'TODO: Organisation',
-      summary: 'TODO: One or two lines on what you did and what changed because of it.',
+      year: '2019–22',
+      role: 'React Native Developer',
+      org: 'Tribex Technology',
+      summary:
+        'Shipped apps to the App Store and Google Play, with CI/CD on Fastlane and GitHub Actions.',
     },
   ] satisfies ExperienceEntry[],
 }
