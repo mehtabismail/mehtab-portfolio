@@ -492,9 +492,9 @@ export const contact = {
   /**
    * Formspree form ID: the part after /f/ in your form's endpoint,
    * e.g. https://formspree.io/f/xyzabcd → 'xyzabcd'.
-   * TODO: paste your ID here. Until then the form explains it isn't connected.
+   * Leave empty and the form tells visitors to email you instead.
    */
-  formspreeId: '',
+  formspreeId: 'xzedkaqa',
   projectTypes: [
     'Full-stack build',
     'Architecture & documentation',
