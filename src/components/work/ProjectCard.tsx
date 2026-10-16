@@ -2,7 +2,7 @@ import { AnimatePresence, m, useReducedMotion } from 'motion/react'
 import { Plus } from 'lucide-react'
 import { useId, useState } from 'react'
 import type { Project } from '../../content/site'
-import { projectOrigin, projectTitle } from '../../lib/project'
+import { chipsFor, coverCategory, projectOrigin, projectTitle } from '../../lib/project'
 import { ProjectCover } from './ProjectCover'
 import { ProjectLinks } from './ProjectLinks'
 import { SpecList } from './SpecList'
@@ -17,10 +17,11 @@ export function ProjectCard({ project, index }: Props) {
   const [open, setOpen] = useState(false)
   const reduce = useReducedMotion()
   const panelId = useId()
+  const highlight = coverCategory(project, 'auto')
 
   return (
     <article aria-labelledby={`card-${project.slug}`} className="flex flex-col">
-      <ProjectCover project={project} index={index} compact />
+      <ProjectCover project={project} index={index} compact highlight={highlight} />
       <div className="mt-6 flex items-start justify-between gap-4">
         <h2
           id={`card-${project.slug}`}
@@ -36,10 +37,10 @@ export function ProjectCard({ project, index }: Props) {
         </p>
       )}
       <ul className="mt-3 flex flex-wrap gap-2" aria-label="Categories">
-        {project.categories.map((c) => (
+        {chipsFor(project, highlight).map((c) => (
           <li
             key={c}
-            className={`border px-2 py-0.5 label-mono text-[10px] ${c === project.category ? 'border-accent/60 text-accent' : 'border-line-strong text-muted'}`}
+            className={`border px-2 py-0.5 label-mono text-[10px] ${c === highlight ? 'border-accent/60 text-accent' : 'border-line-strong text-muted'}`}
           >
             {c}
           </li>

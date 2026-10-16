@@ -8,6 +8,12 @@
       "port": 5173
     },
     {
+      "name": "portfolio-dev-3000",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "3000", "--strictPort"],
+      "port": 3000
+    },
+    {
       "name": "portfolio-preview",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "preview", "--", "--port", "4173", "--strictPort"],

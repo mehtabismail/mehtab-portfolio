@@ -1,5 +1,5 @@
 import type { Project } from '../../../content/site'
-import { pad, projectOrigin, projectTitle } from '../../../lib/project'
+import { chipsFor, coverCategory, pad, projectOrigin, projectTitle } from '../../../lib/project'
 import { Reveal } from '../../ui/Reveal'
 import { ProjectCover } from '../../work/ProjectCover'
 import { ProjectLinks } from '../../work/ProjectLinks'
@@ -14,6 +14,9 @@ interface Props {
 export function ProjectSheet({ project, index }: Props) {
   const title = projectTitle(project)
   const origin = projectOrigin(project)
+  // The home page always draws the system figure, so Architecture is highlighted.
+  const highlight = coverCategory(project, 'figure')
+  const [first, ...rest] = chipsFor(project, highlight)
 
   return (
     <article
@@ -42,18 +45,16 @@ export function ProjectSheet({ project, index }: Props) {
             )}
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <span className="border border-accent/60 px-2.5 py-1 label-mono text-accent">
-                {project.category}
+                {first}
               </span>
-              {project.categories
-                .filter((c) => c !== project.category)
-                .map((c) => (
-                  <span
-                    key={c}
-                    className="border border-line-strong px-2.5 py-1 label-mono text-muted"
-                  >
-                    {c}
-                  </span>
-                ))}
+              {rest.map((c) => (
+                <span
+                  key={c}
+                  className="border border-line-strong px-2.5 py-1 label-mono text-muted"
+                >
+                  {c}
+                </span>
+              ))}
               {project.year && <span className="label-mono text-faint">{project.year}</span>}
             </div>
             <p className="mt-5 max-w-sm leading-relaxed text-muted">{project.summary}</p>
@@ -66,7 +67,7 @@ export function ProjectSheet({ project, index }: Props) {
 
       <div className="lg:col-span-8">
         <Reveal delay={0.1}>
-          <ProjectCover project={project} index={index} />
+          <ProjectCover project={project} index={index} art="figure" highlight={highlight} />
         </Reveal>
         <Reveal delay={0.15} className="mt-8">
           <SpecList project={project} />

@@ -207,6 +207,8 @@ export type Project = ProjectNaming & {
   outcome: string
   /** Optional cover image in /public (WebP/AVIF), e.g. '/work/liora.webp' */
   cover?: string
+  /** what the cover screenshots show; picks the highlighted chip on /work */
+  coverKind?: 'mobile' | 'web'
   /**
    * architecture drawing for the cover — see src/content/figures.ts. Optional:
    * without one (and without a cover image) the card shows a typographic cover.
@@ -266,6 +268,7 @@ export const projects: Project[] = [
     outcome:
       'The web storefront and API are deployed, and contract and end-to-end tests run against a seeded backend in CI.',
     cover: '/work/arca.jpg',
+    coverKind: 'web',
     figure: figures.arca,
     links: {},
   },
@@ -300,6 +303,7 @@ export const projects: Project[] = [
     ],
     outcome: 'Launched on the App Store in Saudi Arabia in June 2026.',
     cover: '/work/bling.jpg',
+    coverKind: 'mobile',
     figure: figures.bling,
     links: {
       live: 'https://bling.sa',
@@ -337,6 +341,7 @@ export const projects: Project[] = [
     ],
     outcome: 'KAVE Living launched on the App Store in Saudi Arabia in June 2026.',
     cover: '/work/kave.jpg',
+    coverKind: 'mobile',
     figure: figures.kave,
     links: {
       live: 'https://kave.sa',
@@ -373,6 +378,7 @@ export const projects: Project[] = [
     outcome:
       'Built from a 683-screen design handoff: English and Urdu (right-to-left), light and dark, on phone and web.',
     cover: '/work/liora.jpg',
+    coverKind: 'mobile',
     figure: figures.liora,
     links: {},
   },
@@ -399,33 +405,6 @@ export const projects: Project[] = [
     links: { live: 'https://mehtab-portfolio-vert.vercel.app' },
   },
   {
-    slug: 'handzhake',
-    name: 'Handzhake',
-    alias: 'Identity and trust app',
-    showName: true,
-    featured: false,
-    madeAt: 'ZAPTA Technologies',
-    category: 'Mobile',
-    categories: ['Mobile'],
-    year: '2025–26',
-    summary:
-      'A mobile app that lets people check who they’re really dealing with online, built for Progressisio ApS.',
-    problem:
-      'Online, it’s hard to know the real identity and trustworthiness of the person at the other end, whichever platform you meet them on.',
-    role: 'React Native development at ZAPTA Technologies.',
-    stack: [
-      'React Native',
-      'TypeScript',
-      'Zustand',
-      'Socket.IO',
-      'Firebase',
-      'Google Maps',
-      'Notifee',
-    ],
-    outcome: 'Live on the App Store.',
-    links: { appStore: 'https://apps.apple.com/app/id6738658663' },
-  },
-  {
     slug: 'lax-ferries',
     name: 'Lax Kw’alaams Ferries',
     alias: 'Ferry operations app',
@@ -442,6 +421,7 @@ export const projects: Project[] = [
     role: 'React Native development at ZAPTA Technologies.',
     stack: ['Expo', 'React Native', 'Expo Router', 'TypeScript', 'Zustand'],
     outcome: 'Live on the App Store.',
+    figure: figures.lax,
     links: { appStore: 'https://apps.apple.com/app/id6752282340' },
   },
   {
@@ -472,6 +452,7 @@ export const projects: Project[] = [
       'Firebase',
     ],
     outcome: '',
+    figure: figures.extent,
     links: {},
   },
   {
@@ -490,6 +471,7 @@ export const projects: Project[] = [
     role: 'React Native development of both apps.',
     stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'Reanimated'],
     outcome: 'Both apps are live on the App Store.',
+    figure: figures.myusta,
     links: { appStore: 'https://apps.apple.com/app/id6758246269' },
   },
   {
@@ -511,6 +493,7 @@ export const projects: Project[] = [
       'A React 19 single-page app with TanStack Query for server state and optimistic updates, on an Express API with MongoDB and JWT authentication.',
     stack: ['React', 'TanStack Query', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'Express', 'MongoDB'],
     outcome: '',
+    figure: figures.devtinder,
     links: {
       live: 'https://dev-tinder-web-ruddy.vercel.app',
       repo: 'https://github.com/mehtabismail/devTinder-web',
@@ -534,6 +517,7 @@ export const projects: Project[] = [
       'A React Native app with Redux on an Express and MongoDB API that lists registered users within a radius of your location.',
     stack: ['React Native', 'Redux', 'JavaScript', 'Express', 'MongoDB'],
     outcome: '',
+    figure: figures.whou,
     links: {},
   },
   {
@@ -577,6 +561,7 @@ export const projects: Project[] = [
     role: 'React Native development at OutsourceNZ.',
     stack: ['React Native', 'JavaScript'],
     outcome: '',
+    figure: figures.ponataki,
     links: {},
   },
   {
@@ -597,6 +582,7 @@ export const projects: Project[] = [
       'The app matches a photographed sign against a database of the health and safety signage used across New Zealand industries, then shows its meaning in the chosen language.',
     stack: ['React Native', 'Redux Toolkit', 'Node.js'],
     outcome: '',
+    figure: figures.safesigns,
     links: {},
   },
   {
@@ -616,6 +602,7 @@ export const projects: Project[] = [
     role: 'React Native development at OutsourceNZ.',
     stack: ['React Native', 'Node.js'],
     outcome: '',
+    figure: figures.mybenefits,
     links: {},
   },
   {
@@ -635,6 +622,7 @@ export const projects: Project[] = [
     role: 'React Native development at OutsourceNZ.',
     stack: ['React Native', 'JavaScript', 'Redux', 'Redux Thunk', 'i18next'],
     outcome: 'Live on the App Store.',
+    figure: figures.locumbridge,
     links: { appStore: 'https://apps.apple.com/nz/app/locumbridge/id6461689669' },
   },
   {
@@ -654,6 +642,7 @@ export const projects: Project[] = [
     role: 'React Native development at OutsourceNZ.',
     stack: ['React Native', 'JavaScript', 'Node.js'],
     outcome: '',
+    figure: figures.aawhina,
     links: {},
   },
   {
@@ -762,6 +751,7 @@ export const projects: Project[] = [
       'Business logic is kept apart from the UI, and every piece is documented. Start a new app from it with `npx react-native init AppName --template`.',
     stack: ['React Native', 'TypeScript', 'React Navigation', 'Redux Toolkit', 'RTK Query'],
     outcome: '',
+    figure: figures.boilerplate,
     links: { repo: 'https://github.com/mehtabismail/RNBoilerplate' },
   },
   {
@@ -780,6 +770,7 @@ export const projects: Project[] = [
     role: 'Final-year project: design and build.',
     stack: ['React', 'Web3.js', 'Solidity', 'Truffle', 'Tailwind CSS'],
     outcome: '',
+    figure: figures.medical,
     links: { repo: 'https://github.com/mehtabismail/FypTest' },
   },
 ]

@@ -1,5 +1,5 @@
-import type { Project } from '../../content/site'
-import { pad, projectTitle } from '../../lib/project'
+import type { Project, ProjectCategory } from '../../content/site'
+import { pad, projectTitle, type CoverArt } from '../../lib/project'
 import { SystemFigureView } from '../figure/SystemFigureView'
 
 interface Props {
@@ -7,6 +7,10 @@ interface Props {
   index: number
   /** smaller type for grid cards */
   compact?: boolean
+  /** 'figure' always draws the system figure, even when screenshots exist */
+  art?: CoverArt
+  /** category shown in the title block */
+  highlight: ProjectCategory
 }
 
 /** Typographic cover for projects with neither a screenshot nor a system figure. */
@@ -43,15 +47,16 @@ function SpecSheet({ project, title, index }: { project: Project; title: string;
  * otherwise the project's system figure becomes the artwork, and failing that a
  * typographic spec sheet. With an image, the figure is an inset "Detail A" callout.
  */
-export function ProjectCover({ project, index, compact = false }: Props) {
+export function ProjectCover({ project, index, compact = false, art = 'auto', highlight }: Props) {
   const title = projectTitle(project)
+  const image = art === 'auto' ? project.cover : undefined
 
   return (
     <figure className="group/cover relative overflow-hidden border border-line bg-surface">
       <div className="relative aspect-[5/4]">
-        {project.cover ? (
+        {image ? (
           <img
-            src={project.cover}
+            src={image}
             alt={`${title} — screenshot`}
             loading="lazy"
             decoding="async"
@@ -80,7 +85,7 @@ export function ProjectCover({ project, index, compact = false }: Props) {
         {/* inner drawing frame */}
         <span aria-hidden className="pointer-events-none absolute inset-3 border border-line" />
 
-        {project.cover && project.figure && (
+        {image && project.figure && (
           // Smaller on phones so it doesn't hide the screenshot it sits on.
           <div className="absolute right-4 bottom-4 w-[30%] max-w-[220px] border border-line-strong bg-bg/85 backdrop-blur sm:right-5 sm:bottom-5 sm:w-[38%]">
             <SystemFigureView figure={project.figure} className="h-auto w-full p-1.5 sm:p-2" />
@@ -97,7 +102,7 @@ export function ProjectCover({ project, index, compact = false }: Props) {
       >
         <span className="truncate px-4 py-2.5 text-muted">{title}</span>
         <span className="border-l border-line px-4 py-2.5">PRJ-{pad(index + 1)}</span>
-        <span className="border-l border-line px-4 py-2.5 text-accent">{project.category}</span>
+        <span className="border-l border-line px-4 py-2.5 text-accent">{highlight}</span>
       </figcaption>
     </figure>
   )
