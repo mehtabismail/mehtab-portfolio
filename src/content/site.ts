@@ -104,7 +104,7 @@ export interface Service {
 export const about = {
   heading: 'What I do',
   intro:
-    "I'm a freelance full-stack developer. On client projects I also own the system architecture and the technical documentation — so one person carries the product from idea to shipped code.",
+    "I'm a freelance full-stack developer with 30+ mobile apps shipped since 2019. On client projects I also own the system architecture and the technical documentation — so one person carries the product from idea to shipped code.",
 }
 
 export const services: Service[] = [
@@ -125,6 +125,8 @@ export const services: Service[] = [
       'NestJS',
       'PostgreSQL',
       'MongoDB',
+      'Express',
+      'Prisma',
       'REST APIs',
     ],
   },
@@ -156,6 +158,8 @@ export const services: Service[] = [
       'React Native',
       'Expo',
       'Redux Toolkit',
+      'Redux Saga',
+      'Socket.IO',
       'WebRTC',
       'In-app purchases',
       'Reanimated',
@@ -196,14 +200,18 @@ export type Project = ProjectNaming & {
   summary: string
   problem: string
   role: string
-  architecture: string
+  /** leave out when the internals aren't known well enough to describe */
+  architecture?: string
   stack: string[]
   /** leave empty ('') to hide the Outcome row until you have a real result */
   outcome: string
   /** Optional cover image in /public (WebP/AVIF), e.g. '/work/liora.webp' */
   cover?: string
-  /** architecture drawing for the cover — see src/content/figures.ts */
-  figure: SystemFigure
+  /**
+   * architecture drawing for the cover — see src/content/figures.ts. Optional:
+   * without one (and without a cover image) the card shows a typographic cover.
+   */
+  figure?: SystemFigure
   links: {
     live?: string
     appStore?: string
@@ -391,18 +399,157 @@ export const projects: Project[] = [
     links: { live: 'https://mehtab-portfolio-vert.vercel.app' },
   },
   {
-    slug: 'iscroll',
-    name: 'ISCROLL',
-    alias: 'Kiwi marketplace app',
+    slug: 'handzhake',
+    name: 'Handzhake',
+    alias: 'Identity and trust app',
+    showName: true,
+    featured: false,
+    madeAt: 'ZAPTA Technologies',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2025–26',
+    summary:
+      'A mobile app that lets people check who they’re really dealing with online, built for Progressisio ApS.',
+    problem:
+      'Online, it’s hard to know the real identity and trustworthiness of the person at the other end, whichever platform you meet them on.',
+    role: 'React Native development at ZAPTA Technologies.',
+    stack: [
+      'React Native',
+      'TypeScript',
+      'Zustand',
+      'Socket.IO',
+      'Firebase',
+      'Google Maps',
+      'Notifee',
+    ],
+    outcome: 'Live on the App Store.',
+    links: { appStore: 'https://apps.apple.com/app/id6738658663' },
+  },
+  {
+    slug: 'lax-ferries',
+    name: 'Lax Kw’alaams Ferries',
+    alias: 'Ferry operations app',
+    showName: true,
+    featured: false,
+    madeAt: 'ZAPTA Technologies',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2025–26',
+    summary:
+      'A staff app for the Lax Kw’alaams ferry service: ticket checks, boarding, ferry assignment and in-person sales, right from the dock.',
+    problem:
+      'Deck staff need to verify tickets, board passengers and sell fares on the spot, without paperwork.',
+    role: 'React Native development at ZAPTA Technologies.',
+    stack: ['Expo', 'React Native', 'Expo Router', 'TypeScript', 'Zustand'],
+    outcome: 'Live on the App Store.',
+    links: { appStore: 'https://apps.apple.com/app/id6752282340' },
+  },
+  {
+    slug: 'extent',
+    name: 'ExtEnt Events',
+    alias: 'Social events app',
+    showName: true,
+    featured: false,
+    category: 'Mobile',
+    categories: ['Mobile', 'Web'],
+    year: '2025–26',
+    summary:
+      'A social events app — find and pay for events, add friends, chat and follow their activity — with a web dashboard for the team.',
+    problem:
+      'Event-goers want to find events, see which friends are going and pay in one place; the team needs pricing, reports and user management.',
+    role: 'Full-stack development: the React Native app, the Node.js API and the admin dashboard.',
+    architecture:
+      'A React Native app (Redux Toolkit) and a Next.js admin dashboard share an Express API on MongoDB. Stripe takes ticket payments through webhooks, Firebase Cloud Messaging sends push notifications, and the API runs behind Nginx with PM2.',
+    stack: [
+      'React Native',
+      'Redux Toolkit',
+      'Next.js',
+      'TanStack Query',
+      'Node.js',
+      'Express',
+      'MongoDB',
+      'Stripe',
+      'Firebase',
+    ],
+    outcome: '',
+    links: {},
+  },
+  {
+    slug: 'myusta',
+    name: 'myUSTA',
+    alias: 'Home-services marketplace',
+    showName: true,
+    featured: false,
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2025',
+    summary:
+      'Two apps for an Albanian-language home-services marketplace: one for homeowners to find local tradespeople, one for tradespeople to win more work.',
+    problem:
+      'Homeowners need trusted local tradespeople quickly; tradespeople need a steady flow of jobs without chasing leads.',
+    role: 'React Native development of both apps.',
+    stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'Reanimated'],
+    outcome: 'Both apps are live on the App Store.',
+    links: { appStore: 'https://apps.apple.com/app/id6758246269' },
+  },
+  {
+    slug: 'devtinder',
+    name: 'DevTinder',
+    alias: 'Developer matching app',
+    showName: true,
+    featured: false,
+    own: true,
+    category: 'Web',
+    categories: ['Web'],
+    year: '2025',
+    summary:
+      'A web app for developers to find each other: profiles, matching and connection requests.',
+    problem:
+      'Developers looking for collaborators have no simple place to browse each other and connect.',
+    role: 'Designed and built end to end.',
+    architecture:
+      'A React 19 single-page app with TanStack Query for server state and optimistic updates, on an Express API with MongoDB and JWT authentication.',
+    stack: ['React', 'TanStack Query', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'Express', 'MongoDB'],
+    outcome: '',
+    links: {
+      live: 'https://dev-tinder-web-ruddy.vercel.app',
+      repo: 'https://github.com/mehtabismail/devTinder-web',
+    },
+  },
+  {
+    slug: 'whou',
+    name: 'WhoU',
+    alias: 'Local social discovery app',
     showName: true,
     featured: false,
     category: 'Mobile',
     categories: ['Mobile'],
     year: '2024',
     summary:
+      'A mobile app that connects people with like-minded users nearby and links straight to their Instagram profiles.',
+    problem:
+      'Meeting like-minded people nearby is hard when everyone’s profile lives on a different platform.',
+    role: 'React Native development.',
+    architecture:
+      'A React Native app with Redux on an Express and MongoDB API that lists registered users within a radius of your location.',
+    stack: ['React Native', 'Redux', 'JavaScript', 'Express', 'MongoDB'],
+    outcome: '',
+    links: {},
+  },
+  {
+    slug: 'iscroll',
+    name: 'ISCROLL',
+    alias: 'Kiwi marketplace app',
+    showName: true,
+    featured: false,
+    madeAt: 'OutsourceNZ',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2024–25',
+    summary:
       'An online marketplace for New Zealanders: a safe place to buy and sell, with easy communication between traders.',
     problem: 'Kiwi buyers and sellers needed a safe place to trade and talk to each other.',
-    role: 'React Native development.',
+    role: 'React Native development at OutsourceNZ.',
     architecture:
       'A React Native app using Redux and RTK Query for data and MMKV for a fast offline cache. Vehicle listings pull details from CarJam’s APIs.',
     stack: ['TypeScript', 'React Native', 'Redux', 'RTK Query', 'MMKV', 'CarJam APIs'],
@@ -414,19 +561,116 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'ponataki',
+    name: 'Ponataki',
+    alias: 'Niuean language app',
+    showName: true,
+    featured: false,
+    madeAt: 'OutsourceNZ',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2024–25',
+    summary:
+      'A language-learning app for Niuean, with simple lessons on everyday words and sentences, on mobile and online.',
+    problem:
+      'Carrying the Niue language to the next generation needs lessons that are simple and available on demand.',
+    role: 'React Native development at OutsourceNZ.',
+    stack: ['React Native', 'JavaScript'],
+    outcome: '',
+    links: {},
+  },
+  {
+    slug: 'safesigns',
+    name: 'SafeSigns',
+    alias: 'Safety-sign translation app',
+    showName: true,
+    featured: false,
+    madeAt: 'OutsourceNZ',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2024',
+    summary: 'Photograph a health and safety sign and read what it means in your own language.',
+    problem:
+      'Workers and visitors from culturally and linguistically diverse backgrounds can’t always read the safety signs on New Zealand sites.',
+    role: 'React Native development at OutsourceNZ.',
+    architecture:
+      'The app matches a photographed sign against a database of the health and safety signage used across New Zealand industries, then shows its meaning in the chosen language.',
+    stack: ['React Native', 'Redux Toolkit', 'Node.js'],
+    outcome: '',
+    links: {},
+  },
+  {
+    slug: 'mybenefits',
+    name: 'MyBeneFITs NZ',
+    alias: 'Gym rewards app',
+    showName: true,
+    featured: false,
+    madeAt: 'OutsourceNZ',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2023',
+    summary:
+      'Rewards people for using the gym membership they already pay for: three visits a week unlock discount codes from online retailers.',
+    problem:
+      'People pay for gym memberships they don’t use; a reward for turning up keeps them going.',
+    role: 'React Native development at OutsourceNZ.',
+    stack: ['React Native', 'Node.js'],
+    outcome: '',
+    links: {},
+  },
+  {
+    slug: 'locumbridge',
+    name: 'LocumBridge',
+    alias: 'Healthcare staffing app',
+    showName: true,
+    featured: false,
+    madeAt: 'OutsourceNZ',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2023',
+    summary:
+      'A healthcare staffing app that connects locum professionals with practices that need cover.',
+    problem:
+      'Practices struggle to fill shifts, and locums to find the right work, through traditional staffing agencies.',
+    role: 'React Native development at OutsourceNZ.',
+    stack: ['React Native', 'JavaScript', 'Redux', 'Redux Thunk', 'i18next'],
+    outcome: 'Live on the App Store.',
+    links: { appStore: 'https://apps.apple.com/nz/app/locumbridge/id6461689669' },
+  },
+  {
+    slug: 'aawhina',
+    name: 'AawhinaNZ',
+    alias: 'Family-harm support app',
+    showName: true,
+    featured: false,
+    madeAt: 'OutsourceNZ',
+    category: 'Mobile',
+    categories: ['Mobile'],
+    year: '2022–23',
+    summary:
+      'A free support app from Friendship House for whaanau who have experienced family and sexual harm.',
+    problem:
+      'People affected by family and sexual harm need an easy, private way to reach support from someone they feel comfortable with.',
+    role: 'React Native development at OutsourceNZ.',
+    stack: ['React Native', 'JavaScript', 'Node.js'],
+    outcome: '',
+    links: {},
+  },
+  {
     slug: 'mish',
     name: 'MISH — Carpooling',
     alias: 'Carpooling app',
     showName: true,
     featured: false,
+    madeAt: 'OutsourceNZ',
     category: 'Mobile',
     categories: ['Mobile'],
-    year: '2023',
+    year: '2022–23',
     summary:
       'A ride-sharing app where people sign up as drivers or riders and book seats on trips.',
     problem:
       'Riders needed a simple way to find and pay for a seat on a trip someone was already driving.',
-    role: 'React Native development.',
+    role: 'React Native development at OutsourceNZ.',
     architecture:
       'Rider and driver apps share one API for trips and seat bookings, with Google Maps for routes and a confirmed seat purchase before the trip.',
     stack: ['JavaScript', 'React Native', 'Redux Toolkit', 'Google Maps'],
@@ -443,12 +687,13 @@ export const projects: Project[] = [
     alias: 'Anonymous health app',
     showName: true,
     featured: false,
+    madeAt: 'OptimusFox',
     category: 'Mobile',
     categories: ['Mobile'],
-    year: '2021',
+    year: '2022',
     summary: 'A healthcare app that makes intimate well-being support accessible and anonymous.',
     problem: 'People needed private, anonymous access to well-being support from their phone.',
-    role: 'React Native development.',
+    role: 'React Native development at OptimusFox.',
     architecture:
       'A React Native app on Firebase: anonymous sign-in, Firestore for consultations, and cloud functions for triggers and push notifications.',
     stack: ['JavaScript', 'React Native', 'Redux', 'Firebase'],
@@ -486,15 +731,56 @@ export const projects: Project[] = [
     own: true,
     category: 'Automation',
     categories: ['Automation', 'Documentation'],
-    summary: 'Tooling that maintains dev logs and client meeting records.',
+    summary:
+      'An agent skill for Claude Code and Cursor that keeps a client-facing work log and meeting record, and builds one HTML report from them.',
     problem: 'Keeping a client-facing record of work and meetings by hand is easy to skip.',
     role: 'Planned and built end to end.',
     architecture:
       'Work entries and meeting notes are captured in a structured log, then rendered into a report the client can read.',
-    stack: ['Markdown', 'Node.js'], // TODO: verify
+    year: '2026',
+    stack: ['Python', 'Claude Code', 'Cursor', 'Markdown'],
     outcome: '', // TODO: add a concrete outcome
     figure: figures.worklog,
-    links: {},
+    links: { repo: 'https://github.com/mehtabismail/project-journal' },
+  },
+  {
+    slug: 'rn-boilerplate',
+    name: 'React Native boilerplate',
+    alias: 'React Native boilerplate',
+    showName: true,
+    featured: false,
+    own: true,
+    category: 'Mobile',
+    categories: ['Mobile', 'Architecture'],
+    year: '2022–24',
+    summary:
+      'Open-source React Native templates that start a new app with navigation, Redux Toolkit, RTK Query and validation already wired up.',
+    problem:
+      'Every new app repeats the same setup; a documented template starts projects on solid ground.',
+    role: 'Author and maintainer.',
+    architecture:
+      'Business logic is kept apart from the UI, and every piece is documented. Start a new app from it with `npx react-native init AppName --template`.',
+    stack: ['React Native', 'TypeScript', 'React Navigation', 'Redux Toolkit', 'RTK Query'],
+    outcome: '',
+    links: { repo: 'https://github.com/mehtabismail/RNBoilerplate' },
+  },
+  {
+    slug: 'medical-records-blockchain',
+    name: 'Medical records on blockchain',
+    alias: 'Medical records on blockchain',
+    showName: true,
+    featured: false,
+    own: true,
+    category: 'Web',
+    categories: ['Web'],
+    year: '2021–22',
+    summary:
+      'Final-year project at The University of Lahore: a medical report system that stores records on a blockchain.',
+    problem: 'Medical reports need a history that can’t be quietly changed after the fact.',
+    role: 'Final-year project: design and build.',
+    stack: ['React', 'Web3.js', 'Solidity', 'Truffle', 'Tailwind CSS'],
+    outcome: '',
+    links: { repo: 'https://github.com/mehtabismail/FypTest' },
   },
 ]
 
@@ -659,9 +945,21 @@ export const experience = {
     {
       year: '2019–22',
       role: 'React Native Developer',
-      org: 'Tribex Technology',
+      org: 'Tribex Technologies',
       summary:
         'Shipped apps to the App Store and Google Play, with CI/CD on Fastlane and GitHub Actions.',
     },
   ] satisfies ExperienceEntry[],
+  education: {
+    degree: 'BS Software Engineering',
+    school: 'The University of Lahore',
+    years: '2017–2021',
+    note: 'CGPA 3.4',
+  },
+  certifications: [
+    { name: 'React.js skill assessment — passed', issuer: 'LinkedIn' },
+    { name: 'React deep dive', issuer: 'NamasteDev', year: '2025' },
+    { name: 'React Native & Redux with hooks', issuer: 'Udemy', year: '2020' },
+    { name: 'React Native, zero to hero', issuer: 'Udemy', year: '2020' },
+  ],
 }

@@ -91,6 +91,34 @@ export function Experience() {
             </ol>
           </div>
         </div>
+
+        {/* Education and certifications, as the drawing's title-block notes */}
+        <Reveal className="mt-16 grid gap-10 md:mt-20 md:grid-cols-[180px_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:pl-14">
+          <p className="label-mono text-faint">Credentials</p>
+          <div>
+            <h3 className="font-display text-2xl leading-tight font-medium tracking-[-0.02em]">
+              {experience.education.degree}
+            </h3>
+            <p className="mt-2 font-mono text-[13px] text-accent">{experience.education.school}</p>
+            <p className="mt-2 label-mono text-faint">
+              {experience.education.years} · {experience.education.note}
+            </p>
+          </div>
+          <ul className="space-y-3">
+            {experience.certifications.map((c) => (
+              <li
+                key={c.name}
+                className="flex items-baseline justify-between gap-4 border-b border-line pb-3"
+              >
+                <span className="text-ink">{c.name}</span>
+                <span className="shrink-0 label-mono text-faint">
+                  {c.issuer}
+                  {'year' in c && c.year ? ` · ${c.year}` : ''}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   )

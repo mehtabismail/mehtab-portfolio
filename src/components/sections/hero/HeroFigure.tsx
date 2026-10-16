@@ -39,7 +39,9 @@ export function HeroFigure() {
     () => [
       ...projects
         .filter((p) => p.showName)
-        .map((p) => ({ caption: `${projectTitle(p)} · ${p.figure.title}`, figure: p.figure })),
+        .flatMap((p) =>
+          p.figure ? [{ caption: `${projectTitle(p)} · ${p.figure.title}`, figure: p.figure }] : [],
+        ),
       ...systemFigures.map((f) => ({ caption: f.title, figure: f })),
     ],
     [],

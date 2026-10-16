@@ -17,12 +17,14 @@ export function SpecList({ project }: Props) {
 
   return (
     <dl>
-      {rows.map(({ key, label }) => (
-        <div key={key} className={row}>
-          <dt className={dt}>{label}</dt>
-          <dd className="leading-relaxed text-muted">{project[key]}</dd>
-        </div>
-      ))}
+      {rows
+        .filter(({ key }) => project[key])
+        .map(({ key, label }) => (
+          <div key={key} className={row}>
+            <dt className={dt}>{label}</dt>
+            <dd className="leading-relaxed text-muted">{project[key]}</dd>
+          </div>
+        ))}
       <div className={project.outcome ? row : `${row} border-b`}>
         <dt className={dt}>Stack</dt>
         <dd>
