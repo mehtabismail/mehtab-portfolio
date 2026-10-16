@@ -1,0 +1,148 @@
+<!doctype html>
+<!--
+  Project cover layouts (1500×1200, the 5:4 cover slot). `npm run covers` opens
+  this page once per project (?p=bling, ?p=kave, …) in headless Chrome and saves
+  public/work/<project>.jpg. Screens live in ./shots.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        width: 1500px;
+        height: 1200px;
+        overflow: hidden;
+        background: #0a0b0d;
+      }
+      body {
+        position: relative;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        background:
+          radial-gradient(55% 50% at 50% 42%, rgb(255 178 36 / 0.13), transparent 70%),
+          linear-gradient(rgb(148 163 184 / 0.08) 1px, transparent 1px) 0 0 / 160px 160px,
+          linear-gradient(90deg, rgb(148 163 184 / 0.08) 1px, transparent 1px) 0 0 / 160px 160px,
+          linear-gradient(rgb(148 163 184 / 0.045) 1px, transparent 1px) 0 0 / 32px 32px,
+          linear-gradient(90deg, rgb(148 163 184 / 0.045) 1px, transparent 1px) 0 0 / 32px 32px,
+          #0a0b0d;
+      }
+      .label {
+        position: absolute;
+        left: 64px;
+        top: 56px;
+        font-size: 17px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #828995;
+      }
+      .label b {
+        color: #ffb224;
+        font-weight: 500;
+        margin-right: 14px;
+      }
+
+      /* Phone: screenshot inside a thin device frame */
+      .phone {
+        position: absolute;
+        width: var(--w);
+        aspect-ratio: 1206 / 2622;
+        padding: 10px;
+        border-radius: 58px;
+        background: #16191e;
+        border: 1.5px solid rgb(148 163 184 / 0.32);
+        box-shadow:
+          0 50px 90px -30px rgb(0 0 0 / 0.85),
+          0 0 0 1px rgb(0 0 0 / 0.6) inset;
+      }
+      .phone img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 48px;
+      }
+
+      /* Browser window */
+      .browser {
+        position: absolute;
+        width: var(--w);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #16191e;
+        border: 1.5px solid rgb(148 163 184 / 0.32);
+        box-shadow: 0 50px 100px -30px rgb(0 0 0 / 0.9);
+      }
+      .browser .bar {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        height: 44px;
+        padding: 0 18px;
+        border-bottom: 1px solid rgb(148 163 184 / 0.18);
+      }
+      .browser .bar i {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgb(148 163 184 / 0.28);
+      }
+      .browser .bar span {
+        margin-left: 18px;
+        padding: 5px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #9aa1ac;
+        background: rgb(148 163 184 / 0.08);
+      }
+      .browser img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const phone = (src, w, x, y) =>
+        `<div class="phone" style="--w:${w}px;left:${x}px;top:${y}px"><img src="shots/${src}.jpg" alt=""></div>`
+      const browser = (src, w, x, y, url) =>
+        `<div class="browser" style="--w:${w}px;left:${x}px;top:${y}px"><div class="bar"><i></i><i></i><i></i><span>${url}</span></div><img src="shots/${src}.jpg" alt=""></div>`
+
+      // Phones step up to the right so the site's "Detail A" inset (bottom-right) covers the least.
+      const layouts = {
+        bling: {
+          label: 'iOS app · live screens',
+          html:
+            phone('bling-detail', 380, 120, 290) +
+            phone('bling-home', 380, 1000, 110) +
+            phone('bling-shop', 420, 540, 200),
+        },
+        kave: {
+          label: 'iOS app · live screens',
+          html: phone('kave-detail', 430, 290, 220) + phone('kave-assistant', 430, 780, 110),
+        },
+        liora: {
+          label: 'iOS app · English + Urdu',
+          html:
+            phone('liora-range', 380, 120, 290) +
+            phone('liora-private', 380, 1000, 110) +
+            phone('liora-welcome', 420, 540, 200),
+        },
+        arca: {
+          label: 'Web · storefront + product',
+          html:
+            browser('arca-web-home', 1060, 70, 150, 'arca · home') +
+            browser('arca-web-p202', 860, 570, 470, 'arca · product'),
+        },
+      }
+
+      const p = layouts[new URLSearchParams(location.search).get('p')] ?? layouts.bling
+      document.body.innerHTML = `<p class="label"><b>§</b>${p.label}</p>` + p.html
+    </script>
+  </body>
+</html>

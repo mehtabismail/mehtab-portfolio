@@ -48,10 +48,11 @@ export function ProjectCover({ project, index, compact = false }: Props) {
         <span aria-hidden className="pointer-events-none absolute inset-3 border border-line" />
 
         {project.cover && (
-          <div className="absolute right-5 bottom-5 w-[38%] max-w-[220px] border border-line-strong bg-bg/85 backdrop-blur">
-            <SystemFigureView figure={project.figure} className="h-auto w-full p-2" />
-            <span className="block border-t border-line px-2 py-1 label-mono text-[9px] text-faint">
-              Detail A — architecture
+          // Smaller on phones so it doesn't hide the screenshot it sits on.
+          <div className="absolute right-4 bottom-4 w-[30%] max-w-[220px] border border-line-strong bg-bg/85 backdrop-blur sm:right-5 sm:bottom-5 sm:w-[38%]">
+            <SystemFigureView figure={project.figure} className="h-auto w-full p-1.5 sm:p-2" />
+            <span className="block truncate border-t border-line px-2 py-1 label-mono text-[9px] text-faint">
+              Detail A<span className="hidden sm:inline"> — architecture</span>
             </span>
           </div>
         )}

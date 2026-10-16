@@ -233,16 +233,31 @@ export const projects: Project[] = [
     showName: true,
     featured: true,
     own: true,
-    category: 'Architecture',
-    categories: ['Architecture', 'Documentation', 'Web'],
-    summary: 'Architecture and documentation for a multi-vendor e-commerce platform.',
+    category: 'Web',
+    categories: ['Web', 'Mobile', 'Architecture', 'Documentation'],
+    year: '2026',
+    summary:
+      'A curated marketplace for handmade objects: a buyer storefront, seller studio and admin on the web, a mobile app, and the API behind them.',
     problem:
-      'A marketplace where many independent vendors sell through one storefront needs clear boundaries between vendors, orders and payouts before anyone writes code.',
-    role: 'System architecture and technical documentation.',
+      'Independent makers need a storefront that feels premium, with clear boundaries between makers, orders and payouts, and buyers need help finding the right piece.',
+    role: 'Product owner: architecture, documentation and the full-stack build of all three apps.',
     architecture:
-      'Storefront, vendor portal and admin all go through one API gateway. Catalog, orders and payouts are separate domain services over a shared Postgres, with order events handled by background workers.',
-    stack: ['System design', 'API design', 'Technical specs'], // TODO: verify
-    outcome: '', // TODO: add a concrete outcome
+      'Three independent apps that share only an HTTP contract. A NestJS API (21 modules) on Postgres with Prisma and pgvector serves a Next.js web app — shop, seller studio and admin — and an Expo mobile app. Stripe handles payments, a BullMQ worker on Redis sends email and push, and Lume, an AI assistant built on OpenAI tool calls, finds products from a plain-language request and answers questions from a pgvector knowledge base.',
+    stack: [
+      'NestJS',
+      'Prisma',
+      'PostgreSQL · pgvector',
+      'Redis · BullMQ',
+      'Next.js',
+      'Expo',
+      'React Native',
+      'Stripe',
+      'OpenAI',
+      'Playwright',
+    ],
+    outcome:
+      'The web storefront and API are deployed, and contract and end-to-end tests run against a seeded backend in CI.',
+    cover: '/work/arca.jpg',
     figure: figures.arca,
     links: {},
   },
@@ -275,9 +290,13 @@ export const projects: Project[] = [
       'Socket.IO',
       'DHL API',
     ],
-    outcome: '', // TODO: add a concrete outcome
+    outcome: 'Launched on the App Store in Saudi Arabia in June 2026.',
+    cover: '/work/bling.jpg',
     figure: figures.bling,
-    links: {},
+    links: {
+      live: 'https://bling.sa',
+      appStore: 'https://apps.apple.com/sa/app/bling-luxury/id6756652619',
+    },
   },
   {
     slug: 'kave',
@@ -308,9 +327,13 @@ export const projects: Project[] = [
       'SQLite offline sync',
       'Sentry',
     ],
-    outcome: '', // TODO: add a concrete outcome
+    outcome: 'KAVE Living launched on the App Store in Saudi Arabia in June 2026.',
+    cover: '/work/kave.jpg',
     figure: figures.kave,
-    links: {},
+    links: {
+      live: 'https://kave.sa',
+      appStore: 'https://apps.apple.com/sa/app/kave-living/id6762975609',
+    },
   },
   {
     slug: 'liora',
@@ -321,14 +344,27 @@ export const projects: Project[] = [
     own: true,
     category: 'Mobile',
     categories: ['Mobile', 'Web', 'Architecture'],
-    summary: 'A cycle-tracking app for women and girls, on mobile and web.',
+    year: '2026',
+    summary:
+      'A private cycle tracker for women and girls on iOS, Android and the web, in English and Urdu.',
     problem:
-      'Women and girls need a simple, private way to track their cycle, on their phone and on the web.',
-    role: 'Product owner: architecture and the full-stack build.',
+      'Most cycle apps ask for an account and keep sensitive health data on their servers. Women and girls need a tracker that works without either, in their own language.',
+    role: 'Product owner: architecture, documentation and the full-stack build of both apps.',
     architecture:
-      'Mobile and web clients share one API. Accounts, cycle predictions and reminders are separate concerns over one data model, and reminders go out as push notifications.',
-    stack: ['React Native', 'Expo', 'React', 'TypeScript', 'Node.js'], // TODO: verify
-    outcome: '', // TODO: add a concrete outcome (users, launch status, store rating…)
+      'Two independent apps — Expo for iOS and Android, a static Next.js export for the web — that work fully without an account. Health data is encrypted on the device (AES-256 on phones, AES-GCM in the browser), and the optional Firebase backup only ever stores data it can’t read.',
+    stack: [
+      'Expo',
+      'React Native',
+      'Expo Router',
+      'Next.js',
+      'TypeScript',
+      'MMKV',
+      'IndexedDB · Web Crypto',
+      'Firebase',
+    ],
+    outcome:
+      'Built from a 683-screen design handoff: English and Urdu (right-to-left), light and dark, on phone and web.',
+    cover: '/work/liora.jpg',
     figure: figures.liora,
     links: {},
   },
