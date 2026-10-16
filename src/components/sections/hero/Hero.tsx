@@ -23,7 +23,7 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-center pt-16"
     >
       <div className="container-site grid items-center gap-14 py-14 xl:grid-cols-12 xl:gap-8 xl:py-20">
-        <div className="xl:col-span-6">
+        <div className="min-w-0 xl:col-span-6">
           <h1 id="hero-title" className="font-display">
             <m.span
               {...rise(0.1)}
@@ -90,7 +90,7 @@ export function Hero() {
           </m.div>
         </div>
 
-        <div className="xl:col-span-6 xl:-mr-8">
+        <div className="min-w-0 xl:col-span-6 xl:-mr-8">
           <HeroFigure />
         </div>
       </div>

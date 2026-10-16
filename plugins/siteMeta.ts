@@ -12,6 +12,14 @@ function pagePath(htmlPath: string): PagePath {
   return htmlPath.includes('/work/') ? '/work/' : '/'
 }
 
+function notFoundTags() {
+  return [
+    `<title>${esc(seo.notFound.title)}</title>`,
+    `<meta name="description" content="${esc(seo.notFound.description)}" />`,
+    `<meta name="robots" content="noindex" />`,
+  ].join('\n    ')
+}
+
 function headTags(path: PagePath) {
   const page = seo.pages[path]
   const url = abs(path)
@@ -56,7 +64,8 @@ export function siteMeta(): Plugin {
   return {
     name: 'site-meta',
     transformIndexHtml(html, ctx) {
-      return html.replace('<!-- site-meta -->', headTags(pagePath(ctx.path)))
+      const tags = ctx.path.endsWith('/404.html') ? notFoundTags() : headTags(pagePath(ctx.path))
+      return html.replace('<!-- site-meta -->', tags)
     },
     generateBundle() {
       const today = new Date().toISOString().slice(0, 10)

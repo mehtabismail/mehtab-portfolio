@@ -7,6 +7,7 @@ const { render } = await import('../dist-ssr/entry-server.js')
 const pages = [
   ['home', 'dist/index.html'],
   ['work', 'dist/work/index.html'],
+  ['notfound', 'dist/404.html'],
 ]
 
 for (const [page, file] of pages) {

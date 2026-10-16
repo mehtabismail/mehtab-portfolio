@@ -12,10 +12,11 @@ export default defineConfig(({ isSsrBuild }) => ({
     ? {}
     : {
         rolldownOptions: {
-          // Two static pages: the one-pager and /work
+          // Static pages: the one-pager, /work, and the 404 Vercel serves for unknown URLs
           input: {
             main: resolve(import.meta.dirname, 'index.html'),
             work: resolve(import.meta.dirname, 'work/index.html'),
+            notFound: resolve(import.meta.dirname, '404.html'),
           },
         },
       },

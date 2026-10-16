@@ -119,6 +119,8 @@ function StepCarousel() {
       <ol
         onScroll={onScroll}
         aria-label="Process steps"
+        // Focusable so keyboard users can scroll it with the arrow keys.
+        tabIndex={0}
         className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 [&::-webkit-scrollbar]:hidden"
       >
         {steps.map((step, i) => (

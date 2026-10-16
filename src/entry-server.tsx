@@ -4,6 +4,7 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App'
 import { AppShell, type Page } from './AppShell'
+import { NotFoundPage } from './pages/NotFoundPage'
 import { WorkPage } from './pages/WorkPage'
 
 export function render(page: Page) {
@@ -12,9 +13,7 @@ export function render(page: Page) {
       {page === 'home' ? (
         <App />
       ) : (
-        <AppShell page="work">
-          <WorkPage />
-        </AppShell>
+        <AppShell page={page}>{page === 'work' ? <WorkPage /> : <NotFoundPage />}</AppShell>
       )}
     </StrictMode>,
   )

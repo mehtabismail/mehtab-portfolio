@@ -9,7 +9,7 @@ import { useSmoothScroll } from './hooks/useSmoothScroll'
 
 const loadFeatures = () => import('./lib/motionFeatures').then((mod) => mod.default)
 
-export type Page = 'home' | 'work'
+export type Page = 'home' | 'work' | 'notfound'
 
 /** Chrome shared by every page: backdrop, fixed UI, smooth scroll, toasts. */
 export function AppShell({ page, children }: { page: Page; children: ReactNode }) {

@@ -35,6 +35,16 @@ export function TopBar() {
     }
   }, [open])
 
+  // The menu is hidden from lg up; close it there (e.g. a rotated iPad) so the scroll lock lifts.
+  useEffect(() => {
+    if (!open) return
+    const mq = window.matchMedia('(width >= 64rem)')
+    const onChange = () => mq.matches && setOpen(false)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [open])
+
   const go = useCallback((target: string) => {
     setOpen(false)
     // Wait a frame so the scroll lock is released before scrolling.

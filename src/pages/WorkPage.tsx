@@ -52,7 +52,7 @@ export function WorkPage() {
           Back home
         </a>
 
-        <SectionHeading index="W" label="Index" title={work.allHeading} id="all-work-title">
+        <SectionHeading as="h1" index="W" label="Index" title={work.allHeading} id="all-work-title">
           {work.allIntro}
         </SectionHeading>
 

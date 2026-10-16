@@ -51,6 +51,16 @@ export const seo = {
   /** 1200×630 share image in /public */
   ogImage: '/og.png',
   ogImageAlt: 'Mehtab Ismail — Full-Stack Developer & System Architect',
+  /** the 404 page; kept out of search results and the sitemap */
+  notFound: {
+    title: 'Page not found — Mehtab Ismail',
+    description: 'This page doesn’t exist. Head back to the home page or browse all work.',
+  },
+}
+
+export const notFound = {
+  heading: 'Page not found',
+  body: 'This sheet isn’t in the drawing set — the link may be old or mistyped.',
 }
 
 export const nav: NavLink[] = [
@@ -387,7 +397,7 @@ export const projects: Project[] = [
     outcome: 'Live on the App Store and Google Play.',
     figure: figures.mish,
     links: {
-      appStore: 'http://apps.apple.com/nz/app/mish-carpooling/id1661264457',
+      appStore: 'https://apps.apple.com/nz/app/mish-carpooling/id1661264457',
       googlePlay: 'https://play.google.com/store/apps/details?id=com.mish',
     },
   },

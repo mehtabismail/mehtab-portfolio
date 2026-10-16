@@ -8,13 +8,15 @@ interface Props {
   label: string
   title: string
   id: string
+  /** heading level; 'h1' when it's the page's own title (e.g. /work) */
+  as?: 'h1' | 'h2'
   children?: ReactNode
 }
 
 const ease = [0.16, 1, 0.3, 1] as const
 
 /** Section title with a blueprint dimension line running out from the section number. */
-export function SectionHeading({ index, label, title, id, children }: Props) {
+export function SectionHeading({ index, label, title, id, as: Heading = 'h2', children }: Props) {
   const reduce = useReducedMotion()
 
   return (
@@ -41,7 +43,7 @@ export function SectionHeading({ index, label, title, id, children }: Props) {
         </m.span>
       </m.div>
 
-      <h2
+      <Heading
         id={id}
         className="mt-6 font-display text-[clamp(2.75rem,8vw,6.5rem)] leading-[0.9] font-semibold tracking-[var(--tracking-display)]"
       >
@@ -57,7 +59,7 @@ export function SectionHeading({ index, label, title, id, children }: Props) {
             <span className="text-accent">.</span>
           </m.span>
         </span>
-      </h2>
+      </Heading>
 
       {children && (
         <m.div
