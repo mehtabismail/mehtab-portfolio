@@ -1,11 +1,14 @@
-import { AnimatePresence, m, useReducedMotion } from 'motion/react'
-import { Plus } from 'lucide-react'
-import { useId, useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import type { Project } from '../../content/site'
-import { chipsFor, coverCategory, projectOrigin, projectTitle } from '../../lib/project'
+import {
+  chipsFor,
+  coverCategory,
+  projectHref,
+  projectOrigin,
+  projectTitle,
+} from '../../lib/project'
 import { ProjectCover } from './ProjectCover'
 import { ProjectLinks } from './ProjectLinks'
-import { SpecList } from './SpecList'
 
 interface Props {
   project: Project
@@ -14,22 +17,25 @@ interface Props {
   eager?: boolean
 }
 
-/** Compact project card for the /work index, with the full spec behind a toggle. */
+/** Compact project card for the /work index, linking to the full case study. */
 export function ProjectCard({ project, index, eager = false }: Props) {
-  const [open, setOpen] = useState(false)
-  const reduce = useReducedMotion()
-  const panelId = useId()
   const highlight = coverCategory(project, 'auto')
+  const href = projectHref(project)
 
   return (
-    <article aria-labelledby={`card-${project.slug}`} className="flex flex-col">
-      <ProjectCover project={project} index={index} compact highlight={highlight} lazy={!eager} />
+    <article aria-labelledby={`card-${project.slug}`} className="group/card flex flex-col">
+      {/* The title link is the card's one tab stop; the cover repeats it for pointer users. */}
+      <a href={href} tabIndex={-1} aria-hidden className="block">
+        <ProjectCover project={project} index={index} compact highlight={highlight} lazy={!eager} />
+      </a>
       <div className="mt-6 flex items-start justify-between gap-4">
         <h2
           id={`card-${project.slug}`}
           className="font-display text-2xl leading-tight font-semibold tracking-[-0.03em] sm:text-3xl"
         >
-          {projectTitle(project)}
+          <a href={href} className="transition-colors hover:text-accent">
+            {projectTitle(project)}
+          </a>
         </h2>
         {project.year && <span className="pt-2 label-mono text-faint">{project.year}</span>}
       </div>
@@ -52,39 +58,27 @@ export function ProjectCard({ project, index, eager = false }: Props) {
 
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
         <ProjectLinks project={project} />
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls={panelId}
-          className="group inline-flex items-center gap-2 label-mono text-ink transition-colors hover:text-accent"
-        >
-          {open ? 'Hide spec' : 'View spec'}
-          <span className="grid size-7 place-items-center border border-line-strong transition-colors group-hover:border-accent">
-            <Plus
-              className={`size-3.5 transition-transform duration-500 ${open ? 'rotate-45' : ''}`}
-              aria-hidden
-            />
-          </span>
-        </button>
+        <CaseStudyLink project={project} />
       </div>
-
-      <AnimatePresence initial={false}>
-        {open && (
-          <m.div
-            id={panelId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="pt-6">
-              <SpecList project={project} />
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
     </article>
+  )
+}
+
+/** "Read case study" with the drafting-box arrow used across the site. */
+export function CaseStudyLink({ project }: { project: Project }) {
+  return (
+    <a
+      href={projectHref(project)}
+      aria-label={`Read the ${projectTitle(project)} case study`}
+      className="group inline-flex items-center gap-2 label-mono text-ink transition-colors hover:text-accent"
+    >
+      Read case study
+      <span className="grid size-7 place-items-center border border-line-strong transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+        <ArrowRight
+          className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+          aria-hidden
+        />
+      </span>
+    </a>
   )
 }

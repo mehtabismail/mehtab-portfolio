@@ -13,6 +13,8 @@ interface Props {
   highlight: ProjectCategory
   /** defer drawing the system figure until the cover nears the viewport */
   lazy?: boolean
+  /** the page's main image (case-study header): load it first, at a larger size */
+  priority?: boolean
 }
 
 /** Typographic cover for projects with neither a screenshot nor a system figure. */
@@ -56,6 +58,7 @@ export function ProjectCover({
   art = 'auto',
   highlight,
   lazy = false,
+  priority = false,
 }: Props) {
   const title = projectTitle(project)
   const image = art === 'auto' ? project.cover : undefined
@@ -69,14 +72,17 @@ export function ProjectCover({
             <source
               type="image/avif"
               srcSet={`${image}-800.avif 800w, ${image}-1200.avif 1200w`}
-              sizes="(min-width: 768px) 540px, 100vw"
+              sizes={
+                priority ? '(min-width: 1024px) 720px, 100vw' : '(min-width: 768px) 540px, 100vw'
+              }
             />
             <img
               src={`${image}.jpg`}
               alt={`${title} — screenshot`}
               width={1200}
               height={960}
-              loading="lazy"
+              loading={priority ? 'eager' : 'lazy'}
+              fetchPriority={priority ? 'high' : undefined}
               decoding="async"
               className="absolute inset-0 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover/cover:scale-[1.03]"
             />

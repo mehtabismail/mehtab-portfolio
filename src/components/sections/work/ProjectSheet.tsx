@@ -1,6 +1,14 @@
 import type { Project } from '../../../content/site'
-import { chipsFor, coverCategory, pad, projectOrigin, projectTitle } from '../../../lib/project'
+import {
+  chipsFor,
+  coverCategory,
+  pad,
+  projectHref,
+  projectOrigin,
+  projectTitle,
+} from '../../../lib/project'
 import { Reveal } from '../../ui/Reveal'
+import { CaseStudyLink } from '../../work/ProjectCard'
 import { ProjectCover } from '../../work/ProjectCover'
 import { ProjectLinks } from '../../work/ProjectLinks'
 import { SpecList } from '../../work/SpecList'
@@ -61,13 +69,18 @@ export function ProjectSheet({ project, index }: Props) {
             <div className="mt-6">
               <ProjectLinks project={project} />
             </div>
+            <div className="mt-8">
+              <CaseStudyLink project={project} />
+            </div>
           </Reveal>
         </div>
       </div>
 
       <div className="lg:col-span-8">
         <Reveal delay={0.1}>
-          <ProjectCover project={project} index={index} art="figure" highlight={highlight} />
+          <a href={projectHref(project)} tabIndex={-1} aria-hidden className="block">
+            <ProjectCover project={project} index={index} art="figure" highlight={highlight} />
+          </a>
         </Reveal>
         <Reveal delay={0.15} className="mt-8">
           <SpecList project={project} />

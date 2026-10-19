@@ -1,0 +1,182 @@
+{
+  "aawhina-map": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "aawhina-support": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "arca-web-home": {
+    "w": 1600,
+    "h": 1000,
+    "kind": "web"
+  },
+  "arca-web-p202": {
+    "w": 1600,
+    "h": 1000,
+    "kind": "web"
+  },
+  "bling-detail": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "bling-home": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "bling-shop": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "devtinder-feed": {
+    "w": 1600,
+    "h": 778,
+    "kind": "web"
+  },
+  "devtinder-signin": {
+    "w": 1600,
+    "h": 778,
+    "kind": "web"
+  },
+  "isqroll-store": {
+    "w": 368,
+    "h": 796,
+    "kind": "mobile"
+  },
+  "isqroll-web-home": {
+    "w": 1600,
+    "h": 776,
+    "kind": "web"
+  },
+  "kave-assistant": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "kave-detail": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "liora-4": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "liora-private": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "liora-range": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "liora-welcome": {
+    "w": 560,
+    "h": 1216,
+    "kind": "mobile"
+  },
+  "locumbridge-calendar": {
+    "w": 368,
+    "h": 796,
+    "kind": "mobile"
+  },
+  "locumbridge-jobs": {
+    "w": 368,
+    "h": 796,
+    "kind": "mobile"
+  },
+  "locumbridge-match": {
+    "w": 368,
+    "h": 796,
+    "kind": "mobile"
+  },
+  "mish-store": {
+    "w": 368,
+    "h": 796,
+    "kind": "mobile"
+  },
+  "mish-web-home": {
+    "w": 1600,
+    "h": 778,
+    "kind": "web"
+  },
+  "mybenefits-faq": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "mybenefits-welcome": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "mybenefits-workout": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "ponataki-home": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "ponataki-quiz": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "ponataki-unit": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "safesigns-home": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "safesigns-language": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "safesigns-splash": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "safetycheck-home": {
+    "w": 560,
+    "h": 1128,
+    "kind": "mobile"
+  },
+  "safetycheck-onboarding": {
+    "w": 560,
+    "h": 1128,
+    "kind": "mobile"
+  },
+  "safetycheck-vehicles": {
+    "w": 560,
+    "h": 1120,
+    "kind": "mobile"
+  },
+  "whou-matching": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  },
+  "whou-welcome": {
+    "w": 370,
+    "h": 800,
+    "kind": "mobile"
+  }
+}

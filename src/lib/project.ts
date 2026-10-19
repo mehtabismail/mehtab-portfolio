@@ -1,4 +1,4 @@
-import type { Project, ProjectCategory } from '../content/site'
+import { projects, type Project, type ProjectCategory } from '../content/site'
 
 /** The title it is safe to show publicly. */
 export const projectTitle = (p: Project) => (p.showName ? p.name : p.alias)
@@ -39,3 +39,12 @@ export const chipsFor = (p: Project, highlight: ProjectCategory) => [
   highlight,
   ...p.categories.filter((c) => c !== highlight),
 ]
+
+/** Case-study URL for a project. */
+export const projectHref = (p: Project) => `/work/${p.slug}/`
+
+/** The project a /work/<slug>/ path points at, if any. */
+export const projectFromPath = (path: string) => {
+  const slug = path.match(/^\/work\/([^/]+)\/?$/)?.[1]
+  return projects.find((p) => p.slug === slug)
+}

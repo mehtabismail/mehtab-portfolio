@@ -12,10 +12,12 @@ export default defineConfig(({ isSsrBuild }) => ({
     ? {}
     : {
         rolldownOptions: {
-          // Static pages: the one-pager, /work, and the 404 Vercel serves for unknown URLs
+          // Static pages: the one-pager, /work, the case-study template, and the 404 Vercel serves for unknown URLs
           input: {
             main: resolve(import.meta.dirname, 'index.html'),
             work: resolve(import.meta.dirname, 'work/index.html'),
+            // template for every /work/<slug>/ case study (scripts/prerender.mjs)
+            project: resolve(import.meta.dirname, 'project.html'),
             notFound: resolve(import.meta.dirname, '404.html'),
           },
         },

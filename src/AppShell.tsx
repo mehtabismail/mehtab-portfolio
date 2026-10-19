@@ -9,7 +9,7 @@ import { useSmoothScroll } from './hooks/useSmoothScroll'
 
 const loadFeatures = () => import('./lib/motionFeatures').then((mod) => mod.default)
 
-export type Page = 'home' | 'work' | 'notfound'
+export type Page = 'home' | 'work' | 'project' | 'notfound'
 
 /** Chrome shared by every page: backdrop, fixed UI, smooth scroll, toasts. */
 export function AppShell({ page, children }: { page: Page; children: ReactNode }) {
@@ -30,7 +30,8 @@ export function AppShell({ page, children }: { page: Page; children: ReactNode }
           <TopBar />
           <SideRails />
           <main id="main">{children}</main>
-          <Footer showContactCta={page !== 'home'} />
+          {/* Home has its contact section and case studies end with their own call to action. */}
+          <Footer showContactCta={page === 'work' || page === 'notfound'} />
         </ToastProvider>
       </MotionConfig>
     </LazyMotion>
