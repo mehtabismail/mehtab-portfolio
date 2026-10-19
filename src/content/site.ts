@@ -95,14 +95,14 @@ export const booking = {
    * Connect Google Calendar in Cal.com and each booking gets a Google Meet link.
    * Leave empty and "Book a call" scrolls to the contact form instead.
    */
-  calLink: '',
+  calLink: 'mehtabismail/30min',
   /** shown next to the button in the Contact section */
   note: '30-minute intro call on Google Meet',
   /**
    * WhatsApp number in international format, digits only — e.g. '923001234567'.
    * Leave empty to hide the "Chat on WhatsApp" link.
    */
-  whatsapp: '',
+  whatsapp: '923060506402',
   whatsappMessage: 'Hi Mehtab, I found your portfolio and I’d like to talk about a project.',
 }
 
