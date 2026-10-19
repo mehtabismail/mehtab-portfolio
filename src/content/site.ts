@@ -205,7 +205,10 @@ export type Project = ProjectNaming & {
   stack: string[]
   /** leave empty ('') to hide the Outcome row until you have a real result */
   outcome: string
-  /** Optional cover image in /public (WebP/AVIF), e.g. '/work/liora.webp' */
+  /**
+   * Optional cover image in /public, as a base path without extension, e.g. '/work/liora'.
+   * `npm run covers` writes <base>-800.avif, <base>-1200.avif and a <base>.jpg fallback.
+   */
   cover?: string
   /** what the cover screenshots show; picks the highlighted chip on /work */
   coverKind?: 'mobile' | 'web'
@@ -267,7 +270,7 @@ export const projects: Project[] = [
     ],
     outcome:
       'The web storefront and API are deployed, and contract and end-to-end tests run against a seeded backend in CI.',
-    cover: '/work/arca.jpg',
+    cover: '/work/arca',
     coverKind: 'web',
     figure: figures.arca,
     links: {},
@@ -302,7 +305,7 @@ export const projects: Project[] = [
       'DHL API',
     ],
     outcome: 'Launched on the App Store in Saudi Arabia in June 2026.',
-    cover: '/work/bling.jpg',
+    cover: '/work/bling',
     coverKind: 'mobile',
     figure: figures.bling,
     links: {
@@ -340,7 +343,7 @@ export const projects: Project[] = [
       'Sentry',
     ],
     outcome: 'KAVE Living launched on the App Store in Saudi Arabia in June 2026.',
-    cover: '/work/kave.jpg',
+    cover: '/work/kave',
     coverKind: 'mobile',
     figure: figures.kave,
     links: {
@@ -377,7 +380,7 @@ export const projects: Project[] = [
     ],
     outcome:
       'Built from a 683-screen design handoff: English and Urdu (right-to-left), light and dark, on phone and web.',
-    cover: '/work/liora.jpg',
+    cover: '/work/liora',
     coverKind: 'mobile',
     figure: figures.liora,
     links: {},
@@ -422,7 +425,7 @@ export const projects: Project[] = [
     stack: ['Expo', 'React Native', 'Expo Router', 'TypeScript', 'Zustand'],
     outcome: 'Live on the App Store.',
     figure: figures.lax,
-    links: { appStore: 'https://apps.apple.com/app/id6752282340' },
+    links: { appStore: 'https://apps.apple.com/ca/app/lax-kwalaams-ferries/id6752282340' },
   },
   {
     slug: 'majlix',
@@ -567,6 +570,8 @@ export const projects: Project[] = [
       'A React 19 single-page app with TanStack Query for server state and optimistic updates, on an Express API with MongoDB and JWT authentication.',
     stack: ['React', 'TanStack Query', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'Express', 'MongoDB'],
     outcome: '',
+    cover: '/work/devtinder',
+    coverKind: 'web',
     figure: figures.devtinder,
     links: {
       live: 'https://dev-tinder-web-ruddy.vercel.app',
@@ -603,26 +608,61 @@ export const projects: Project[] = [
     links: {},
   },
   {
-    slug: 'iscroll',
-    name: 'ISCROLL',
+    slug: 'safetycheck',
+    name: 'SafetyCheck NZ',
+    alias: 'Construction safety app',
+    showName: true,
+    featured: false,
+    category: 'Mobile',
+    categories: ['Mobile', 'Web'],
+    year: '2024–25',
+    summary:
+      'A health and safety system for small New Zealand construction businesses: site inductions with quizzes, contractor records, vehicle inspections and risk registers, on phone and web.',
+    problem:
+      'Small construction firms have to stay compliant with health and safety rules, but full safety systems cost too much and take too long to use.',
+    role: 'Full-stack development across the app, web portal and API.',
+    architecture:
+      'A React Native app and a Tailwind CSS web portal share one Node.js and Express API. Redux Toolkit and RTK Query manage data in the app, CarJam fills in vehicle details for inspections, and Branch.io handles deep links into the app.',
+    stack: [
+      'JavaScript',
+      'React Native',
+      'Redux Toolkit',
+      'RTK Query',
+      'Node.js',
+      'Express',
+      'Tailwind CSS',
+      'CarJam APIs',
+      'Branch.io',
+    ],
+    outcome: 'Released on the App Store and Google Play.',
+    cover: '/work/safetycheck',
+    coverKind: 'mobile',
+    figure: figures.safetycheck,
+    links: {},
+  },
+  {
+    slug: 'isqroll',
+    name: 'ISQROLL',
     alias: 'Kiwi marketplace app',
     showName: true,
     featured: false,
     madeAt: 'OutsourceNZ',
     category: 'Mobile',
-    categories: ['Mobile'],
+    categories: ['Mobile', 'Web'],
     year: '2024–25',
     summary:
       'An online marketplace for New Zealanders: a safe place to buy and sell, with easy communication between traders.',
     problem: 'Kiwi buyers and sellers needed a safe place to trade and talk to each other.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Team lead at OutsourceNZ.',
     architecture:
       'A React Native app using Redux and RTK Query for data and MMKV for a fast offline cache. Vehicle listings pull details from CarJam’s APIs.',
     stack: ['TypeScript', 'React Native', 'Redux', 'RTK Query', 'MMKV', 'CarJam APIs'],
-    outcome: 'Live on the App Store and Google Play.',
-    figure: figures.iscroll,
+    outcome: 'Live on Google Play and the web.',
+    cover: '/work/isqroll',
+    coverKind: 'web',
+    figure: figures.isqroll,
     links: {
-      appStore: 'https://apps.apple.com/pk/app/isqroll/id6479675690',
+      live: 'https://isqroll.co.nz',
       googlePlay: 'https://play.google.com/store/apps/details?id=com.isqroll&hl=en',
     },
   },
@@ -640,9 +680,11 @@ export const projects: Project[] = [
       'A language-learning app for Niuean, with simple lessons on everyday words and sentences, on mobile and online.',
     problem:
       'Carrying the Niue language to the next generation needs lessons that are simple and available on demand.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Team lead at OutsourceNZ.',
     stack: ['React Native', 'JavaScript'],
     outcome: '',
+    cover: '/work/ponataki',
+    coverKind: 'mobile',
     figure: figures.ponataki,
     links: {},
   },
@@ -652,6 +694,7 @@ export const projects: Project[] = [
     alias: 'Local social discovery app',
     showName: true,
     featured: false,
+    madeAt: 'OutsourceNZ',
     category: 'Mobile',
     categories: ['Mobile'],
     year: '2024',
@@ -659,11 +702,13 @@ export const projects: Project[] = [
       'A mobile app that connects people with like-minded users nearby and links straight to their Instagram profiles.',
     problem:
       'Meeting like-minded people nearby is hard when everyone’s profile lives on a different platform.',
-    role: 'React Native development.',
+    role: 'React Native development at OutsourceNZ.',
     architecture:
       'A React Native app with Redux on an Express and MongoDB API that lists registered users within a radius of your location.',
     stack: ['React Native', 'Redux', 'JavaScript', 'Express', 'MongoDB'],
     outcome: '',
+    cover: '/work/whou',
+    coverKind: 'mobile',
     figure: figures.whou,
     links: {},
   },
@@ -727,9 +772,11 @@ export const projects: Project[] = [
     architecture:
       'The app matches a photographed sign against a database of the health and safety signage used across New Zealand industries, then shows its meaning in the chosen language.',
     stack: ['React Native', 'Redux Toolkit', 'Node.js'],
-    outcome: '',
+    outcome: 'Live on the App Store.',
+    cover: '/work/safesigns',
+    coverKind: 'mobile',
     figure: figures.safesigns,
-    links: {},
+    links: { appStore: 'https://apps.apple.com/nz/app/safesignz/id6446236002' },
   },
   {
     slug: 'spouse',
@@ -766,9 +813,11 @@ export const projects: Project[] = [
       'Rewards people for using the gym membership they already pay for: three visits a week unlock discount codes from online retailers.',
     problem:
       'People pay for gym memberships they don’t use; a reward for turning up keeps them going.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Team lead at OutsourceNZ.',
     stack: ['React Native', 'Node.js'],
     outcome: '',
+    cover: '/work/mybenefits',
+    coverKind: 'mobile',
     figure: figures.mybenefits,
     links: {},
   },
@@ -786,9 +835,11 @@ export const projects: Project[] = [
       'A healthcare staffing app that connects locum professionals with practices that need cover.',
     problem:
       'Practices struggle to fill shifts, and locums to find the right work, through traditional staffing agencies.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Team lead at OutsourceNZ.',
     stack: ['React Native', 'JavaScript', 'Redux', 'Redux Thunk', 'i18next'],
     outcome: 'Live on the App Store.',
+    cover: '/work/locumbridge',
+    coverKind: 'mobile',
     figure: figures.locumbridge,
     links: { appStore: 'https://apps.apple.com/nz/app/locumbridge/id6461689669' },
   },
@@ -830,6 +881,8 @@ export const projects: Project[] = [
     role: 'React Native development at OutsourceNZ.',
     stack: ['React Native', 'JavaScript', 'Node.js'],
     outcome: '',
+    cover: '/work/aawhina',
+    coverKind: 'mobile',
     figure: figures.aawhina,
     links: {},
   },
@@ -847,16 +900,15 @@ export const projects: Project[] = [
       'A ride-sharing app where people sign up as drivers or riders and book seats on trips.',
     problem:
       'Riders needed a simple way to find and pay for a seat on a trip someone was already driving.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Team lead at OutsourceNZ.',
     architecture:
       'Rider and driver apps share one API for trips and seat bookings, with Google Maps for routes and a confirmed seat purchase before the trip.',
     stack: ['JavaScript', 'React Native', 'Redux Toolkit', 'Google Maps'],
-    outcome: 'Live on the App Store and Google Play.',
+    outcome: 'Released on the App Store and Google Play.',
+    cover: '/work/mish',
+    coverKind: 'mobile',
     figure: figures.mish,
-    links: {
-      appStore: 'https://apps.apple.com/nz/app/mish-carpooling/id1661264457',
-      googlePlay: 'https://play.google.com/store/apps/details?id=com.mish',
-    },
+    links: {},
   },
   {
     slug: 'vigourme',

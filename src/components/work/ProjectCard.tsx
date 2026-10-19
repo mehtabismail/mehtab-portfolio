@@ -10,10 +10,12 @@ import { SpecList } from './SpecList'
 interface Props {
   project: Project
   index: number
+  /** draw the cover figure right away (cards near the top of the page) */
+  eager?: boolean
 }
 
 /** Compact project card for the /work index, with the full spec behind a toggle. */
-export function ProjectCard({ project, index }: Props) {
+export function ProjectCard({ project, index, eager = false }: Props) {
   const [open, setOpen] = useState(false)
   const reduce = useReducedMotion()
   const panelId = useId()
@@ -21,7 +23,7 @@ export function ProjectCard({ project, index }: Props) {
 
   return (
     <article aria-labelledby={`card-${project.slug}`} className="flex flex-col">
-      <ProjectCover project={project} index={index} compact highlight={highlight} />
+      <ProjectCover project={project} index={index} compact highlight={highlight} lazy={!eager} />
       <div className="mt-6 flex items-start justify-between gap-4">
         <h2
           id={`card-${project.slug}`}

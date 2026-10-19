@@ -11,6 +11,8 @@ interface Props {
   art?: CoverArt
   /** category shown in the title block */
   highlight: ProjectCategory
+  /** defer drawing the system figure until the cover nears the viewport */
+  lazy?: boolean
 }
 
 /** Typographic cover for projects with neither a screenshot nor a system figure. */
@@ -47,7 +49,14 @@ function SpecSheet({ project, title, index }: { project: Project; title: string;
  * otherwise the project's system figure becomes the artwork, and failing that a
  * typographic spec sheet. With an image, the figure is an inset "Detail A" callout.
  */
-export function ProjectCover({ project, index, compact = false, art = 'auto', highlight }: Props) {
+export function ProjectCover({
+  project,
+  index,
+  compact = false,
+  art = 'auto',
+  highlight,
+  lazy = false,
+}: Props) {
   const title = projectTitle(project)
   const image = art === 'auto' ? project.cover : undefined
 
@@ -55,13 +64,23 @@ export function ProjectCover({ project, index, compact = false, art = 'auto', hi
     <figure className="group/cover relative overflow-hidden border border-line bg-surface">
       <div className="relative aspect-[5/4]">
         {image ? (
-          <img
-            src={image}
-            alt={`${title} — screenshot`}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover/cover:scale-[1.03]"
-          />
+          // Variants come from `npm run covers`; cards are ~340px on phones, ~530px at 1440.
+          <picture>
+            <source
+              type="image/avif"
+              srcSet={`${image}-800.avif 800w, ${image}-1200.avif 1200w`}
+              sizes="(min-width: 768px) 540px, 100vw"
+            />
+            <img
+              src={`${image}.jpg`}
+              alt={`${title} — screenshot`}
+              width={1200}
+              height={960}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover/cover:scale-[1.03]"
+            />
+          </picture>
         ) : (
           <div className="absolute inset-0 blueprint-grid">
             <div
@@ -74,7 +93,7 @@ export function ProjectCover({ project, index, compact = false, art = 'auto', hi
             />
             {project.figure ? (
               <div className="absolute inset-6 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover/cover:scale-[1.03] sm:inset-8">
-                <SystemFigureView figure={project.figure} className="size-full" />
+                <SystemFigureView figure={project.figure} lazy={lazy} className="size-full" />
               </div>
             ) : (
               <SpecSheet project={project} title={title} index={index} />
@@ -88,7 +107,11 @@ export function ProjectCover({ project, index, compact = false, art = 'auto', hi
         {image && project.figure && (
           // Smaller on phones so it doesn't hide the screenshot it sits on.
           <div className="absolute right-4 bottom-4 w-[30%] max-w-[220px] border border-line-strong bg-bg/85 backdrop-blur sm:right-5 sm:bottom-5 sm:w-[38%]">
-            <SystemFigureView figure={project.figure} className="h-auto w-full p-1.5 sm:p-2" />
+            <SystemFigureView
+              figure={project.figure}
+              lazy={lazy}
+              className="h-auto w-full p-1.5 sm:p-2"
+            />
             <span className="block truncate border-t border-line px-2 py-1 label-mono text-[9px] text-faint">
               Detail A<span className="hidden sm:inline"> — architecture</span>
             </span>

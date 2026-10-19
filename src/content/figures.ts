@@ -413,11 +413,52 @@ export const figures = {
     groups: [{ label: 'build step', nodes: ['build', 'prerender', 'bundles'] }],
   },
 
-  iscroll: {
+  safetycheck: {
+    title: 'construction safety · app + web',
+    lanes: 3,
+    nodes: [
+      {
+        id: 'app',
+        label: 'SafetyCheck app',
+        sub: 'iOS · Android',
+        icon: 'mobile',
+        tier: 0,
+        lane: 0.5,
+      },
+      { id: 'web', label: 'Web portal', sub: 'tailwind css', icon: 'browser', tier: 0, lane: 1.5 },
+      {
+        id: 'api',
+        label: 'Node.js API',
+        sub: 'express',
+        icon: 'server',
+        tier: 1,
+        lane: 1,
+        accent: true,
+      },
+      {
+        id: 'records',
+        label: 'Safety records',
+        sub: 'sites · inductions',
+        icon: 'database',
+        tier: 2,
+        lane: 0,
+      },
+      { id: 'carjam', label: 'CarJam', sub: 'vehicle data', icon: 'external', tier: 2, lane: 1 },
+      { id: 'branch', label: 'Branch.io', sub: 'deep links', icon: 'external', tier: 2, lane: 2 },
+    ],
+    edges: [
+      { from: 'app', to: 'api' },
+      { from: 'web', to: 'api' },
+      { from: 'api', to: 'records' },
+      { from: 'api', to: 'carjam' },
+      { from: 'app', to: 'branch', async: true },
+    ],
+  },
+  isqroll: {
     title: 'kiwi marketplace app',
     lanes: 3,
     nodes: [
-      { id: 'app', label: 'ISCROLL app', sub: 'iOS · Android', icon: 'mobile', tier: 0, lane: 1 },
+      { id: 'app', label: 'ISQROLL app', sub: 'iOS · Android', icon: 'mobile', tier: 0, lane: 1 },
       { id: 'state', label: 'Redux', sub: 'rtk query', icon: 'state', tier: 1, lane: 0.5 },
       { id: 'mmkv', label: 'MMKV', sub: 'offline cache', icon: 'cache', tier: 1, lane: 1.5 },
       {

@@ -96,7 +96,8 @@ export function WorkPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.06 }}
             >
-              <ProjectCard project={project} index={projects.indexOf(project)} />
+              {/* The first row or two prerender with real figures; the rest draw on approach. */}
+              <ProjectCard project={project} index={projects.indexOf(project)} eager={i < 4} />
             </m.li>
           ))}
         </ul>

@@ -290,6 +290,8 @@ interface Props {
   interactive?: boolean
   /** 'mount' animates immediately, 'view' waits until scrolled into view */
   enter?: 'mount' | 'view'
+  /** draw an empty, same-size SVG until the figure nears the viewport */
+  lazy?: boolean
   className?: string
 }
 
@@ -298,6 +300,7 @@ export function SystemFigureView({
   figure,
   interactive = false,
   enter = 'view',
+  lazy = false,
   className,
 }: Props) {
   const reduce = useReducedMotion() ?? false
@@ -305,6 +308,8 @@ export function SystemFigureView({
   const sides = useMemo(() => usedSides(layout, figure.edges), [layout, figure.edges])
   const ref = useRef<SVGSVGElement>(null)
   const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
+  // Mount the full drawing well ahead of the entrance trigger so it's ready in time.
+  const near = useInView(ref, { once: true, margin: '800px 0px 800px 0px' })
   const pointer = usePointer(interactive && !reduce)
   const still = useMotionValue(0)
   const px = interactive ? pointer.x : still
@@ -318,6 +323,19 @@ export function SystemFigureView({
   const label = `${figure.title}: ${figure.nodes.map((n) => n.label).join(', ')}`
   const { dim } = layout
   const midY = (dim.y1 + dim.y2) / 2
+
+  if (lazy && !near) {
+    return (
+      <svg
+        ref={ref}
+        viewBox={`0 0 ${layout.width} ${layout.height}`}
+        className={className}
+        role="img"
+        aria-label={label}
+        style={{ overflow: 'visible', opacity: waiting ? 0 : 1 }}
+      />
+    )
+  }
 
   return (
     <svg

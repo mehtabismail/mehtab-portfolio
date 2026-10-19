@@ -2,7 +2,7 @@
 <!--
   Project cover layouts (1500×1200, the 5:4 cover slot). `npm run covers` opens
   this page once per project (?p=bling, ?p=kave, …) in headless Chrome and saves
-  public/work/<project>.jpg. Screens live in ./shots.
+  public/work/<project>-800.avif, -1200.avif and .jpg. Screens live in ./shots.
 -->
 <html lang="en">
   <head>
@@ -101,8 +101,25 @@
       .browser img {
         display: block;
         width: 100%;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: var(--ar, 16 / 10);
         object-fit: cover;
+        object-position: var(--pos, center);
+      }
+
+      /* Store graphic: already a designed screen, so no device frame */
+      .card {
+        position: absolute;
+        width: var(--w);
+        border-radius: 36px;
+        border: 1.5px solid rgb(148 163 184 / 0.32);
+        box-shadow: 0 50px 90px -30px rgb(0 0 0 / 0.85);
+      }
+
+      /* Transparent device mockup (PNG) that brings its own frame */
+      .mock {
+        position: absolute;
+        width: var(--w);
+        filter: drop-shadow(0 40px 60px rgb(0 0 0 / 0.7));
       }
     </style>
   </head>
@@ -110,8 +127,13 @@
     <script>
       const phone = (src, w, x, y) =>
         `<div class="phone" style="--w:${w}px;left:${x}px;top:${y}px"><img src="shots/${src}.jpg" alt=""></div>`
-      const browser = (src, w, x, y, url) =>
-        `<div class="browser" style="--w:${w}px;left:${x}px;top:${y}px"><div class="bar"><i></i><i></i><i></i><span>${url}</span></div><img src="shots/${src}.jpg" alt=""></div>`
+      // ar: screenshot crop (wide desktop shots read better at 2 / 1); pos: which part to keep
+      const browser = (src, w, x, y, url, ar = '16 / 10', pos = 'center') =>
+        `<div class="browser" style="--w:${w}px;--ar:${ar};--pos:${pos};left:${x}px;top:${y}px"><div class="bar"><i></i><i></i><i></i><span>${url}</span></div><img src="shots/${src}.jpg" alt=""></div>`
+      const card = (src, w, x, y) =>
+        `<img class="card" src="shots/${src}.jpg" style="--w:${w}px;left:${x}px;top:${y}px" alt="">`
+      const mock = (src, w, x, y) =>
+        `<img class="mock" src="shots/${src}.png" style="--w:${w}px;left:${x}px;top:${y}px" alt="">`
 
       // Phones step up to the right so the site's "Detail A" inset (bottom-right) covers the least.
       const layouts = {
@@ -138,6 +160,68 @@
           html:
             browser('arca-web-home', 1060, 70, 150, 'arca · home') +
             browser('arca-web-p202', 860, 570, 470, 'arca · product'),
+        },
+        safetycheck: {
+          label: 'iOS + Android · app screens',
+          // the home mockup is cropped on its right edge, so the middle phone overlaps it
+          html:
+            mock('safetycheck-home', 400, 110, 290) +
+            mock('safetycheck-onboarding', 400, 990, 110) +
+            mock('safetycheck-vehicles', 440, 480, 200),
+        },
+        isqroll: {
+          label: 'Web + mobile · marketplace',
+          html:
+            browser('isqroll-web-home', 1100, 60, 200, 'isqroll.co.nz', '2 / 1') +
+            card('isqroll-store', 330, 1100, 250),
+        },
+        mish: {
+          label: 'Mobile app · site + store',
+          html:
+            browser('mish-web-home', 1100, 60, 200, 'mish · landing', '2 / 1') +
+            card('mish-store', 330, 1100, 250),
+        },
+        locumbridge: {
+          label: 'iOS app · store screens',
+          html:
+            card('locumbridge-match', 380, 120, 290) +
+            card('locumbridge-calendar', 380, 1000, 110) +
+            card('locumbridge-jobs', 420, 540, 200),
+        },
+        mybenefits: {
+          label: 'iOS + Android · app screens',
+          html:
+            phone('mybenefits-faq', 380, 120, 290) +
+            phone('mybenefits-welcome', 380, 1000, 110) +
+            phone('mybenefits-workout', 420, 540, 200),
+        },
+        ponataki: {
+          label: 'iOS + Android · app screens',
+          html:
+            phone('ponataki-quiz', 380, 120, 290) +
+            phone('ponataki-unit', 380, 1000, 110) +
+            phone('ponataki-home', 420, 540, 200),
+        },
+        safesigns: {
+          label: 'iOS + Android · app screens',
+          html:
+            phone('safesigns-language', 380, 120, 290) +
+            phone('safesigns-splash', 380, 1000, 110) +
+            phone('safesigns-home', 420, 540, 200),
+        },
+        whou: {
+          label: 'Mobile app · screens',
+          html: phone('whou-welcome', 430, 290, 220) + phone('whou-matching', 430, 780, 110),
+        },
+        aawhina: {
+          label: 'iOS + Android · app screens',
+          html: phone('aawhina-support', 430, 290, 220) + phone('aawhina-map', 430, 780, 110),
+        },
+        devtinder: {
+          label: 'Web · feed + sign-in',
+          html:
+            browser('devtinder-feed', 1000, 60, 140, 'devtinder · feed') +
+            browser('devtinder-signin', 760, 680, 560, 'devtinder · sign in'),
         },
       }
 

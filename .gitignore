@@ -26,3 +26,9 @@ dist-ssr
 # Vercel
 .vercel
 .env*
+
+# Firebase admin key (never commit)
+serviceAccountKey.json
+
+# Raw project screenshots from the old portfolio; covers copy what they use into scripts/covers/shots
+projects_images/
