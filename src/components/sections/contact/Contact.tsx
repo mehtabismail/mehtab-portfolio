@@ -1,7 +1,8 @@
 import { m, useReducedMotion } from 'motion/react'
 import { ArrowUpRight, Copy } from 'lucide-react'
-import { contact, site, socials } from '../../../content/site'
+import { booking, contact, site, socials } from '../../../content/site'
 import { useCopyEmail } from '../../../hooks/useCopyEmail'
+import { BookCallButton, WhatsAppLink } from '../../ui/BookCall'
 import { Reveal } from '../../ui/Reveal'
 import { ContactForm } from './ContactForm'
 
@@ -45,6 +46,15 @@ export function Contact() {
         <div className="mt-16 grid gap-14 md:mt-24 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
             <p className="max-w-md text-xl leading-relaxed text-muted">{contact.intro}</p>
+
+            {/* Prefer to talk? Shown once a Cal.com link is set (the fallback is this section). */}
+            {booking.calLink && (
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <BookCallButton />
+                <span className="label-mono text-faint">{booking.note}</span>
+              </div>
+            )}
+            <WhatsAppLink className="mt-5" />
 
             <dl className="mt-12 grid grid-cols-2 gap-x-6 border-y border-line">
               <div className="col-span-2 border-b border-line py-5">

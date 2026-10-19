@@ -83,8 +83,27 @@ export const hero = {
   roles: ['Full-Stack Developer', 'React Native Developer', 'System Architect', 'Technical Writer'],
   statement:
     'I turn product ideas into documented, scalable platforms — from architecture to production.',
-  primaryCta: { label: 'Hire me', target: 'contact' },
   secondaryCta: { label: 'See my work', target: 'work' },
+}
+
+/* ───────────────────────────── Book a call ───────────────────────────── */
+
+export const booking = {
+  label: 'Book a call',
+  /**
+   * Your Cal.com link, the part after cal.com/ — e.g. 'mehtabismail/intro'.
+   * Connect Google Calendar in Cal.com and each booking gets a Google Meet link.
+   * Leave empty and "Book a call" scrolls to the contact form instead.
+   */
+  calLink: '',
+  /** shown next to the button in the Contact section */
+  note: '30-minute intro call on Google Meet',
+  /**
+   * WhatsApp number in international format, digits only — e.g. '923001234567'.
+   * Leave empty to hide the "Chat on WhatsApp" link.
+   */
+  whatsapp: '',
+  whatsappMessage: 'Hi Mehtab, I found your portfolio and I’d like to talk about a project.',
 }
 
 /* ───────────────────────────── What I do ───────────────────────────── */

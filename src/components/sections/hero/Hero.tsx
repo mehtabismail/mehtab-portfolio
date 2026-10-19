@@ -1,5 +1,6 @@
 import { m, useReducedMotion } from 'motion/react'
 import { hero, site } from '../../../content/site'
+import { BookCallButton, WhatsAppLink } from '../../ui/BookCall'
 import { SectionButton } from '../../ui/Button'
 import { RoleCycler } from './RoleCycler'
 import { HeroFigure } from './HeroFigure'
@@ -82,11 +83,14 @@ export function Hero() {
             {hero.statement}
           </m.p>
 
-          <m.div {...rise(0.5)} className="mt-10 flex flex-wrap gap-3">
-            <SectionButton target={hero.primaryCta.target}>{hero.primaryCta.label}</SectionButton>
-            <SectionButton target={hero.secondaryCta.target} variant="ghost">
-              {hero.secondaryCta.label}
-            </SectionButton>
+          <m.div {...rise(0.5)} className="mt-10">
+            <div className="flex flex-wrap gap-3">
+              <BookCallButton />
+              <SectionButton target={hero.secondaryCta.target} variant="ghost">
+                {hero.secondaryCta.label}
+              </SectionButton>
+            </div>
+            <WhatsAppLink className="mt-5" />
           </m.div>
         </div>
 
