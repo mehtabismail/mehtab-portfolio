@@ -45,6 +45,13 @@ export type FigureIcon =
   | 'video'
   | 'sparkles'
 
+/** What a node does in this project and why it's there — shown when the node is tapped. */
+export interface FigureNote {
+  what: string
+  /** only when the reason is on record (site.ts, caseStudies.ts); never guessed */
+  why?: string
+}
+
 export interface FigureNode {
   id: string
   label: string
@@ -57,6 +64,8 @@ export interface FigureNode {
   lane: number
   /** highlight in amber — usually the core of the system */
   accent?: boolean
+  /** makes the node a button on case-study pages; figures without notes stay static */
+  note?: FigureNote
 }
 
 export interface FigureEdge {

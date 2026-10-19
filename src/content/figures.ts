@@ -104,8 +104,23 @@ export const figures = {
         icon: 'web',
         tier: 0,
         lane: 0.5,
+        note: {
+          what: 'One Next.js app for buyers, makers and the admins who run the platform: the shop, the seller studio and the admin console.',
+          why: 'It shares only an HTTP contract with the API, so it installs, builds, tests and deploys on its own. Its API types are checked against the running API in CI.',
+        },
       },
-      { id: 'mobile', label: 'Mobile app', sub: 'expo', icon: 'mobile', tier: 0, lane: 1.5 },
+      {
+        id: 'mobile',
+        label: 'Mobile app',
+        sub: 'expo',
+        icon: 'mobile',
+        tier: 0,
+        lane: 1.5,
+        note: {
+          what: 'The Expo app for shopping on a phone. It keeps the refresh token in SecureStore.',
+          why: 'Like the web app, it keeps its own copy of the API types, and contract tests check them against the running API in CI.',
+        },
+      },
       {
         id: 'api',
         label: 'NestJS API',
@@ -114,6 +129,10 @@ export const figures = {
         tier: 1,
         lane: 1,
         accent: true,
+        note: {
+          what: 'The NestJS API behind both apps: 21 modules, layered routes → services → repositories. It also runs its own authentication, with rotating refresh tokens and reuse detection.',
+          why: 'Rewriting 9,700 lines of working, partly tested business logic in Express would have added risk and nothing a user could see. A repository layer gave the clean layering the brief asked for.',
+        },
       },
       {
         id: 'catalogue',
@@ -122,13 +141,78 @@ export const figures = {
         icon: 'store',
         tier: 2,
         lane: 0,
+        note: {
+          what: 'Makers’ storefronts, products and search. Catalogue images sit in a public Cloudflare R2 bucket, apart from sellers’ identity documents in a private one.',
+          why: 'The old system kept sellers’ ID scans in the same public bucket as product photos.',
+        },
       },
-      { id: 'orders', label: 'Orders', sub: 'cart · payouts', icon: 'cart', tier: 2, lane: 1 },
-      { id: 'assistant', label: 'Lume', sub: 'AI assistant', icon: 'sparkles', tier: 2, lane: 2 },
-      { id: 'db', label: 'Postgres', sub: 'prisma · pgvector', icon: 'database', tier: 3, lane: 0 },
-      { id: 'queue', label: 'Redis', sub: 'bullmq', icon: 'queue', tier: 3, lane: 1 },
-      { id: 'stripe', label: 'Stripe', sub: 'payments', icon: 'payments', tier: 3, lane: 2 },
-      { id: 'worker', label: 'Worker', sub: 'email · push', icon: 'worker', tier: 4, lane: 1 },
+      {
+        id: 'orders',
+        label: 'Orders',
+        sub: 'cart · payouts',
+        icon: 'cart',
+        tier: 2,
+        lane: 1,
+        note: {
+          what: 'Cart, checkout and payouts, with Stripe or cash on delivery. Stock claims and coupon redemptions stay correct when several buyers check out at once.',
+          why: 'The audit found that checkout ignored product variants and that a coupon’s last use could be redeemed twice. Each fix has a test that fails against the old behaviour.',
+        },
+      },
+      {
+        id: 'assistant',
+        label: 'Lume',
+        sub: 'AI assistant',
+        icon: 'sparkles',
+        tier: 2,
+        lane: 2,
+        note: {
+          what: 'Lume, the shopping assistant: OpenAI tool calls find products from a plain-language request and answer questions from a pgvector knowledge base of 40 passages about how ARCA works.',
+          why: 'Without a model it falls back to full-text search, and still answers 41 of 45 evaluation questions correctly.',
+        },
+      },
+      {
+        id: 'db',
+        label: 'Postgres',
+        sub: 'prisma · pgvector',
+        icon: 'database',
+        tier: 3,
+        lane: 0,
+        note: {
+          what: 'Postgres through Prisma, with pgvector holding Lume’s knowledge base.',
+          why: 'It shares one always-free ARM server with the API, the worker, the website and Redis, with nightly backups to R2 and a rollback copy kept before every deploy.',
+        },
+      },
+      {
+        id: 'queue',
+        label: 'Redis',
+        sub: 'bullmq',
+        icon: 'queue',
+        tier: 3,
+        lane: 1,
+        note: { what: 'Redis with BullMQ: orders hand jobs to the worker through these queues.' },
+      },
+      {
+        id: 'stripe',
+        label: 'Stripe',
+        sub: 'payments',
+        icon: 'payments',
+        tier: 3,
+        lane: 2,
+        note: {
+          what: 'Takes card payments at checkout. Cash on delivery is the other way to pay.',
+        },
+      },
+      {
+        id: 'worker',
+        label: 'Worker',
+        sub: 'email · push',
+        icon: 'worker',
+        tier: 4,
+        lane: 1,
+        note: {
+          what: 'A BullMQ worker that takes jobs off Redis and sends email and push notifications.',
+        },
+      },
     ],
     edges: [
       { from: 'web', to: 'api' },
@@ -155,6 +239,10 @@ export const figures = {
         icon: 'mobile',
         tier: 0,
         lane: 0.5,
+        note: {
+          what: 'The Expo and React Native app for buyers and sellers, with Redux Toolkit and RTK Query, in Arabic (right to left) and English: browsing, wishlists, offers, checkout, chat and seller listings.',
+          why: 'Individuals sell from the app once they pass a Nafath identity check, without losing their buyer account.',
+        },
       },
       {
         id: 'dash',
@@ -163,6 +251,10 @@ export const figures = {
         icon: 'dashboard',
         tier: 0,
         lane: 1.5,
+        note: {
+          what: 'Next.js portals. Bling’s team creates stores, reviews listings, clears orders and pays sellers; company stores list stock one item at a time or by spreadsheet.',
+          why: 'Company sellers can only be created by Bling and can only sign in on the web.',
+        },
       },
       {
         id: 'api',
@@ -172,6 +264,10 @@ export const figures = {
         tier: 1,
         lane: 1,
         accent: true,
+        note: {
+          what: 'A NestJS API on Postgres via Prisma, serving the app and both portals, with Socket.IO for chat.',
+          why: 'Roles tied to the whole platform or to one company store, plus permissions added or removed per person, cover buyer-turned-seller, store staff and Bling’s team with one person record.',
+        },
       },
       {
         id: 'catalog',
@@ -180,8 +276,22 @@ export const figures = {
         icon: 'store',
         tier: 2,
         lane: 0,
+        note: {
+          what: 'Listings and offers. Bling’s team approves every listing, reviewed against live WatchCharts market prices, before buyers can see it. Offers can never go above the asking price, and counters never below the buyer’s last offer.',
+          why: 'At this price, buyers need proof before they pay.',
+        },
       },
-      { id: 'orders', label: 'Orders', sub: 'cart · payments', icon: 'cart', tier: 2, lane: 1 },
+      {
+        id: 'orders',
+        label: 'Orders',
+        sub: 'cart · payments',
+        icon: 'cart',
+        tier: 2,
+        lane: 1,
+        note: {
+          what: 'Cart and checkout: card, Apple Pay, Tabby or Tamara pay-in-four, or a Bling wallet. A negotiated price can’t take a promo code on top.',
+        },
+      },
       {
         id: 'shipments',
         label: 'Shipments',
@@ -189,6 +299,10 @@ export const figures = {
         icon: 'truck',
         tier: 2,
         lane: 2,
+        note: {
+          what: 'Two DHL legs per order: from the seller to Bling’s centre for checks, then on to the buyer or a gift recipient. Only then is the seller paid to their bank account.',
+          why: 'Every sale passes through Bling’s own centre before it reaches the buyer.',
+        },
       },
       {
         id: 'authentic',
@@ -197,11 +311,47 @@ export const figures = {
         icon: 'check',
         tier: 3,
         lane: 0,
+        note: {
+          what: 'Sends a listing for an outside authenticity check with Entrupy or LegitGrails.',
+          why: 'Buying and selling luxury watches online only works with trust.',
+        },
       },
-      { id: 'db', label: 'Postgres', sub: 'prisma', icon: 'database', tier: 3, lane: 1 },
-      { id: 'dhl', label: 'DHL', sub: 'labels · tracking', icon: 'external', tier: 3, lane: 2 },
-      { id: 'jobs', label: 'Jobs', sub: 'redis · pg-boss', icon: 'queue', tier: 4, lane: 0.5 },
-      { id: 'zatca', label: 'ZATCA', sub: 'e-invoicing', icon: 'doc', tier: 4, lane: 1.5 },
+      {
+        id: 'db',
+        label: 'Postgres',
+        sub: 'prisma',
+        icon: 'database',
+        tier: 3,
+        lane: 1,
+        note: { what: 'Postgres, reached through Prisma by the NestJS API.' },
+      },
+      {
+        id: 'dhl',
+        label: 'DHL',
+        sub: 'labels · tracking',
+        icon: 'external',
+        tier: 3,
+        lane: 2,
+        note: { what: 'Books both DHL legs from the platform, with labels and tracking.' },
+      },
+      {
+        id: 'jobs',
+        label: 'Jobs',
+        sub: 'redis · pg-boss',
+        icon: 'queue',
+        tier: 4,
+        lane: 0.5,
+        note: { what: 'Background jobs on Redis and pg-boss.' },
+      },
+      {
+        id: 'zatca',
+        label: 'ZATCA',
+        sub: 'e-invoicing',
+        icon: 'doc',
+        tier: 4,
+        lane: 1.5,
+        note: { what: 'ZATCA e-invoicing, which covers every way to pay.' },
+      },
     ],
     edges: [
       { from: 'app', to: 'api' },
@@ -230,8 +380,22 @@ export const figures = {
         icon: 'mobile',
         tier: 0,
         lane: 0.5,
+        note: {
+          what: 'The guest and host app: guests find, book and pay for stays, and hosts list and manage their properties, in English and Arabic (right to left). Launched on the App Store in Saudi Arabia in June 2026.',
+        },
       },
-      { id: 'ops', label: 'KAVE Ops', sub: 'field team', icon: 'mobile', tier: 0, lane: 1.5 },
+      {
+        id: 'ops',
+        label: 'KAVE Ops',
+        sub: 'field team',
+        icon: 'mobile',
+        tier: 0,
+        lane: 1.5,
+        note: {
+          what: 'The operations team’s app for inspecting properties and handling service requests on site.',
+          why: 'Staff work inside buildings with poor coverage, but an inspection can’t wait for a signal.',
+        },
+      },
       {
         id: 'client',
         label: 'API client',
@@ -239,6 +403,10 @@ export const figures = {
         icon: 'server',
         tier: 1,
         lane: 0.5,
+        note: {
+          what: 'Every KAVE Living request goes through this one client, with token refresh. It is the only layer that retries: once, for reads, and only after network errors, timeouts or server errors, never on a rate limit.',
+          why: 'Before, both the client and TanStack Query retried, so one failing request could make up to 9 attempts over about 21 seconds. Now it makes at most 2.',
+        },
       },
       {
         id: 'outbox',
@@ -247,6 +415,10 @@ export const figures = {
         icon: 'storage',
         tier: 1,
         lane: 1.5,
+        note: {
+          what: 'Inspections and service requests are saved to a local SQLite outbox and sent when the connection returns.',
+          why: 'So the operations team can finish their work on site without a signal.',
+        },
       },
       {
         id: 'concierge',
@@ -255,6 +427,7 @@ export const figures = {
         icon: 'sparkles',
         tier: 2,
         lane: 0,
+        note: { what: 'An AI assistant that helps guests find stays and plan trips.' },
       },
       {
         id: 'api',
@@ -264,6 +437,9 @@ export const figures = {
         tier: 2,
         lane: 1,
         accent: true,
+        note: {
+          what: 'One REST backend shared by bookings, payments, messaging, the AI concierge and add-on service requests.',
+        },
       },
       {
         id: 'services',
@@ -272,6 +448,9 @@ export const figures = {
         icon: 'check',
         tier: 2,
         lane: 2,
+        note: {
+          what: 'Add-on service requests from guests, and the inspections the operations team carries out.',
+        },
       },
       {
         id: 'bookings',
@@ -280,8 +459,22 @@ export const figures = {
         icon: 'calendar',
         tier: 3,
         lane: 0,
+        note: {
+          what: 'Finding and booking stays, and reviews. TanStack Query holds server state, and Zustand runs multi-step flows like booking.',
+        },
       },
-      { id: 'chat', label: 'Messaging', sub: 'socket.io', icon: 'message', tier: 3, lane: 1 },
+      {
+        id: 'chat',
+        label: 'Messaging',
+        sub: 'socket.io',
+        icon: 'message',
+        tier: 3,
+        lane: 1,
+        note: {
+          what: 'Socket messaging in KAVE Living.',
+          why: 'Messages are no longer cached on the device, where another app or a backup could read them.',
+        },
+      },
       {
         id: 'payments',
         label: 'Payments',
@@ -289,8 +482,20 @@ export const figures = {
         icon: 'payments',
         tier: 3,
         lane: 2,
+        note: {
+          what: 'Moyasar and Apple Pay. Once the bank approves, the app keeps the verified payment id, so tapping Confirm again only re-sends the confirmation, with no second charge.',
+          why: 'With 3-D Secure, a bank could approve a payment while the app reported a failure, and retrying charged the card again. The audit marked it as a launch blocker.',
+        },
       },
-      { id: 'push', label: 'Push', sub: 'FCM · notifee', icon: 'bell', tier: 4, lane: 1 },
+      {
+        id: 'push',
+        label: 'Push',
+        sub: 'FCM · notifee',
+        icon: 'bell',
+        tier: 4,
+        lane: 1,
+        note: { what: 'Push notifications through FCM and Notifee.' },
+      },
     ],
     edges: [
       { from: 'living', to: 'client' },
@@ -317,8 +522,22 @@ export const figures = {
         icon: 'mobile',
         tier: 0,
         lane: 0.5,
+        note: {
+          what: 'The Expo app for iOS and Android, in English and Urdu (right to left). It works fully without an account.',
+        },
       },
-      { id: 'web', label: 'Web app', sub: 'next.js · static', icon: 'web', tier: 0, lane: 1.5 },
+      {
+        id: 'web',
+        label: 'Web app',
+        sub: 'next.js · static',
+        icon: 'web',
+        tier: 0,
+        lane: 1.5,
+        note: {
+          what: 'The web app, a static Next.js export, which also works without an account.',
+          why: 'By decision, the phone and web apps are separate repos. The core logic is copied into both and kept identical, with the same tests in each.',
+        },
+      },
       {
         id: 'engine',
         label: 'Cycle engine',
@@ -327,8 +546,22 @@ export const figures = {
         tier: 1,
         lane: 1,
         accent: true,
+        note: {
+          what: 'The cycle logic and its predictions run on the device, in both apps.',
+          why: 'The safest health data is data that never leaves the phone.',
+        },
       },
-      { id: 'lock', label: 'App lock', sub: 'pin · biometrics', icon: 'auth', tier: 2, lane: 0 },
+      {
+        id: 'lock',
+        label: 'App lock',
+        sub: 'pin · biometrics',
+        icon: 'auth',
+        tier: 2,
+        lane: 0,
+        note: {
+          what: 'A PIN lock on phone and web, stored as a PBKDF2 verifier, never the PIN itself. Wrong tries wait 5, then 10, 20 and 40 minutes, up to an hour, even across restarts. There’s a decoy PIN, and a WebAuthn passkey on the web.',
+        },
+      },
       {
         id: 'store',
         label: 'Encrypted store',
@@ -336,6 +569,10 @@ export const figures = {
         icon: 'storage',
         tier: 2,
         lane: 1,
+        note: {
+          what: 'On phones, MMKV with AES-256 and keys in the Keychain or Keystore. On the web, IndexedDB with AES-GCM under a browser key that can’t be exported.',
+          why: 'The server must not be able to read anything.',
+        },
       },
       {
         id: 'reminders',
@@ -344,6 +581,7 @@ export const figures = {
         icon: 'bell',
         tier: 2,
         lane: 2,
+        note: { what: 'Reminders sent as local notifications from the device.' },
       },
       {
         id: 'backup',
@@ -352,6 +590,10 @@ export const figures = {
         icon: 'cloud',
         tier: 3,
         lane: 1,
+        note: {
+          what: 'Optional backup. A 12-word recovery key wraps a random backup key, and Firebase stores only the encrypted data and the wrapped key.',
+          why: 'Backup is opt-in, and it only ever uploads data the server can’t read.',
+        },
       },
     ],
     edges: [
@@ -369,8 +611,27 @@ export const figures = {
     title: 'build → edge → browser',
     lanes: 3,
     nodes: [
-      { id: 'content', label: 'Content', sub: 'site.ts', icon: 'doc', tier: 0, lane: 0.5 },
-      { id: 'github', label: 'GitHub', sub: 'push to main', icon: 'git', tier: 0, lane: 1.5 },
+      {
+        id: 'content',
+        label: 'Content',
+        sub: 'site.ts',
+        icon: 'doc',
+        tier: 0,
+        lane: 0.5,
+        note: {
+          what: 'The site’s copy and every diagram, including this one, are typed data in TypeScript files.',
+          why: 'Diagrams as data stay consistent, can be edited in code, scale perfectly and add almost nothing to download.',
+        },
+      },
+      {
+        id: 'github',
+        label: 'GitHub',
+        sub: 'push to main',
+        icon: 'git',
+        tier: 0,
+        lane: 1.5,
+        note: { what: 'A push to main starts a new build on Vercel.' },
+      },
       {
         id: 'build',
         label: 'Vercel build',
@@ -379,6 +640,10 @@ export const figures = {
         tier: 1,
         lane: 1,
         accent: true,
+        note: {
+          what: 'Vite and TypeScript build the site on Vercel.',
+          why: 'A project marked hidden can’t carry its real name: TypeScript rejects the build, so a client name can’t leak into the bundle by mistake.',
+        },
       },
       {
         id: 'prerender',
@@ -387,10 +652,43 @@ export const figures = {
         icon: 'server',
         tier: 2,
         lane: 0.5,
+        note: {
+          what: 'Every page, including each case study, is rendered to static HTML with its own title, description, share image and structured data.',
+          why: 'Prerendering is for speed: the largest paint takes 1.6 s on a throttled phone.',
+        },
       },
-      { id: 'bundles', label: 'Bundles', sub: 'code-split', icon: 'state', tier: 2, lane: 1.5 },
-      { id: 'cdn', label: 'Edge CDN', sub: 'vercel', icon: 'cdn', tier: 3, lane: 1 },
-      { id: 'browser', label: 'Browser', sub: 'hydrate', icon: 'browser', tier: 4, lane: 0.5 },
+      {
+        id: 'bundles',
+        label: 'Bundles',
+        sub: 'code-split',
+        icon: 'state',
+        tier: 2,
+        lane: 1.5,
+        note: {
+          what: 'Code-split JavaScript. The booking popup’s script loads on the first click, diagrams draw only when they come near the screen, and animation features load in the background.',
+          why: 'Animated diagrams, a physics playground and smooth scrolling still had to pass Lighthouse on a throttled phone. It scores 99 for mobile performance.',
+        },
+      },
+      {
+        id: 'cdn',
+        label: 'Edge CDN',
+        sub: 'vercel',
+        icon: 'cdn',
+        tier: 3,
+        lane: 1,
+        note: { what: 'Vercel’s edge network serves the prerendered pages.' },
+      },
+      {
+        id: 'browser',
+        label: 'Browser',
+        sub: 'hydrate',
+        icon: 'browser',
+        tier: 4,
+        lane: 0.5,
+        note: {
+          what: 'React takes over the prerendered HTML and brings the diagrams and the physics playground to life.',
+        },
+      },
       {
         id: 'formspree',
         label: 'Formspree',
@@ -398,6 +696,7 @@ export const figures = {
         icon: 'form',
         tier: 4,
         lane: 1.5,
+        note: { what: 'The contact form posts to Formspree.' },
       },
     ],
     edges: [

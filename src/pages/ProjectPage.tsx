@@ -6,7 +6,7 @@ import { useActiveSection } from '../hooks/useActiveSection'
 import { chipsFor, coverCategory, pad, projectHref, projectTitle } from '../lib/project'
 import { scrollToId } from '../lib/scroll'
 import { Gallery } from '../components/case/Gallery'
-import { SystemFigureView } from '../components/figure/SystemFigureView'
+import { ArchitectureFigure } from '../components/figure/ArchitectureFigure'
 import { BookCallButton, WhatsAppLink } from '../components/ui/BookCall'
 import { Reveal } from '../components/ui/Reveal'
 import { ProjectCover } from '../components/work/ProjectCover'
@@ -118,31 +118,7 @@ function buildSections(project: Project): Section[] {
         <>
           {project.figure && (
             <Reveal>
-              <figure className="border border-line bg-surface">
-                <div className="relative blueprint-grid px-4 py-8 sm:px-10 sm:py-12">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        'radial-gradient(60% 60% at 50% 45%, var(--color-accent-dim), transparent 70%)',
-                    }}
-                  />
-                  <SystemFigureView
-                    figure={project.figure}
-                    interactive
-                    className="relative mx-auto h-auto w-full max-w-[720px]"
-                  />
-                </div>
-                <figcaption className="grid grid-cols-[1fr_auto] border-t border-line label-mono text-[10px] text-faint">
-                  <span className="truncate px-4 py-2.5 text-muted">
-                    Fig. A — {project.figure.title}
-                  </span>
-                  <span className="border-l border-line px-4 py-2.5 text-accent">
-                    {project.figure.nodes.length} nodes
-                  </span>
-                </figcaption>
-              </figure>
+              <ArchitectureFigure figure={project.figure} />
             </Reveal>
           )}
           {project.architecture && (

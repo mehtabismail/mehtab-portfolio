@@ -208,6 +208,14 @@ const PORTS = {
   right: [NODE_W / 2, 0],
 } as const
 
+/** Case-study mode: nodes with a note become buttons that open a details panel. */
+export interface FigureExplore {
+  selected: string | null
+  onToggle: (id: string) => void
+  /** id of the panel the node buttons control */
+  panelId: string
+}
+
 function NodeBox({
   node,
   layout,
@@ -216,68 +224,149 @@ function NodeBox({
   py,
   play,
   glowId,
-}: Shared & { node: PlacedNode; sides: Set<keyof typeof PORTS> | undefined }) {
+  explore,
+}: Shared & {
+  node: PlacedNode
+  sides: Set<keyof typeof PORTS> | undefined
+  explore?: FigureExplore
+}) {
   const d = depthOf(node, layout.tiers)
   const x = useTransform(px, (v) => v * d * FOLLOW)
   const y = useTransform(py, (v) => v * d * FOLLOW)
   const Icon = ICONS[node.icon]
   const left = node.x - NODE_W / 2
+  const top = node.y - NODE_H / 2
+  const button = explore && node.note ? explore : undefined
+  const selected = button?.selected === node.id
+  const lit = node.accent || selected
+
+  const body = (
+    <>
+      {node.accent && <circle cx={node.x} cy={node.y} r={74} fill={`url(#${glowId})`} />}
+      {button && (
+        // Bigger hit area than the box, so small figures on phones are still easy to tap.
+        <rect
+          x={left - 8}
+          y={top - 8}
+          width={NODE_W + 16}
+          height={NODE_H + 16}
+          fill="transparent"
+        />
+      )}
+      <rect
+        x={left}
+        y={top}
+        width={NODE_W}
+        height={NODE_H}
+        rx={6}
+        fill="var(--color-surface)"
+        stroke={lit ? 'var(--color-accent)' : 'rgb(148 163 184 / 0.3)'}
+        strokeWidth={selected ? 1.5 : undefined}
+        className={button && !lit ? 'transition-[stroke] group-hover/node:stroke-muted' : undefined}
+      />
+      {selected && (
+        <rect
+          x={left}
+          y={top}
+          width={NODE_W}
+          height={NODE_H}
+          rx={6}
+          fill="var(--color-accent-dim)"
+        />
+      )}
+      {button && (
+        <>
+          {/* corner tick: this node has a note */}
+          <path
+            d={`M${left + NODE_W - 11} ${top + 4} H${left + NODE_W - 4} V${top + 11}`}
+            fill="none"
+            stroke="var(--color-accent)"
+            strokeWidth={1.25}
+            opacity={selected ? 1 : 0.7}
+          />
+          <rect
+            x={left - 5}
+            y={top - 5}
+            width={NODE_W + 10}
+            height={NODE_H + 10}
+            rx={9}
+            fill="none"
+            stroke="var(--color-accent)"
+            strokeWidth={2}
+            className="opacity-0 group-focus-visible/node:opacity-100"
+          />
+        </>
+      )}
+      {[...(sides ?? [])].map((s) => (
+        <circle
+          key={s}
+          cx={node.x + PORTS[s][0]}
+          cy={node.y + PORTS[s][1]}
+          r={2.5}
+          fill="var(--color-bg)"
+          stroke="var(--color-muted)"
+        />
+      ))}
+      <Icon
+        x={left + 12}
+        y={node.y - 9}
+        width={18}
+        height={18}
+        strokeWidth={1.5}
+        color={lit ? 'var(--color-accent)' : 'var(--color-muted)'}
+      />
+      <text
+        x={left + 38}
+        y={node.sub ? node.y - 2 : node.y + 4}
+        fill={lit ? 'var(--color-accent)' : 'var(--color-ink)'}
+        fontFamily="var(--font-mono)"
+        fontSize={12.5}
+        fontWeight={500}
+      >
+        {node.label}
+      </text>
+      {node.sub && (
+        <text
+          x={left + 38}
+          y={node.y + 13}
+          fill="var(--color-faint)"
+          fontFamily="var(--font-mono)"
+          fontSize={9.5}
+        >
+          {node.sub}
+        </text>
+      )}
+    </>
+  )
+
   return (
-    <m.g style={{ x, y }}>
+    <m.g style={{ x, y }} aria-hidden={explore && !button ? true : undefined}>
       <m.g
         initial={play ? { opacity: 0, scale: 0.88 } : false}
         animate={play ? { opacity: 1, scale: 1 } : undefined}
         transition={{ duration: 0.7, ease, delay: 0.1 + node.tier * 0.14 + node.lane * 0.05 }}
         style={{ transformOrigin: 'center', transformBox: 'fill-box' }}
       >
-        {node.accent && <circle cx={node.x} cy={node.y} r={74} fill={`url(#${glowId})`} />}
-        <rect
-          x={left}
-          y={node.y - NODE_H / 2}
-          width={NODE_W}
-          height={NODE_H}
-          rx={6}
-          fill="var(--color-surface)"
-          stroke={node.accent ? 'var(--color-accent)' : 'rgb(148 163 184 / 0.3)'}
-        />
-        {[...(sides ?? [])].map((s) => (
-          <circle
-            key={s}
-            cx={node.x + PORTS[s][0]}
-            cy={node.y + PORTS[s][1]}
-            r={2.5}
-            fill="var(--color-bg)"
-            stroke="var(--color-muted)"
-          />
-        ))}
-        <Icon
-          x={left + 12}
-          y={node.y - 9}
-          width={18}
-          height={18}
-          strokeWidth={1.5}
-          color={node.accent ? 'var(--color-accent)' : 'var(--color-muted)'}
-        />
-        <text
-          x={left + 38}
-          y={node.sub ? node.y - 2 : node.y + 4}
-          fill={node.accent ? 'var(--color-accent)' : 'var(--color-ink)'}
-          fontFamily="var(--font-mono)"
-          fontSize={12.5}
-          fontWeight={500}
-        >
-          {node.label}
-        </text>
-        {node.sub && (
-          <text
-            x={left + 38}
-            y={node.y + 13}
-            fill="var(--color-faint)"
-            fontFamily="var(--font-mono)"
-            fontSize={9.5}
+        {button ? (
+          <g
+            role="button"
+            tabIndex={0}
+            aria-label={node.sub ? `${node.label}, ${node.sub}` : node.label}
+            aria-expanded={selected}
+            aria-controls={button.panelId}
+            data-node={node.id}
+            className="group/node cursor-pointer outline-none"
+            onClick={() => button.onToggle(node.id)}
+            onKeyDown={(e) => {
+              if (e.key !== 'Enter' && e.key !== ' ') return
+              e.preventDefault()
+              if (!e.repeat) button.onToggle(node.id)
+            }}
           >
-            {node.sub}
-          </text>
+            {body}
+          </g>
+        ) : (
+          body
         )}
       </m.g>
     </m.g>
@@ -292,6 +381,8 @@ interface Props {
   enter?: 'mount' | 'view'
   /** draw an empty, same-size SVG until the figure nears the viewport */
   lazy?: boolean
+  /** turn nodes that carry a note into buttons (see FigureExplore) */
+  explore?: FigureExplore
   className?: string
 }
 
@@ -301,6 +392,7 @@ export function SystemFigureView({
   interactive = false,
   enter = 'view',
   lazy = false,
+  explore,
   className,
 }: Props) {
   const reduce = useReducedMotion() ?? false
@@ -342,7 +434,8 @@ export function SystemFigureView({
       ref={ref}
       viewBox={`0 0 ${layout.width} ${layout.height}`}
       className={className}
-      role="img"
+      // With node buttons inside, the drawing can't be a single image to assistive tech.
+      role={explore ? 'group' : 'img'}
       aria-label={label}
       style={{ overflow: 'visible', opacity: waiting ? 0 : 1 }}
     >
@@ -356,6 +449,7 @@ export function SystemFigureView({
       {/* Dimension line with tier ticks; the label sits to its left */}
       <m.g
         stroke="rgb(148 163 184 / 0.3)"
+        aria-hidden={explore ? true : undefined}
         initial={play ? { opacity: 0 } : false}
         animate={play ? { opacity: 1 } : undefined}
         transition={{ duration: 1, delay: 1.2 }}
@@ -384,6 +478,7 @@ export function SystemFigureView({
         return (
           <m.g
             key={g.label}
+            aria-hidden={explore ? true : undefined}
             initial={play ? { opacity: 0 } : false}
             animate={play ? { opacity: 1 } : undefined}
             transition={{ duration: 1, delay: 1.4 }}
@@ -412,16 +507,18 @@ export function SystemFigureView({
         )
       })}
 
-      {figure.edges.map((e, i) => (
-        <EdgePath key={`${e.from}-${e.to}`} edge={e} index={i} {...shared} />
-      ))}
-      {interactive &&
-        !reduce &&
-        figure.edges
-          .filter((e) => !e.async)
-          .map((e, i) => <Packet key={`p-${e.from}-${e.to}`} edge={e} index={i} {...shared} />)}
+      <g aria-hidden={explore ? true : undefined}>
+        {figure.edges.map((e, i) => (
+          <EdgePath key={`${e.from}-${e.to}`} edge={e} index={i} {...shared} />
+        ))}
+        {interactive &&
+          !reduce &&
+          figure.edges
+            .filter((e) => !e.async)
+            .map((e, i) => <Packet key={`p-${e.from}-${e.to}`} edge={e} index={i} {...shared} />)}
+      </g>
       {layout.nodes.map((n) => (
-        <NodeBox key={n.id} node={n} sides={sides.get(n.id)} {...shared} />
+        <NodeBox key={n.id} node={n} sides={sides.get(n.id)} explore={explore} {...shared} />
       ))}
     </svg>
   )
