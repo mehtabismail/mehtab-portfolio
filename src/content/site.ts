@@ -35,12 +35,12 @@ export const site = {
  * sitemap.xml and robots.txt).
  */
 export const seo = {
-  jobTitle: 'Freelance Full-Stack Developer & System Architect',
+  jobTitle: 'Senior Full-Stack Engineer · Forward Deployed',
   pages: {
     '/': {
-      title: 'Mehtab Ismail — Full-Stack Developer & System Architect',
+      title: 'Mehtab Ismail — Forward Deployed & Senior Full-Stack Engineer',
       description:
-        'Freelance full-stack developer who also handles system architecture and technical documentation — taking products from idea to shipped code.',
+        'Forward deployed full-stack engineer: 30+ mobile, web, backend and AI products shipped since 2019, from client discovery and architecture to production.',
     },
     '/work/': {
       title: 'All work — Mehtab Ismail',
@@ -50,7 +50,7 @@ export const seo = {
   },
   /** 1200×630 share image in /public */
   ogImage: '/og.png',
-  ogImageAlt: 'Mehtab Ismail — Full-Stack Developer & System Architect',
+  ogImageAlt: 'Mehtab Ismail — Forward Deployed & Senior Full-Stack Engineer',
   /** the 404 page; kept out of search results and the sitemap */
   notFound: {
     title: 'Page not found — Mehtab Ismail',
@@ -80,9 +80,9 @@ export const socials: SocialLink[] = [
 
 export const hero = {
   greeting: "Hi, I'm",
-  roles: ['Full-Stack Developer', 'React Native Developer', 'System Architect', 'Technical Writer'],
+  roles: ['Forward Deployed Engineer', 'Senior Full-Stack Engineer', 'System Architect', 'AI Integration Engineer'],
   statement:
-    'I turn product ideas into documented, scalable platforms — from architecture to production.',
+    'I work inside your business, find the real problem, and ship the system that solves it — from architecture to production.',
   secondaryCta: { label: 'See my work', target: 'work' },
 }
 
@@ -123,7 +123,7 @@ export interface Service {
 export const about = {
   heading: 'What I do',
   intro:
-    "I'm a freelance full-stack developer with 30+ mobile apps shipped since 2019. On client projects I also own the system architecture and the technical documentation — so one person carries the product from idea to shipped code.",
+    "I work the way a forward deployed engineer does: directly with clients, close to the problem and accountable for production. Since 2019 I've shipped 30+ products — React Native apps, Next.js platforms, NestJS and Node.js APIs, and AI features built on OpenAI and RAG — owning discovery, system architecture, third-party integrations, technical documentation and the handoff to the client's team.",
 }
 
 export const services: Service[] = [

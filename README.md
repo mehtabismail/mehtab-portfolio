@@ -1,6 +1,6 @@
 # Mehtab Ismail — portfolio
 
-Personal site for Mehtab Ismail, freelance full-stack developer and system architect. Two pages: the one-pager (`/`) and the full project index (`/work/`).
+Personal site for Mehtab Ismail, senior full-stack engineer working forward deployed with clients. Two pages: the one-pager (`/`) and the full project index (`/work/`).
 
 Built with React 19, Vite, TypeScript, Tailwind CSS v4, Motion (Framer Motion), Lenis and matter.js. Both pages are prerendered to static HTML at build time and deployed to Vercel.
 
