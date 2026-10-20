@@ -1345,6 +1345,12 @@ export const experience = {
     degree: 'BS Software Engineering',
     school: 'The University of Lahore',
     years: '2017–2021',
+    note: 'CGPA 3.4',
   },
-  certifications: [{ name: 'React deep dive', issuer: 'NamasteDev', year: '2025' }],
+  certifications: [
+    { name: 'React deep dive', issuer: 'NamasteDev', year: '2025' },
+    { name: 'React.js — verified skill badge', issuer: 'LinkedIn' },
+    { name: 'React Native with Redux & Hooks', issuer: 'Udemy', year: '2020' },
+    { name: 'React Native app development', issuer: 'Udemy', year: '2020' },
+  ],
 }
