@@ -632,6 +632,7 @@ export const projects: Project[] = [
     alias: 'Construction safety app',
     showName: true,
     featured: false,
+    madeAt: 'OutsourceNZ',
     category: 'Mobile',
     categories: ['Mobile', 'Web'],
     year: '2024–25',
