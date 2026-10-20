@@ -357,6 +357,289 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
   },
 
+  safetycheck: {
+    headline:
+      'A construction safety app built for the site, not the office: inductions, inspections and risk records that hold up in an audit.',
+    facts: [{ label: 'Platform', value: 'iOS and Android' }],
+    context: [
+      'SafetyCheck NZ is a health and safety system for small New Zealand construction businesses. Full safety platforms cost too much and take too long to use, so smaller firms end up on paper forms and spreadsheets that are hard to prove in an audit.',
+      'The product has a web portal for the office and a mobile app for the people on site, both on one Node.js and Express API. I built the mobile app: site inductions with quizzes, contractor records, vehicle inspections and risk registers.',
+    ],
+    challenges: [
+      {
+        title: 'Used on site, not at a desk',
+        body: 'Workers open the app on construction sites where mobile coverage is weak, often with gloves on and little time. Every flow had to be short and forgiving of a slow connection.',
+      },
+      {
+        title: 'Records that count as proof',
+        body: 'An induction or inspection is only useful if it can be shown later. Each one had to be tied to a person, a site and a time, so the business can prove compliance when asked.',
+      },
+      {
+        title: 'Different people, different jobs',
+        body: 'Business owners, their workers and outside contractors all use the same app but need different screens and permissions.',
+      },
+      {
+        title: 'Vehicle data from an outside service',
+        body: 'Vehicle inspections depend on CarJam for registration and warrant details, so the app had to handle slow or missing lookups without blocking the inspection.',
+      },
+    ],
+    built: [
+      {
+        title: 'Inductions with quizzes',
+        body: 'Workers and contractors go through a site induction and answer a quiz, and the result is recorded against them.',
+      },
+      {
+        title: 'Vehicle inspections',
+        body: 'Enter a plate and CarJam fills in the vehicle, then the inspection checklist is completed and saved with its status.',
+      },
+      {
+        title: 'Contractor records and risk registers',
+        body: 'Contractor details and site risks are kept in one place and shared with the web portal through the same API.',
+      },
+      {
+        title: 'Deep links into the app',
+        body: 'Branch.io links open the right screen in the app, so an invite lands the person where they need to be.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Auto-fill vehicles from CarJam',
+        why: 'Typing a plate is faster than filling in make, model and registration by hand on a phone, and it removes typing mistakes from a record that may be checked later.',
+        tradeoff: 'Inspections now depend on a paid outside service, so the app needs a fallback when a lookup fails.',
+      },
+      {
+        title: 'RTK Query for server data',
+        why: 'Cached responses keep screens quick on a weak connection and cut repeated calls to the API.',
+      },
+    ],
+    results: [
+      { label: 'Released on the App Store and Google Play' },
+      { label: 'Delivered and handed over; the client runs it' },
+    ],
+  },
+  'lax-ferries': {
+    headline:
+      'A deck-side app for a ferry crew: check tickets, board passengers, sell fares and run the right trip, all from one phone.',
+    facts: [{ label: 'Platform', value: 'iOS' }],
+    context: [
+      'The Lax Kw’alaams ferry service needed its deck staff off paperwork. On the dock, the same few people check tickets, board a queue of passengers, sell fares to walk-ups and keep track of which ferry and trip they are running.',
+      'I was the only mobile developer on the staff app at ZAPTA Technologies. I built it end to end in Expo and TypeScript on the ferry service’s API.',
+    ],
+    challenges: [
+      {
+        title: 'A weak signal at the dock',
+        body: 'Ticket checks and sales happen at the water’s edge, where coverage is poor. The app had to stay usable when the network was slow or dropped out.',
+      },
+      {
+        title: 'Boarding has to be fast',
+        body: 'A full queue has to be checked and boarded in minutes before departure, so each check had to take seconds, not a form.',
+      },
+      {
+        title: 'Selling fares on the spot',
+        body: 'Walk-up passengers buy tickets from the crew, so in-person sales had to sit alongside checks in the same flow.',
+      },
+      {
+        title: 'The right ferry and trip',
+        body: 'Staff are assigned to a ferry and route, and every check and sale has to be recorded against the trip they are actually working.',
+      },
+    ],
+    built: [
+      {
+        title: 'Ticket checks, two ways',
+        body: 'Staff scan the QR code on a ticket with the phone camera, and can search for the passenger when a code won’t scan.',
+      },
+      {
+        title: 'Boarding and in-person sales',
+        body: 'A checked passenger is boarded in one step, and walk-up fares are sold from the same app.',
+      },
+      {
+        title: 'Ferry and route assignment',
+        body: 'Staff pick up their assigned ferry and route, so everything they do is tied to the right sailing.',
+      },
+      {
+        title: 'One API client and a saved session',
+        body: 'Every call goes through one Axios client, with the signed-in session kept in Zustand and saved to the device so crew aren’t logged out between sailings.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Scan first, search as a fallback',
+        why: 'Scanning is the fastest path for a queue, but a cracked screen or a faded printout can’t be allowed to stop someone boarding.',
+      },
+      {
+        title: 'Expo Router and Zustand',
+        why: 'File-based routes keep a small app easy to follow, and Zustand holds the session and ticket state without the setup Redux would need.',
+      },
+    ],
+    results: [
+      { label: 'Live on the App Store' },
+      { label: 'Used by the crew on daily sailings' },
+    ],
+  },
+  isqroll: {
+    headline:
+      'A New Zealand marketplace where strangers can trade safely, sell a car by price or auction, and keep talking in the app.',
+    facts: [{ label: 'Team', value: 'Led the mobile team' }],
+    context: [
+      'ISQROLL is an online marketplace for New Zealanders: a safe place to buy and sell, with buyers and sellers talking to each other inside the app. Cars are a big part of it, sold either at an asking price or by auction.',
+      'I was team lead at OutsourceNZ. I set the app’s architecture, led and reviewed the mobile team, wrote core features myself, and worked directly with the client on scope and releases.',
+    ],
+    challenges: [
+      {
+        title: 'Trust between strangers',
+        body: 'People are trading money and goods with someone they’ve never met. The app had to make that feel safe, starting with keeping the conversation inside the app.',
+      },
+      {
+        title: 'Two ways to sell',
+        body: 'A fixed asking price and a timed auction follow different rules and screens, but had to feel like one product to sellers.',
+      },
+      {
+        title: 'Car listings from a plate',
+        body: 'Vehicle listings pull their details from CarJam, so a seller types a plate instead of filling in the car by hand.',
+      },
+      {
+        title: 'Lots of listings, loading fast',
+        body: 'Browsing had to stay quick with many listings and images, including on a weak mobile connection.',
+      },
+    ],
+    built: [
+      {
+        title: 'Listings, auctions and offers',
+        body: 'Sellers list at an asking price or start an auction; buyers browse, bid and make contact.',
+      },
+      {
+        title: 'Buyer–seller messaging',
+        body: 'Conversations happen in the app, so neither side has to hand over a phone number to a stranger.',
+      },
+      {
+        title: 'A cached data layer',
+        body: 'Redux with RTK Query for server data, and MMKV to keep it on the device so the app opens fast.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'RTK Query for all server data',
+        why: 'One data layer handles caching, loading states and refetching, so the team wasn’t hand-writing the same request logic on every screen, and new developers had one pattern to follow.',
+        tradeoff: 'More setup up front than plain fetch calls, and the team had to learn its cache rules.',
+      },
+      {
+        title: 'MMKV for the on-device cache',
+        why: 'MMKV is much faster than AsyncStorage, so cached listings show at once on launch.',
+      },
+    ],
+    results: [
+      { label: 'Released on the App Store and Google Play' },
+      { label: 'Still live on Google Play and the web' },
+    ],
+  },
+  locumbridge: {
+    headline:
+      'One app for both sides of locum staffing: practices post shifts, locum doctors find and book them, without an agency in the middle.',
+    facts: [{ label: 'Languages', value: 'English, French' }],
+    context: [
+      'Clinics struggle to fill short-term shifts, and locum doctors struggle to find the right work, when everything goes through traditional staffing agencies. LocumBridge connects the two directly.',
+      'I was team lead at OutsourceNZ. I set the app’s architecture and built core features myself.',
+    ],
+    challenges: [
+      {
+        title: 'Matching the right locum',
+        body: 'A shift is only filled if the locum fits it: the right role, place and dates. Practices needed to see suitable people, not everyone.',
+      },
+      {
+        title: 'Dates and availability',
+        body: 'Shifts have exact dates and hours, and locums juggle several practices, so scheduling had to be clear and avoid clashes.',
+      },
+      {
+        title: 'Two languages',
+        body: 'The whole interface had to work in English and French, including dates and longer translated labels.',
+      },
+      {
+        title: 'Two sides in one app',
+        body: 'Practices and locums use the same app but do very different things: one posts and confirms shifts, the other searches and applies.',
+      },
+    ],
+    built: [
+      {
+        title: 'Jobs from post to payment',
+        body: 'A practice posts a job with its date and hours, sees applicants, and follows it through open, confirmed, completed and paid.',
+      },
+      {
+        title: 'Matching and messages',
+        body: 'Practices see matched locums for a shift and can message them in the app.',
+      },
+      {
+        title: 'A shared calendar',
+        body: 'Upcoming shifts on a calendar for both practices and locums.',
+      },
+      {
+        title: 'Translations throughout',
+        body: 'i18next drives every label, so a new language is a file, not a code change.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'One app, two roles',
+        why: 'Practices and locums share sign-in, messaging and the calendar, so one codebase with role-based screens was cheaper to build and maintain than two apps.',
+        tradeoff: 'Every screen has to know whose it is, which adds checks across the app.',
+      },
+      {
+        title: 'i18next from day one',
+        why: 'Adding a second language after the fact means hunting down every hard-coded string; building it in from the start kept French a translation job.',
+      },
+    ],
+    results: [
+      { label: 'Released on the App Store' },
+      { label: 'Delivered and handed over; the client runs it' },
+    ],
+  },
+  mybenefits: {
+    headline:
+      'Turning a gym membership people already pay for into a habit: go three times a week, prove it by location, unlock rewards.',
+    context: [
+      'Plenty of people pay for a gym membership they hardly use. MyBeneFITs NZ gives them a reason to turn up: three visits in a week unlock discount codes from online retailers.',
+      'I built core features of the React Native app at OutsourceNZ, on a Node.js API that tracks members, visits and rewards.',
+    ],
+    challenges: [
+      {
+        title: 'Only real visits count',
+        body: 'A reward is worth money, so a check-in from the sofa can’t count. The app had to confirm the member was actually at their gym.',
+      },
+      {
+        title: 'Counting the week correctly',
+        body: 'Three visits a week sounds simple, but the count has to reset at the right moment and never double-count a visit.',
+      },
+      {
+        title: 'Reward codes are limited',
+        body: 'Discount codes from retailers had to go to the right member, once, and only when the weekly goal was met.',
+      },
+      {
+        title: 'Workouts in the app',
+        body: 'Timed workouts needed a timer that stays accurate while the member is busy exercising.',
+      },
+    ],
+    built: [
+      {
+        title: 'Location-checked gym visits',
+        body: 'A visit only counts when the phone’s location is at the member’s gym.',
+      },
+      {
+        title: 'A weekly goal',
+        body: 'Progress toward three visits a week, shown clearly so members know how close they are to a reward.',
+      },
+      {
+        title: 'Rewards and timed workouts',
+        body: 'Discount codes unlocked by the weekly goal, plus timed workout sessions and an FAQ.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'GPS to verify a visit',
+        why: 'Members already carry their phone to the gym, so checking location needs no hardware at the gym and no staff involvement.',
+        tradeoff: 'Location permission is a big ask, and GPS can be off by a few metres indoors, so the gym’s area had to allow for that.',
+      },
+    ],
+    results: [{ label: 'Released on the App Store' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
@@ -461,8 +744,8 @@ export const galleries: Record<string, Shot[]> = {
     { name: 'mish-store', caption: 'Starting a ride as rider or driver' },
   ],
   locumbridge: [
-    { name: 'locumbridge-match', caption: 'Matched locums for a pharmacy' },
-    { name: 'locumbridge-jobs', caption: 'A pharmacy’s posted jobs' },
+    { name: 'locumbridge-match', caption: 'Matched locums for a shift' },
+    { name: 'locumbridge-jobs', caption: 'A practice’s posted jobs, from open to paid' },
     { name: 'locumbridge-calendar', caption: 'Scheduling on the calendar' },
   ],
   mybenefits: [

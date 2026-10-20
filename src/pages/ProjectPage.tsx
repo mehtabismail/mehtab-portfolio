@@ -431,7 +431,7 @@ export function ProjectPage({ project }: { project: Project }) {
             </p>
             <h1
               id="project-title"
-              className="mt-5 font-display text-[clamp(2.75rem,7vw,5rem)] leading-[0.92] font-semibold tracking-[var(--tracking-display)] break-words"
+              className="mt-5 font-display text-[clamp(2.75rem,7vw,5rem)] leading-[0.92] lg:text-[clamp(2.75rem,4.8vw,4.25rem)] font-semibold tracking-[var(--tracking-display)] break-words"
             >
               {title}
               <span className="text-accent">.</span>

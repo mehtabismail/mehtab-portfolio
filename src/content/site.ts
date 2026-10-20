@@ -440,7 +440,7 @@ export const projects: Project[] = [
       'A staff app for the Lax Kw’alaams ferry service: ticket checks, boarding, ferry assignment and in-person sales, right from the dock.',
     problem:
       'Deck staff need to verify tickets, board passengers and sell fares on the spot, without paperwork.',
-    role: 'React Native development at ZAPTA Technologies.',
+    role: 'Sole mobile developer at ZAPTA Technologies: built the whole staff app.',
     stack: ['Expo', 'React Native', 'Expo Router', 'TypeScript', 'Zustand'],
     outcome: 'Live on the App Store.',
     figure: figures.lax,
@@ -640,7 +640,7 @@ export const projects: Project[] = [
       'A health and safety system for small New Zealand construction businesses: site inductions with quizzes, contractor records, vehicle inspections and risk registers, on phone and web.',
     problem:
       'Small construction firms have to stay compliant with health and safety rules, but full safety systems cost too much and take too long to use.',
-    role: 'Full-stack development across the app, web portal and API.',
+    role: 'Mobile developer: built the React Native app on the shared API.',
     architecture:
       'A React Native app and a Tailwind CSS web portal share one Node.js and Express API. Redux Toolkit and RTK Query manage data in the app, CarJam fills in vehicle details for inspections, and Branch.io handles deep links into the app.',
     stack: [
@@ -677,7 +677,7 @@ export const projects: Project[] = [
     architecture:
       'A React Native app using Redux and RTK Query for data and MMKV for a fast offline cache. Vehicle listings pull details from CarJam’s APIs.',
     stack: ['TypeScript', 'React Native', 'Redux', 'RTK Query', 'MMKV', 'CarJam APIs'],
-    outcome: 'Live on Google Play and the web.',
+    outcome: 'Released on the App Store and Google Play; still live on Google Play and the web.',
     cover: '/work/isqroll',
     coverKind: 'web',
     figure: figures.isqroll,
@@ -835,7 +835,7 @@ export const projects: Project[] = [
       'People pay for gym memberships they don’t use; a reward for turning up keeps them going.',
     role: 'Team lead at OutsourceNZ.',
     stack: ['React Native', 'Node.js'],
-    outcome: '',
+    outcome: 'Released on the App Store.',
     cover: '/work/mybenefits',
     coverKind: 'mobile',
     figure: figures.mybenefits,
