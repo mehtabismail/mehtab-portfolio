@@ -1067,7 +1067,7 @@ export const figures = {
       {
         id: 'query',
         label: 'TanStack Query',
-        sub: 'cache · optimistic',
+        sub: 'cache · refetch',
         icon: 'state',
         tier: 1,
         lane: 0,
