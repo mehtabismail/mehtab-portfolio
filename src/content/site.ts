@@ -514,7 +514,7 @@ export const projects: Project[] = [
       'The thaali (community meal) app for the Dawoodi Bohra community in Toronto: schedules and menus, RSVPs, announcements, Fateha and Zabihat requests, and food ratings.',
     problem:
       'A community kitchen serving hundreds of families needs one place to share the menu, take RSVPs and requests, and hear back on the food.',
-    role: 'React Native development.',
+    role: 'Sole mobile developer: built the React Native app on the community’s existing API.',
     architecture:
       'A React Native app with Redux Toolkit and i18next on the community’s existing API, with OneSignal push for announcements.',
     stack: ['React Native', 'Redux Toolkit', 'i18next', 'OneSignal', 'Reanimated'],
@@ -538,7 +538,7 @@ export const projects: Project[] = [
       'Two apps for an Albanian-language home-services marketplace: one for homeowners to find local tradespeople, one for tradespeople to win more work.',
     problem:
       'Homeowners need trusted local tradespeople quickly; tradespeople need a steady flow of jobs without chasing leads.',
-    role: 'React Native development of both apps.',
+    role: 'Sole mobile developer: built both apps.',
     stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'Reanimated'],
     outcome: 'Both apps are live on the App Store.',
     figure: figures.myusta,

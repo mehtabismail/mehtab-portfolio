@@ -711,6 +711,198 @@ export const caseStudies: Record<string, CaseStudy> = {
       'Write the payment path so it can be checked against Stripe afterwards. The reconciliation only worked because every subscription was stored with its Stripe ID.',
     ],
   },
+  'fmb-toronto': {
+    headline:
+      'The weekly meal app for a community kitchen: menus, RSVPs and requests for hundreds of families, simple enough for every generation.',
+    facts: [{ label: 'Platform', value: 'iOS and Android' }],
+    context: [
+      'Faiz al-Mawaid al-Burhaniyah (FMB) runs a thaali service for the Dawoodi Bohra community in Toronto, cooking and delivering meals to hundreds of families. The kitchen needs one place to publish the schedule and menu, collect RSVPs and requests, share announcements and hear how the food was.',
+      'I was the only mobile developer. I built the React Native app on the community’s existing API.',
+    ],
+    challenges: [
+      {
+        title: 'Hundreds of families, one cut-off',
+        body: 'RSVPs have to be in before the kitchen plans how much to cook. A missed change means wasted food or a family without a meal.',
+      },
+      {
+        title: 'Every generation uses it',
+        body: 'Many members aren’t comfortable with apps, so the main tasks had to be obvious and quick, with no learning curve.',
+      },
+      {
+        title: 'More than one language',
+        body: 'The app speaks the community’s languages as well as English, through i18next.',
+      },
+      {
+        title: 'An API I couldn’t change',
+        body: 'The backend already existed and served other systems, so the app had to fit its data and rules as they were.',
+      },
+    ],
+    built: [
+      {
+        title: 'Schedule, menus and RSVPs',
+        body: 'The week’s thaali schedule and menu, with RSVPs per family.',
+      },
+      {
+        title: 'Requests and feedback',
+        body: 'Fateha and Zabihat requests, and food ratings so the kitchen hears back after each meal.',
+      },
+      {
+        title: 'Announcements by push',
+        body: 'OneSignal push notifications for announcements and changes to the schedule.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Push notifications for announcements',
+        why: 'A menu change or a closed day has to reach every family the same day. Push lands on the lock screen, where a notice board or a group chat is easy to miss.',
+        tradeoff: 'Members have to allow notifications, and too many messages would make people turn them off, so they are kept for things that matter.',
+      },
+    ],
+    results: [
+      { label: 'Live on the App Store and Google Play' },
+      { label: 'Used by the community every week' },
+    ],
+  },
+  myusta: {
+    headline:
+      'Two apps for one marketplace: homeowners find a local tradesperson, tradespeople win the job, and every step in between has to line up.',
+    facts: [{ label: 'Apps', value: 'Homeowner, tradesperson' }],
+    context: [
+      'myUSTA is an Albanian-language home-services marketplace. Homeowners need a trusted local tradesperson quickly; tradespeople want a steady flow of work without chasing leads.',
+      'I was the only mobile developer and built both apps in React Native and TypeScript: one for homeowners and one for tradespeople.',
+    ],
+    challenges: [
+      {
+        title: 'One job, two apps',
+        body: 'A job starts in the homeowner’s app and is answered in the tradesperson’s. Every step, from the request to the finished job, had to show the same state on both sides.',
+      },
+      {
+        title: 'Feeling trustworthy',
+        body: 'Homeowners let a stranger into their home, so the apps had to look and feel professional enough to earn that trust.',
+      },
+    ],
+    built: [
+      {
+        title: 'Homeowner app',
+        body: 'Find a local tradesperson, post a job and follow it through to completion.',
+      },
+      {
+        title: 'Tradesperson app',
+        body: 'See new jobs, respond and manage the work, built to bring in jobs without chasing leads.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Reanimated for a polished feel',
+        why: 'Smooth, native-thread animations make both apps feel fast and well made, which matters when the product is asking for trust.',
+        tradeoff: 'Animation code is more work to write and test than plain screens.',
+      },
+      {
+        title: 'Two focused apps',
+        why: 'Homeowners and tradespeople want very different things, so each gets an app built only for them rather than one app with modes.',
+      },
+    ],
+    results: [
+      { label: 'Both apps released on the App Store' },
+      { label: 'Delivered and handed over; the client runs them' },
+    ],
+  },
+  mish: {
+    headline:
+      'Carpooling built around the route: drivers publish trips they are already making, riders find one on the map and book a seat.',
+    facts: [{ label: 'Team', value: 'Led the mobile team' }],
+    context: [
+      'MISH is a ride-sharing app where people sign up as drivers or riders. Drivers publish trips they are already taking; riders find a trip going their way and pay for a seat before it leaves.',
+      'I was team lead at OutsourceNZ. I set the architecture, led and reviewed the team, wrote core features myself, and worked directly with the client.',
+    ],
+    challenges: [
+      {
+        title: 'Everything happens on a map',
+        body: 'Trips, pickup points and searches are all about places and routes, so the map had to be accurate and quick to use on a phone.',
+      },
+      {
+        title: 'The last seat goes once',
+        body: 'Two riders can try to book the last seat on the same trip at the same moment. Only one can get it.',
+      },
+      {
+        title: 'Rider today, driver tomorrow',
+        body: 'The same person can ride one day and drive the next, so both sides had to live comfortably in one account.',
+      },
+    ],
+    built: [
+      {
+        title: 'Trips on Google Maps',
+        body: 'Drivers publish a trip with its route; riders search and see trips on the map.',
+      },
+      {
+        title: 'Seat booking and payment',
+        body: 'A rider buys a seat before the trip, which confirms it for both sides.',
+      },
+      {
+        title: 'Rider and driver sides',
+        body: 'Separate flows for publishing trips and booking seats, sharing one API and one account.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Google Maps for routes',
+        why: 'Real routes and distances let riders find trips that actually pass near them, instead of matching on typed addresses that rarely line up.',
+        tradeoff: 'Maps API calls cost money per use, so searches and route lookups had to be kept to what the screen needs.',
+      },
+      {
+        title: 'Pay to confirm a seat',
+        why: 'Taking payment at booking means a driver can count on the riders who booked, and the seat count stays accurate.',
+      },
+    ],
+    results: [
+      { label: 'Released on the App Store and Google Play' },
+      { label: 'Used to book real shared trips' },
+    ],
+  },
+  ponataki: {
+    headline:
+      'Helping the next generation learn Niuean: short video units, quizzes you can hear, and games, with lessons the community can add without an app update.',
+    context: [
+      'Niuean is spoken by a small community, much of it living outside Niue, and keeping it alive means making it easy for younger people to learn. Ponataki teaches everyday words and sentences through short lessons, available on demand on mobile and online.',
+      'I was team lead at OutsourceNZ. I set the app’s architecture and built core features myself.',
+    ],
+    challenges: [
+      {
+        title: 'Lessons are audio and video',
+        body: 'Each unit has video lessons and its quizzes have audio, so media had to load quickly and play reliably, including on slower connections.',
+      },
+      {
+        title: 'A language I don’t speak',
+        body: 'Every word, sentence and recording is in Niuean. The app had to show the content exactly as the community wrote it, with no way for me to spot a mistake by reading it.',
+      },
+      {
+        title: 'Learning and playing',
+        body: 'Structured units, quizzes and learn-while-playing games each work differently, but had to feel like one app.',
+      },
+    ],
+    built: [
+      {
+        title: 'Learning units',
+        body: 'Units of short video lessons on everyday words and sentences.',
+      },
+      {
+        title: 'Quizzes with audio',
+        body: 'A quiz at the end of each unit, with audio so learners hear the words, not just read them.',
+      },
+      {
+        title: 'Learn while playing',
+        body: 'Games that practise the same words outside the lessons.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Lessons come from the API, not the app',
+        why: 'Units, words and recordings are loaded from the backend, so the community can add and correct lessons without waiting for a new release in the app stores. That mattered most because only they can check the language.',
+        tradeoff: 'The app needs a connection to fetch new content, and every screen has to cope with content of any length.',
+      },
+    ],
+    results: [{ label: 'Delivered and handed over; the client runs it' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
