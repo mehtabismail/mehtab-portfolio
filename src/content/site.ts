@@ -460,7 +460,7 @@ export const projects: Project[] = [
       'A markets app that brings trading and currency stats from third-party platforms into one place. It shows the numbers rather than placing trades.',
     problem:
       'Traders follow prices and stats across several platforms; one app that pulls them together saves the switching.',
-    role: 'React Native development at ZAPTA Technologies.',
+    role: 'Mobile developer on the ZAPTA Technologies team.',
     architecture:
       'An Expo Router app on a NestJS API that aggregates market, currency and trading-platform data from third-party providers.',
     stack: ['Expo', 'React Native', 'Expo Router', 'Reanimated', 'TypeScript', 'NestJS'],

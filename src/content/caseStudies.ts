@@ -903,6 +903,44 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Delivered and handed over; the client runs it' }],
   },
+  majlix: {
+    headline:
+      'One app for the market numbers traders check across several platforms, shown clearly and kept fresh without placing a single trade.',
+    context: [
+      'Traders follow prices, currency rates and stats across several platforms. Majlix pulls them together into one app, so they can check the numbers without switching between services. It shows data only; it does not place trades.',
+      'I worked on the Expo app as part of the team at ZAPTA Technologies. A NestJS API gathers the data from third-party providers.',
+    ],
+    challenges: [
+      {
+        title: 'Many providers, one view',
+        body: 'Each data provider has its own format, rate limits and outages, but the app has to show one consistent picture.',
+      },
+      {
+        title: 'Numbers that feel live',
+        body: 'Prices and stats need to refresh often enough to be useful without draining the battery or the provider quota.',
+      },
+      {
+        title: 'Charts on a phone',
+        body: 'Market stats and charts had to stay readable and smooth on a small screen.',
+      },
+      {
+        title: 'Clearly not a trading app',
+        body: 'The app shows data from other platforms, so it had to present it clearly without looking like it executes trades.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Cache provider data on the server',
+        why: 'The API caches what it fetches from each provider, so many app users share one upstream call. That keeps the app within rate limits and costs, and screens still load when a provider is slow.',
+        tradeoff: 'Cached numbers can be a little behind the source, so how long to keep each kind of data had to be chosen per provider.',
+      },
+      {
+        title: 'Reanimated for stats and charts',
+        why: 'Animations run on the native thread, so updating numbers and charts stay smooth.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
