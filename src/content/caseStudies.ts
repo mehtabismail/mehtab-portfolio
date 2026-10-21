@@ -1395,7 +1395,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
       {
         title: 'Right for whaanau',
-        body: 'Language and design had to feel right for Maaori and Pasifika whaanau, including te reo Maaori.',
+        body: 'Language and design had to feel right for the whaanau it serves, including te reo Maaori.',
       },
       {
         title: 'Support near you',
