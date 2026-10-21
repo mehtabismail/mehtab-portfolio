@@ -792,7 +792,7 @@ export const projects: Project[] = [
     summary: 'Photograph a health and safety sign and read what it means in your own language.',
     problem:
       'Workers and visitors from culturally and linguistically diverse backgrounds can’t always read the safety signs on New Zealand sites.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Sole mobile developer at OutsourceNZ: built the React Native app.',
     architecture:
       'The app matches a photographed sign against a database of the health and safety signage used across New Zealand industries, then shows its meaning in the chosen language.',
     stack: ['React Native', 'Redux Toolkit', 'Node.js'],
@@ -815,7 +815,7 @@ export const projects: Project[] = [
       'A matrimonial and matchmaking app for Muslims looking to marry: detailed profiles, likes and matches, and private conversations.',
     problem:
       'People looking for a spouse want serious, well-described profiles and a respectful way to connect.',
-    role: 'React Native development.',
+    role: 'Sole mobile developer, working directly with the client.',
     architecture:
       'A React Native app with Redux Toolkit and RTK Query on the client’s REST API, Socket.IO for realtime conversations, and i18next for translations.',
     stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'RTK Query', 'Socket.IO', 'i18next'],

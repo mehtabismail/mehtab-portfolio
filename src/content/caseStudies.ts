@@ -1225,6 +1225,105 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Delivered; the client has since paused the project' }],
   },
+  safesigns: {
+    headline:
+      'Point your phone at a safety sign and read what it means in your own language, so every worker on a New Zealand site can understand it.',
+    context: [
+      'New Zealand worksites employ many people from culturally and linguistically diverse backgrounds, and not all of them can read the health and safety signs around them. SafeSigns lets them photograph a sign and see its meaning in their chosen language.',
+      'I was the only mobile developer at OutsourceNZ and built the React Native app. The sign database and image recognition sit behind it.',
+    ],
+    challenges: [
+      {
+        title: 'Photos taken on site',
+        body: 'Signs are photographed in the real world: at an angle, in glare, dirty or far away. The app had to get a usable picture from that.',
+      },
+      {
+        title: 'A wrong answer is dangerous',
+        body: 'Misreading a safety sign could get someone hurt, so the meaning shown had to be the right one, every time.',
+      },
+      {
+        title: 'Many languages',
+        body: 'Each sign’s meaning is shown in the worker’s own language, chosen at the start.',
+      },
+      {
+        title: 'A large library of signs',
+        body: 'The database covers the health and safety signage used across New Zealand industries, organised so people can also browse it by category.',
+      },
+    ],
+    built: [
+      {
+        title: 'Scan a sign',
+        body: 'Take a photo and the app matches it against the sign database using image recognition, then shows what it means.',
+      },
+      {
+        title: 'Choose your language',
+        body: 'Pick a language once and every sign is explained in it.',
+      },
+      {
+        title: 'Categories and history',
+        body: 'Browse signs by category and see the ones you scanned recently.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Recognise the sign, then look up a vetted meaning',
+        why: 'The photo is only used to identify which sign it is. The explanation always comes from the curated database, so a worker never reads a machine-generated guess about what a safety sign means.',
+        tradeoff: 'A sign that isn’t in the database can’t be explained, so the library has to keep growing.',
+      },
+    ],
+    results: [
+      { label: 'Live on the App Store' },
+      { label: 'Used by workers on New Zealand sites' },
+    ],
+  },
+  spouse: {
+    headline:
+      'A matchmaking app for Muslims looking to marry, where detailed profiles come first and conversations start only when both people agree.',
+    context: [
+      'People looking for a spouse want serious, well-described profiles and a respectful way to get in touch. Spouse gives them detailed profiles, likes and matches, and private conversations.',
+      'I was the only mobile developer, working directly with the client, and built the React Native app on their REST API.',
+    ],
+    challenges: [
+      {
+        title: 'Detailed profiles without a tiring sign-up',
+        body: 'A good match depends on family, faith, education and more, but asking for all of it at once makes people give up.',
+      },
+      {
+        title: 'Respectful, private contact',
+        body: 'Nobody should receive messages they didn’t agree to, and personal details have to stay private until both sides are interested.',
+      },
+      {
+        title: 'Conversations in real time',
+        body: 'Chat runs over Socket.IO and has to stay reliable as people move between screens and connections.',
+      },
+      {
+        title: 'More than one language',
+        body: 'The whole app is translated with i18next.',
+      },
+    ],
+    built: [
+      {
+        title: 'Profiles, likes and matches',
+        body: 'Detailed profiles, liking someone, and a match when the interest is mutual.',
+      },
+      {
+        title: 'Private conversations',
+        body: 'Real-time chat over Socket.IO between matched people.',
+      },
+      {
+        title: 'A typed API layer',
+        body: 'Redux Toolkit with RTK Query in TypeScript for every call to the client’s API.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Chat only after a match',
+        why: 'Both people have to like each other before they can talk. That keeps unwanted messages out and makes every conversation one both sides chose, which matters for a serious, faith-based app.',
+        tradeoff: 'Fewer conversations start, by design.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
