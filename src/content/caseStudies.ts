@@ -1510,6 +1510,88 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Delivered to the client' }],
   },
+  noyz: {
+    headline:
+      'A music app where fans stream in a social feed and can own the songs they love as NFTs, made simple for people new to crypto.',
+    context: [
+      'Artists want new ways to sell their music, and fans want to own a piece of it. On NOYZ, artists release music, fans stream it in a social feed, buy and sell music NFTs, and keep them in a personal vault.',
+      'I was the only mobile developer at OptimusFox and built the React Native app.',
+    ],
+    challenges: [
+      {
+        title: 'Music in a scrolling feed',
+        body: 'Tracks play as people scroll a social feed, so playback had to start fast and switch cleanly from one post to the next.',
+      },
+      {
+        title: 'Buying and selling on a phone',
+        body: 'NFT purchases and listings go through a blockchain wallet, all from inside the app.',
+      },
+      {
+        title: 'Fans who are new to crypto',
+        body: 'Most music fans have never bought an NFT, so wallets and purchases had to be explained in plain steps.',
+      },
+      {
+        title: 'The vault',
+        body: 'Owned NFTs are kept in a personal vault where they can be seen and played.',
+      },
+    ],
+    built: [
+      {
+        title: 'Social music feed',
+        body: 'Stream releases in a feed, with Google and Facebook sign-in to get started quickly.',
+      },
+      {
+        title: 'NFT marketplace',
+        body: 'Buy and sell music NFTs through a blockchain wallet.',
+      },
+      {
+        title: 'Vault',
+        body: 'A personal collection of owned music NFTs.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
+  'crypto-exchange': {
+    headline:
+      'Wallets, an order book and bank top-ups in one mobile app, so trading and funding happen in the same place.',
+    context: [
+      'Trading crypto and funding an account usually happen in separate places. This exchange app brings them together: hold crypto, trade on an order book, follow markets and top up from a bank account.',
+      'I was one of the developers on the React Native app at OptimusFox.',
+    ],
+    challenges: [
+      {
+        title: 'A live order book',
+        body: 'Bids and asks change constantly, and the screen has to keep up without freezing.',
+      },
+      {
+        title: 'Wallets and balances',
+        body: 'Users hold several coins, and every balance has to be right.',
+      },
+      {
+        title: 'Bank top-ups',
+        body: 'Money comes in from a bank account, so funding had to be clear about what was pending and what had arrived.',
+      },
+      {
+        title: 'Accounts that hold money',
+        body: 'An exchange account is a target, so security had to be part of every flow.',
+      },
+    ],
+    built: [
+      {
+        title: 'Wallets',
+        body: 'Hold and view several cryptocurrencies.',
+      },
+      {
+        title: 'Trading and markets',
+        body: 'Trade on an order book and follow market prices.',
+      },
+      {
+        title: 'Funding',
+        body: 'Top up the account from a bank.',
+      },
+    ],
+    results: [{ label: 'Built but not launched' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',

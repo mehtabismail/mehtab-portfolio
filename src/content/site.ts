@@ -989,7 +989,7 @@ export const projects: Project[] = [
     summary:
       'A music NFT app: artists release music, fans stream it in a social feed, buy and sell music NFTs, and keep them in a personal vault.',
     problem: 'Artists want new ways to sell their music, and fans want to own a piece of it.',
-    role: 'React Native development at OptimusFox.',
+    role: 'Sole mobile developer at OptimusFox.',
     stack: [
       'React Native',
       'Redux Toolkit',
@@ -1015,9 +1015,9 @@ export const projects: Project[] = [
       'A crypto exchange and wallet app: hold crypto, trade on an order book, follow markets and top up from a bank account.',
     problem:
       'Trading and funding usually happen in separate places; this brings wallets, trading and banking together.',
-    role: 'React Native development at OptimusFox.',
+    role: 'One of the developers at OptimusFox.',
     stack: ['React Native', 'Redux Toolkit', 'React Navigation'],
-    outcome: '',
+    outcome: 'Built but not launched.',
     figure: figures.exchange,
     links: {},
   },
