@@ -557,7 +557,7 @@ export const projects: Project[] = [
       'A business referral network: people refer customers, partners and services to companies and earn rewards, while reps track every referral.',
     problem:
       'Word-of-mouth referrals are a strong source of business, but they’re rarely tracked or rewarded.',
-    role: 'Designed and built the app.',
+    role: 'Designed and built the app on my own, working directly with the client.',
     architecture:
       'A React Native app on Firebase — Auth with Google and Facebook sign-in, Firestore for companies and referrals — with in-app purchases for plans.',
     stack: [
@@ -586,10 +586,10 @@ export const projects: Project[] = [
       'A web app for developers to find each other: profiles, matching and connection requests.',
     problem:
       'Developers looking for collaborators have no simple place to browse each other and connect.',
-    role: 'Designed and built end to end.',
+    role: 'Built the React frontend my own way; the backend follows NamasteDev’s Node.js course.',
     architecture:
-      'A React 19 single-page app with TanStack Query for server state and optimistic updates, on an Express API with MongoDB and JWT authentication.',
-    stack: ['React', 'TanStack Query', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'Express', 'MongoDB'],
+      'A React 19 single-page app with TanStack Query for server data and Redux Toolkit for the signed-in user, on an Express API with MongoDB and JWT authentication in cookies.',
+    stack: ['React', 'TanStack Query', 'Redux Toolkit', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'Express', 'MongoDB'],
     outcome: '',
     cover: '/work/devtinder',
     coverKind: 'web',

@@ -941,6 +941,107 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Delivered to the client' }],
   },
+  referralpro: {
+    headline:
+      'Turning word of mouth into something a business can track and reward, built by one developer on Firebase with no server to run.',
+    context: [
+      'Referrals are one of the best sources of new business, but they are rarely tracked and the people who make them are rarely rewarded. ReferralPro is a referral network: people refer customers, partners and services to companies and earn rewards, while the companies’ reps track every referral.',
+      'I designed and built the app on my own, working directly with the client.',
+    ],
+    challenges: [
+      {
+        title: 'Following a referral to the end',
+        body: 'A referral is only worth a reward once it turns into business, so each one had to be tracked from the moment it was made until it was rewarded.',
+      },
+      {
+        title: 'Three kinds of user',
+        body: 'People making referrals, the companies receiving them and the reps managing them each see and do different things in the same app.',
+      },
+      {
+        title: 'Paid plans through the stores',
+        body: 'Plans are sold as in-app purchases, which means working with Apple’s and Google’s billing and keeping the user’s plan in step with it.',
+      },
+      {
+        title: 'No server of its own',
+        body: 'Everything runs on Firebase, so who can read and change which referral had to be enforced by the database itself, not by an API.',
+      },
+    ],
+    built: [
+      {
+        title: 'Sign-in',
+        body: 'Firebase Auth with Google and Facebook sign-in, so joining takes a tap.',
+      },
+      {
+        title: 'Companies and referrals',
+        body: 'Companies and their referrals stored in Firestore, with each referral’s status visible to the people involved.',
+      },
+      {
+        title: 'Plans',
+        body: 'In-app purchases for paid plans on iOS and Android.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Firebase instead of a custom server',
+        why: 'Auth and Firestore gave sign-in, a live database and security rules out of the box, so one developer could ship the whole product without building or running a backend.',
+        tradeoff: 'Access rules live in the database, which is harder to test than API code, and complex reports are harder to build on Firestore than on SQL.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
+  devtinder: {
+    headline:
+      'A matching app for developers: a feed that never shows the same person twice, and connection rules enforced by the data model itself.',
+    facts: [{ label: 'Type', value: 'Learning project' }],
+    context: [
+      'DevTinder helps developers find people to build with: create a profile, browse a feed of other developers, send a request to the ones you’re interested in, and accept or reject the requests you receive.',
+      'The Express and MongoDB backend follows NamasteDev’s Node.js course. I designed and built the React frontend my own way, with TanStack Query for server data, Redux Toolkit for the signed-in user, and a toast system for feedback.',
+    ],
+    challenges: [
+      {
+        title: 'A feed that doesn’t repeat',
+        body: 'Once you have sent someone a request, or they have sent you one, they shouldn’t appear in your feed again, and you should never see yourself.',
+      },
+      {
+        title: 'Requests with clear rules',
+        body: 'A connection request moves through interested, ignored, accepted or rejected, and some combinations, like requesting yourself, must never happen.',
+      },
+      {
+        title: 'Two kinds of state on the frontend',
+        body: 'Who is signed in and the data loaded from the server change in different ways, and mixing them makes screens show stale information.',
+      },
+    ],
+    built: [
+      {
+        title: 'Paginated feed',
+        body: 'The feed excludes everyone you already have a request with, plus yourself, and returns only safe profile fields, a page at a time with a cap on page size.',
+      },
+      {
+        title: 'Connections and requests',
+        body: 'Send, review, accept and reject requests, and see your connections and incoming requests.',
+      },
+      {
+        title: 'Frontend data layer',
+        body: 'One Axios client with interceptors, query keys kept in one file, and TanStack Query hooks for sign-in, sign-up and profile updates.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Request rules live in the schema',
+        why: 'Allowed statuses are an enum and a pre-save check refuses a request to yourself, so the rules hold no matter which route writes the data.',
+      },
+      {
+        title: 'Server data and session state kept apart',
+        why: 'TanStack Query owns everything fetched from the API, with caching and refetching, while Redux holds only the signed-in user and auth status.',
+        tradeoff: 'Two state libraries in a small app, and the signed-in user is written to both on login.',
+      },
+    ],
+    results: [{ label: 'Live on Vercel, with the code public on GitHub' }],
+    lessons: [
+      'The JWT secret is hard-coded and the auth cookie isn’t httpOnly. In production I’d load the secret from the environment and set the cookie httpOnly, secure and same-site.',
+      'Following a course for the backend made it easy to spend my own time where I wanted to learn most: structuring the data layer on the frontend.',
+    ],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
