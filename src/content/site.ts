@@ -1033,7 +1033,7 @@ export const projects: Project[] = [
     year: '2022',
     summary: 'Discover restaurants and hotels, browse menus, book a table and leave feedback.',
     problem: 'Diners want to find a place, see the menu and reserve a table in one go.',
-    role: 'React Native development at Tribex Technologies.',
+    role: 'Sole developer at Tribex Technologies.',
     architecture:
       'A React Native app with Firebase Auth (phone, Google and Facebook) on the restaurants’ API: discovery and search, menus with modifiers and pairings, table booking by date and time, and feedback.',
     stack: ['React Native', 'Firebase', 'Google · Facebook sign-in', 'Axios'],
@@ -1072,7 +1072,7 @@ export const projects: Project[] = [
     summary:
       'A baby care tracker for parents: log feeds, pumping, bottles, sleep, diapers and solids for each child, with a parent community and resources.',
     problem: 'New parents need an easy way to keep track of every feed, nap and change.',
-    role: 'React Native development at Tribex Technologies.',
+    role: 'Sole developer at Tribex Technologies.',
     stack: ['React Native', 'Redux Toolkit', 'React Navigation'],
     outcome: 'Delivered to the client.',
     figure: figures.grow,
@@ -1091,9 +1091,9 @@ export const projects: Project[] = [
     summary:
       'A retail loyalty app: member card and points, vouchers and coupons, promotions and an e-brochure, an online shop, outlet locations, referrals and scan & pay.',
     problem: 'A retail brand wanted one app to reward members and bring them back to its outlets.',
-    role: 'React Native development at Tribex Technologies.',
+    role: 'Sole developer at Tribex Technologies.',
     stack: ['React Native', 'React Native Maps', 'React Native Video', 'i18n'],
-    outcome: '',
+    outcome: 'Delivered to the client.',
     figure: figures.arms,
     links: {},
   },

@@ -1592,6 +1592,102 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Built but not launched' }],
   },
+  restro: {
+    headline:
+      'Find a restaurant or hotel, read the full menu and book a table, all in one app.',
+    context: [
+      'Diners want to find a place, see the menu and reserve a table in one go. Restro lets them discover restaurants and hotels, browse menus, book a table and leave feedback.',
+      'I was the only developer on the React Native app at Tribex Technologies, built on the restaurants’ API.',
+    ],
+    challenges: [
+      {
+        title: 'Menus with options',
+        body: 'Menu items come with modifiers, add-ons and suggested pairings, which all had to be clear on a small screen.',
+      },
+      {
+        title: 'Booking a real slot',
+        body: 'A table is booked for a date and time, so only times that are actually free should be offered.',
+      },
+      {
+        title: 'Three ways to sign in',
+        body: 'Phone number, Google and Facebook sign-in through Firebase Auth, all leading to one account.',
+      },
+      {
+        title: 'Finding a place fast',
+        body: 'Discovery and search across restaurants and hotels had to be quick.',
+      },
+    ],
+    built: [
+      { title: 'Discover and search', body: 'Featured places and search across restaurants and hotels.' },
+      { title: 'Menus', body: 'Full menus with modifiers and pairings.' },
+      { title: 'Table booking and feedback', body: 'Book by date and time, then leave feedback after the visit.' },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
+  grow: {
+    headline:
+      'A baby care tracker built for tired parents: log a feed, a nap or a change in a few taps, for each child, day or night.',
+    context: [
+      'New parents need an easy way to keep track of every feed, nap and change. Grow lets them log feeds, pumping, bottles, sleep, diapers and solids for each child, with a parent community and resources alongside.',
+      'I was the only developer on the React Native app at Tribex Technologies.',
+    ],
+    challenges: [
+      {
+        title: 'Used with one hand at 3am',
+        body: 'Parents log things while holding a baby, half asleep, so every log had to take a few large taps.',
+      },
+      {
+        title: 'More than one child',
+        body: 'Each child has their own log, and it must always be obvious whose you’re adding to.',
+      },
+      {
+        title: 'Timers that keep going',
+        body: 'Feeds, pumping and sleep are timed, and the timer has to stay right even when the app goes to the background.',
+      },
+      {
+        title: 'More than a tracker',
+        body: 'A parent community and resources sit alongside the logs.',
+      },
+    ],
+    built: [
+      { title: 'Logs for everything', body: 'Feeds, pumping, bottles, sleep, diapers and solids, per child.' },
+      { title: 'Timers', body: 'Running timers for feeds, pumping and sleep.' },
+      { title: 'Community and resources', body: 'A space for parents to talk, and helpful reading.' },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
+  arms: {
+    headline:
+      'One loyalty app for a retail brand: member card, points, vouchers, a shop and scan & pay, built to bring members back to the outlets.',
+    context: [
+      'A retail brand wanted one app to reward its members and bring them back to its outlets. ARMS combines a member card and points, vouchers and coupons, promotions and an e-brochure, an online shop, outlet locations, referrals and scan & pay.',
+      'I was the only developer on the React Native app at Tribex Technologies.',
+    ],
+    challenges: [
+      {
+        title: 'Paying at the till',
+        body: 'Scan & pay had to work quickly at the counter, and earn points on the same purchase.',
+      },
+      {
+        title: 'Many features, one app',
+        body: 'Card, points, vouchers, shop, outlets and referrals all had to fit together without the app feeling crowded.',
+      },
+      {
+        title: 'Finding an outlet',
+        body: 'Members find the nearest store on a map.',
+      },
+      {
+        title: 'Several languages',
+        body: 'The whole app is translated.',
+      },
+    ],
+    built: [
+      { title: 'Membership', body: 'A member card with points, vouchers and coupons.' },
+      { title: 'Shop and promotions', body: 'An online shop, promotions and a video e-brochure.' },
+      { title: 'In store', body: 'Outlet locations on a map, referrals, and scan & pay.' },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
