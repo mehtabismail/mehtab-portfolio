@@ -612,7 +612,7 @@ export const projects: Project[] = [
       'A spiritual guidance app: describe the decision you’re facing, perform istikhara, and receive guidance according to Islamic tradition.',
     problem:
       'People seeking istikhara before a decision want a simple, private and trustworthy way to do it.',
-    role: 'React Native development.',
+    role: 'Mobile developer on the team.',
     architecture:
       'A React Native app with email, Google, Facebook and Apple sign-in on a JWT-secured API, a guided multi-step flow, Socket.IO chat, and a small staff side for attendance and shifts.',
     stack: [
@@ -724,11 +724,11 @@ export const projects: Project[] = [
       'A mobile app that connects people with like-minded users nearby and links straight to their Instagram profiles.',
     problem:
       'Meeting like-minded people nearby is hard when everyone’s profile lives on a different platform.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Mobile developer at OutsourceNZ: built the React Native app.',
     architecture:
       'A React Native app with Redux on an Express and MongoDB API that lists registered users within a radius of your location.',
     stack: ['React Native', 'Redux', 'JavaScript', 'Express', 'MongoDB'],
-    outcome: '',
+    outcome: 'Released on the App Store and Google Play.',
     cover: '/work/whou',
     coverKind: 'mobile',
     figure: figures.whou,

@@ -1042,6 +1042,102 @@ export const caseStudies: Record<string, CaseStudy> = {
       'Following a course for the backend made it easy to spend my own time where I wanted to learn most: structuring the data layer on the frontend.',
     ],
   },
+  istikhara: {
+    headline:
+      'A private, guided way to seek istikhara before a big decision, with live conversation and the tools the team needs behind it.',
+    context: [
+      'Before an important decision, such as marriage, a job or a move, many Muslims perform istikhara and seek guidance. The app lets people describe the decision they face, go through istikhara step by step, and receive guidance according to Islamic tradition.',
+      'I worked on the React Native app as part of the team.',
+    ],
+    challenges: [
+      {
+        title: 'Very personal questions',
+        body: 'People describe sensitive life decisions, so the app had to feel private and trustworthy from the first screen.',
+      },
+      {
+        title: 'Getting the tradition right',
+        body: 'The steps and wording had to follow the religious practice exactly. A small mistake would cost the app its credibility.',
+      },
+      {
+        title: 'Four ways to sign in',
+        body: 'Email, Google, Facebook and Apple sign-in all lead to one account on a JWT-secured API.',
+      },
+      {
+        title: 'Live chat and a staff side',
+        body: 'Real-time chat with the people giving guidance, plus attendance and shift tools for the team, in the same app.',
+      },
+    ],
+    built: [
+      {
+        title: 'A guided flow',
+        body: 'Describe the decision, then go through istikhara one step at a time.',
+      },
+      {
+        title: 'Chat over Socket.IO',
+        body: 'Live conversation between the user and the person guiding them.',
+      },
+      {
+        title: 'Staff tools',
+        body: 'Attendance and shifts for the team that answers requests.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'One step at a time',
+        why: 'A guided flow keeps people on the right steps in the right order, and lets someone who has never performed istikhara do it with confidence.',
+        tradeoff: 'More screens to build and keep in step than a single form.',
+      },
+      {
+        title: 'Apple sign-in alongside the others',
+        why: 'The App Store requires Sign in with Apple when an app offers other social sign-in.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
+  whou: {
+    headline:
+      'Find like-minded people nearby and go straight to their Instagram, without building yet another social profile.',
+    context: [
+      'Meeting like-minded people nearby is hard when everyone’s real profile lives on a different platform. WhoU shows registered users within a radius of your location and links straight to their Instagram.',
+      'I built the React Native app at OutsourceNZ, on an Express and MongoDB API built by the team.',
+    ],
+    challenges: [
+      {
+        title: 'Who is nearby, quickly',
+        body: 'The list of people around you depends on where you are right now, so it had to load fast and change as you move.',
+      },
+      {
+        title: 'Nearby, but not exactly where',
+        body: 'People are happy to be found nearby, not to have their exact position shown to strangers.',
+      },
+      {
+        title: 'Keeping location fresh',
+        body: 'Your position has to stay up to date for the list to be right, without draining the battery.',
+      },
+      {
+        title: 'Linking to Instagram',
+        body: 'Each profile leads to the person’s Instagram, so the link had to work reliably from inside the app.',
+      },
+    ],
+    built: [
+      {
+        title: 'People near you',
+        body: 'A list of registered users within a radius of your location.',
+      },
+      {
+        title: 'Profiles that link out',
+        body: 'Each person links straight to their Instagram profile.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Use Instagram as the profile',
+        why: 'People already curate their Instagram, so linking to it gave every user a rich profile on day one, and the app could stay small and focused on finding people nearby.',
+        tradeoff: 'The app depends on users having, and sharing, an Instagram account.',
+      },
+    ],
+    results: [{ label: 'Released on the App Store and Google Play' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
