@@ -478,12 +478,12 @@ export const projects: Project[] = [
     categories: ['Mobile', 'Web'],
     year: '2025–26',
     summary:
-      'A social events app — find and pay for events, add friends, chat and follow their activity — with a web dashboard for the team.',
+      'A social events app — find events nearby, RSVP, add friends and follow their activity — where planners pay a subscription to keep their events live, with a web dashboard for the team.',
     problem:
-      'Event-goers want to find events, see which friends are going and pay in one place; the team needs pricing, reports and user management.',
-    role: 'Full-stack development: the React Native app, the Node.js API and the admin dashboard.',
+      'Event-goers want to find events and see which friends are going; planners need their events seen; the team needs moderation, pricing, reports and user management.',
+    role: 'Sole full-stack engineer, working directly with the client: the React Native app, the Node.js API and the admin dashboard.',
     architecture:
-      'A React Native app (Redux Toolkit) and a Next.js admin dashboard share an Express API on MongoDB. Stripe takes ticket payments through webhooks, Firebase Cloud Messaging sends push notifications, and the API runs behind Nginx with PM2.',
+      'A React Native app (Redux Toolkit) and a Next.js admin dashboard share an Express API on MongoDB. Stripe runs planners’ subscriptions through signed webhooks, BullMQ on Redis sends push notifications and email, and the API runs on cPanel under Passenger.',
     stack: [
       'React Native',
       'Redux Toolkit',
@@ -493,9 +493,11 @@ export const projects: Project[] = [
       'Express',
       'MongoDB',
       'Stripe',
+      'Redis',
+      'BullMQ',
       'Firebase',
     ],
-    outcome: '',
+    outcome: 'In active development with the client.',
     figure: figures.extent,
     links: {},
   },

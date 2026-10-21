@@ -995,7 +995,7 @@ export const figures = {
       {
         id: 'stripe',
         label: 'Stripe',
-        sub: 'tickets · webhooks',
+        sub: 'subscriptions · webhooks',
         icon: 'payments',
         tier: 2,
         lane: 2,

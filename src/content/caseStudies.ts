@@ -640,6 +640,77 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Released on the App Store' }],
   },
+  extent: {
+    headline:
+      'A social events platform built and run end to end by one engineer: app, API, admin dashboard, payments, and the recovery when the server was breached.',
+    facts: [
+      { label: 'Apps', value: 'Mobile, dashboard, API' },
+      { label: 'Tests', value: '13 regression suites' },
+    ],
+    context: [
+      'ExtEnt Events lets people find events near them, RSVP, add friends and follow what their friends are going to. Event planners list their events, get a 7-day free trial once an admin approves them, then keep them live with a paid Stripe subscription. The team runs moderation, pricing, users and reports from a web dashboard.',
+      'I built all of it on my own, working directly with the client: the React Native app, the Express API on MongoDB, and the Next.js admin dashboard. I also deployed it and kept it running.',
+    ],
+    challenges: [
+      {
+        title: 'Payments that never get lost',
+        body: 'A planner’s card is charged by Stripe, but the event only goes live when the platform knows about it. If the app closes or a webhook arrives twice, the two can drift apart, with money taken and nothing to show for it.',
+      },
+      {
+        title: 'Three questions that look like one',
+        body: '“Is this event approved?”, “Is it paid for?” and “Is it still on?” are different questions. Treating them as one status hides paid events or shows unpaid ones.',
+      },
+      {
+        title: 'A social graph',
+        body: 'Friend requests, friends’ activity and who’s going where all have to respect each user’s privacy settings.',
+      },
+      {
+        title: 'Running it on shared hosting',
+        body: 'The API runs on cPanel under Passenger, which stops idle apps. Scheduled work kept in memory, like trial expiry, silently disappears when that happens.',
+      },
+    ],
+    built: [
+      {
+        title: 'Mobile app',
+        body: 'React Native with Redux Toolkit: a location-aware event feed, RSVPs, likes and comments, friends and their activity, push notifications, and Stripe for planners’ subscriptions.',
+      },
+      {
+        title: 'Express API',
+        body: 'JWT auth for both the app and the dashboard, rate limits on sign-in and OTP routes, Cloudinary for images and video, and BullMQ on Redis to send push notifications and email.',
+      },
+      {
+        title: 'Admin dashboard',
+        body: 'Next.js with TanStack Query: approve or reject events, manage users and pricing, and reports that all use the same date windows and timezone.',
+      },
+      {
+        title: 'Documentation and tests',
+        body: 'Architecture, product, deployment and security docs written from the code, and 13 regression test suites guarding event visibility, archiving and reports.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Stripe webhooks are the source of truth',
+        why: 'An event is marked paid when Stripe’s signed webhook says so, not when the app reports success. The signature is checked on the raw request body, and each webhook is recorded so a resent one is never applied twice.',
+        tradeoff: 'There is a short delay between paying and the event going live, and the webhook route has to be mounted before any body parsing, which is easy to break.',
+      },
+      {
+        title: 'Moderation, payment and “still live” kept apart',
+        why: 'Status is only for moderation, payment state is separate, and “archived” is a timestamp, not a status. Paying un-archives an event straight away, and every listing, report and count uses one shared filter so they always agree.',
+      },
+      {
+        title: 'A backstop for scheduled jobs',
+        why: 'Because the host can stop the app and lose its in-memory schedule, the trial and expiry jobs can also be triggered by an outside cron call, and listings work out visibility when they are read, so they stay right even if a job is late.',
+      },
+    ],
+    results: [
+      { label: 'Found planners being charged without their event being linked; fixed the cause and wrote a reconciliation to find the affected payments' },
+      { label: 'Led the recovery after the client’s shared hosting was breached: contained it, rotated every secret and redeployed from clean git history' },
+    ],
+    lessons: [
+      'On shared hosting, assume the process can vanish at any moment. Anything that has to happen on time needs a second trigger.',
+      'Write the payment path so it can be checked against Stripe afterwards. The reconciliation only worked because every subscription was stored with its Stripe ID.',
+    ],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
