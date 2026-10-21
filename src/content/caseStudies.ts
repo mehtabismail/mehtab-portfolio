@@ -1421,6 +1421,95 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Released on the App Store and Google Play, free for whaanau' }],
   },
+  vigourme: {
+    headline:
+      'Private, anonymous access to intimate well-being support from a phone, with no name, email or number required.',
+    context: [
+      'Many people never ask for help with intimate well-being because it feels too personal. VigourMe makes that support accessible and anonymous: users can book and follow a consultation without giving their identity.',
+      'I worked on the React Native app at OptimusFox, built on Firebase.',
+    ],
+    challenges: [
+      {
+        title: 'Anonymous for real',
+        body: 'Users had to be able to get help without giving a name, email or phone number, while the app still knows whose consultation is whose.',
+      },
+      {
+        title: 'A sensitive subject',
+        body: 'The topic needs a discreet, non-judgemental feel throughout, or people won’t use it.',
+      },
+      {
+        title: 'Consultations that move in real time',
+        body: 'When a consultation changes, both sides need to know straight away.',
+      },
+      {
+        title: 'Notifications that don’t give it away',
+        body: 'A notification on a lock screen can be seen by anyone, so its wording couldn’t reveal what the app is about.',
+      },
+    ],
+    built: [
+      {
+        title: 'Anonymous sign-in',
+        body: 'Firebase anonymous auth gives each user an account with no personal details.',
+      },
+      {
+        title: 'Consultations',
+        body: 'Consultations stored in Firestore and kept in sync on the device.',
+      },
+      {
+        title: 'Triggers and push',
+        body: 'Cloud functions react to changes and send push notifications.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Cloud functions for triggers',
+        why: 'Notifications and follow-up updates run on the server when a consultation changes, so they happen reliably even when the app is closed, and the logic isn’t left to each phone.',
+        tradeoff: 'Logic split between the app and functions is harder to test together.',
+      },
+    ],
+    results: [{ label: 'Published on Google Play' }],
+  },
+  dinisium: {
+    headline:
+      'A mobile way into a token project: connect a wallet, buy the token, follow your holdings and model what they could return.',
+    context: [
+      'Investors in a token project needed a simple mobile way to buy in and keep track of what they hold. Dinisium lets them buy the token, see their holdings on a dashboard, model returns with a calculator and manage subscriptions.',
+      'I was one of the mobile developers on the React Native app at OptimusFox.',
+    ],
+    challenges: [
+      {
+        title: 'Connecting a wallet from a phone',
+        body: 'The app works with the user’s Web3 wallet, which means handing off to the wallet and coming back safely.',
+      },
+      {
+        title: 'Buying with crypto',
+        body: 'A crypto purchase can’t be undone, so the flow had to make every step and amount clear before confirming.',
+      },
+      {
+        title: 'Accurate holdings',
+        body: 'Balances and their value had to be right, every time the dashboard opens.',
+      },
+      {
+        title: 'A calculator, not advice',
+        body: 'The returns calculator shows what-if numbers and had to read as a model, not a promise.',
+      },
+    ],
+    built: [
+      {
+        title: 'Wallet and purchase',
+        body: 'Connect a Web3 wallet and buy the token.',
+      },
+      {
+        title: 'Dashboard and calculator',
+        body: 'Holdings at a glance, plus a calculator for modelling returns.',
+      },
+      {
+        title: 'Subscriptions',
+        body: 'Manage subscriptions from the app.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',

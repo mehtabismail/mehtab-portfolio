@@ -946,7 +946,7 @@ export const projects: Project[] = [
     year: '2022',
     summary: 'A healthcare app that makes intimate well-being support accessible and anonymous.',
     problem: 'People needed private, anonymous access to well-being support from their phone.',
-    role: 'React Native development at OptimusFox.',
+    role: 'Mobile developer at OptimusFox.',
     architecture:
       'A React Native app on Firebase: anonymous sign-in, Firestore for consultations, and cloud functions for triggers and push notifications.',
     stack: ['JavaScript', 'React Native', 'Redux', 'Firebase'],
@@ -970,7 +970,7 @@ export const projects: Project[] = [
       'A crypto token investment app: buy the token, see holdings on a dashboard, model returns with a calculator, and manage subscriptions.',
     problem:
       'Investors in a token project need a simple mobile way to buy in and follow their holdings.',
-    role: 'React Native development at OptimusFox.',
+    role: 'One of the mobile developers at OptimusFox.',
     stack: ['React Native', 'Redux Toolkit', 'Web3 wallet', 'React Navigation'],
     outcome: 'Delivered to the client.',
     figure: figures.dinisium,
