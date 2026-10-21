@@ -1324,6 +1324,103 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Delivered to the client' }],
   },
+  lifevize: {
+    headline:
+      'An advice marketplace where vetted advisers answer questions in paid, timed chat sessions and get paid out through Stripe Connect.',
+    context: [
+      'Getting expert advice quickly is hard, and advisers need a way to be paid for their time. On Lifevize, users post questions by category and approved advisers answer them in paid, timed chat sessions.',
+      'I was the only mobile developer, working directly with the client, and built the React Native app on their REST API.',
+    ],
+    challenges: [
+      {
+        title: 'Paying the advisers',
+        body: 'Money comes in from users and goes out to many advisers, each of whom has to be set up to receive payouts.',
+      },
+      {
+        title: 'Sessions on a clock',
+        body: 'A paid session starts, counts down and ends on time, on both phones at once.',
+      },
+      {
+        title: 'Charging only for real sessions',
+        body: 'A user should only pay for a session that actually happened, so a no-show can’t become a charge.',
+      },
+      {
+        title: 'Only approved advisers',
+        body: 'Advisers are approved before they can answer, so users can trust who they are paying.',
+      },
+    ],
+    built: [
+      {
+        title: 'Questions by category',
+        body: 'Users post a question in a category and approved advisers pick it up.',
+      },
+      {
+        title: 'Timed chat sessions',
+        body: 'Real-time chat on Firebase, limited to the length of the paid session.',
+      },
+      {
+        title: 'Payments and payouts',
+        body: 'Stripe Connect takes session payments and pays advisers.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Stripe Connect for the marketplace',
+        why: 'Connect handles adviser onboarding and identity checks, splits each payment between adviser and platform, and runs the payouts, which a small team should never build by hand.',
+        tradeoff: 'Advisers must complete Stripe’s onboarding before they can be paid, which adds a step to joining.',
+      },
+      {
+        title: 'Firebase for chat',
+        why: 'Realtime chat without running a socket server alongside the client’s REST API.',
+      },
+    ],
+    results: [{ label: 'Delivered to the client' }],
+  },
+  aawhina: {
+    headline:
+      'A free, private way for whaanau affected by family and sexual harm to reach support from someone they trust, with no account needed.',
+    facts: [{ label: 'Team', value: 'Led the build' }],
+    context: [
+      'AawhinaNZ is a free support app from Friendship House for whaanau who have experienced family and sexual harm. It helps people reach support privately, from someone they feel comfortable with, and find support services across Aotearoa.',
+      'I led the build at OutsourceNZ, working with the team on the React Native app and its Node.js API.',
+    ],
+    challenges: [
+      {
+        title: 'Safe even if the phone is seen',
+        body: 'The person causing harm may look at the phone. The app had to protect the person using it, not just their data.',
+      },
+      {
+        title: 'Choosing who to talk to',
+        body: 'People reach out to someone they feel comfortable with, so they choose their support contact rather than being placed in a queue.',
+      },
+      {
+        title: 'Right for whaanau',
+        body: 'Language and design had to feel right for Maaori and Pasifika whaanau, including te reo Maaori.',
+      },
+      {
+        title: 'Support near you',
+        body: 'Support services across Aotearoa shown on a map, so people can find help close to them.',
+      },
+    ],
+    built: [
+      {
+        title: 'Choose a contact',
+        body: 'Pick a support person you trust and reach them privately from the app.',
+      },
+      {
+        title: 'Support services on a map',
+        body: 'Support options across Aotearoa, found by location.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'No account needed',
+        why: 'Asking someone in danger to sign up, verify an email or remember a password puts a barrier, and a record, between them and help. Without an account, reaching support takes a few taps and leaves less behind.',
+        tradeoff: 'Without accounts the app can’t keep history or follow up, so each contact stands on its own.',
+      },
+    ],
+    results: [{ label: 'Released on the App Store and Google Play, free for whaanau' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',

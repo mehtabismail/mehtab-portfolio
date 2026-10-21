@@ -880,11 +880,11 @@ export const projects: Project[] = [
       'An advice marketplace: users post questions by category and approved advisers answer them in paid, timed chat sessions.',
     problem:
       'Getting expert advice quickly is hard; advisers need a way to be paid for their time.',
-    role: 'React Native development.',
+    role: 'Sole mobile developer, working directly with the client.',
     architecture:
       'A React Native app on the client’s REST API, with Firebase for realtime chat and Stripe Connect for session payments and adviser payouts.',
     stack: ['React Native', 'Redux', 'Firebase', 'Stripe Connect', 'Axios'],
-    outcome: '',
+    outcome: 'Delivered to the client.',
     figure: figures.lifevize,
     links: {},
   },
@@ -902,9 +902,9 @@ export const projects: Project[] = [
       'A free support app from Friendship House for whaanau who have experienced family and sexual harm.',
     problem:
       'People affected by family and sexual harm need an easy, private way to reach support from someone they feel comfortable with.',
-    role: 'React Native development at OutsourceNZ.',
+    role: 'Led the build at OutsourceNZ.',
     stack: ['React Native', 'JavaScript', 'Node.js'],
-    outcome: '',
+    outcome: 'Released on the App Store and Google Play.',
     cover: '/work/aawhina',
     coverKind: 'mobile',
     figure: figures.aawhina,
