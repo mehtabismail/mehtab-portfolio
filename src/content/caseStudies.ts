@@ -1138,6 +1138,93 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Released on the App Store and Google Play' }],
   },
+  bookit: {
+    headline:
+      'One app for booking almost anything, built on a single booking flow that holds your slot while you pay.',
+    facts: [{ label: 'Stage', value: 'MVP' }],
+    context: [
+      'Booking a haircut, a restaurant table and an event ticket usually means three different apps. BookIt puts appointments, venues and tables, events and tickets in one place.',
+      'It was an OptimusFox project. I was the mobile developer and built the React Native app on the team’s Node.js API.',
+    ],
+    challenges: [
+      {
+        title: 'Many kinds of booking, one app',
+        body: 'An appointment, a table and a ticket look different, but all had to fit one booking flow so the app stayed simple.',
+      },
+      {
+        title: 'No double bookings',
+        body: 'Two people can try to book the same slot or seat at the same moment. Only one can get it.',
+      },
+      {
+        title: 'Availability and time slots',
+        body: 'Opening hours, how long each booking takes and what is already taken all decide which slots appear.',
+      },
+      {
+        title: 'Businesses and customers',
+        body: 'Customers book, while businesses need their own screens to manage what they offer.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Hold a slot while the customer pays',
+        why: 'A slot is held for a short time once checkout starts, so it can’t be taken by someone else halfway through paying. Without it, two people could both pay for the same booking.',
+        tradeoff: 'A held slot is unavailable to others until it is paid for or the hold runs out, so the hold has to be short.',
+      },
+    ],
+    results: [{ label: 'Built as an MVP; not launched publicly' }],
+  },
+  livestream: {
+    headline:
+      'A social live-streaming app where going live, chatting and sending gifts all happen at once, and every gift is counted on the server.',
+    context: [
+      'The client wanted a social live-streaming product of their own, in the style of Bigo Live: anyone can go live, viewers watch and explore streams, chat in real time and send virtual gifts, and followers get a notification when someone they follow goes live.',
+      'I designed and built the React Native app.',
+    ],
+    challenges: [
+      {
+        title: 'Video with little delay',
+        body: 'Live chat only works if viewers see the stream almost as it happens, so the delay between host and audience had to stay low.',
+      },
+      {
+        title: 'Chat and gifts on top of the stream',
+        body: 'Messages and gift animations play over the video and have to stay in step with it without making playback stutter.',
+      },
+      {
+        title: 'Gifts are real money',
+        body: 'Virtual gifts are bought with real money, so every one has to be counted exactly once, for both sender and host.',
+      },
+      {
+        title: 'Bringing viewers in',
+        body: 'A stream only matters while it’s live, so followers had to hear about it the moment it started.',
+      },
+    ],
+    built: [
+      {
+        title: 'Going live and watching',
+        body: 'Vision Camera for broadcasting from the phone, React Native Video for playback, and WebRTC for the live connection.',
+      },
+      {
+        title: 'Explore',
+        body: 'Fast, scrolling lists of live streams built on FlashList.',
+      },
+      {
+        title: 'Chat, gifts and alerts',
+        body: 'Live chat and gifts during a stream, and notifications when someone goes live.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Gifts are settled on the server',
+        why: 'The app only asks to send a gift; the server checks the balance, records it and credits the host. A modified app or a dropped connection can’t create or lose money.',
+        tradeoff: 'Each gift needs a round trip before it is confirmed, so the animation has to wait for the server or be shown as pending.',
+      },
+      {
+        title: 'WebRTC for the live connection',
+        why: 'WebRTC is built for real-time media, which keeps the delay low enough for chat and gifts to feel live.',
+      },
+    ],
+    results: [{ label: 'Delivered; the client has since paused the project' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
