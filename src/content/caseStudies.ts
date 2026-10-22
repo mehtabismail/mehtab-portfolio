@@ -1683,7 +1683,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     built: [
       { title: 'Membership', body: 'A member card with points, vouchers and coupons.' },
-      { title: 'Shop and promotions', body: 'An online shop, promotions and a video e-brochure.' },
+      { title: 'Shop and promotions', body: 'An online shop, promotions and an e-brochure.' },
       { title: 'In store', body: 'Outlet locations on a map, referrals, and scan & pay.' },
     ],
     results: [{ label: 'Delivered to the client' }],
