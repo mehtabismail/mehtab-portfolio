@@ -1807,6 +1807,66 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Final-year project, BS Software Engineering, The University of Lahore' }],
   },
+  'work-log': {
+    headline:
+      'A Claude Code and Cursor skill that keeps a client-facing record of every change and meeting, so “we never asked for that” has a dated answer.',
+    facts: [{ label: 'Tests', value: '22 automated' }],
+    context: [
+      'On client projects, the arguments that cost money are about scope: “we never asked for that”, or “why did this take three weeks?”. The answer is usually somewhere in old chats and calls, and keeping a proper record by hand is the first thing to slip.',
+      'I built project-journal, an agent skill for Claude Code and Cursor. Developers log finished work and paste meeting minutes in a sentence; the skill keeps a work log and a meeting record in markdown, and builds one HTML report the client can read.',
+    ],
+    challenges: [
+      {
+        title: 'The count that matters is change requests',
+        body: 'If every developer labels their own work, the number of change requests becomes ten opinions. That number is what decides whether extra work gets paid.',
+      },
+      {
+        title: 'Records that hold up',
+        body: 'An entry is only evidence if it is dated, tied to who asked, and linked to the meeting where it was asked, with the recording one click away.',
+      },
+      {
+        title: 'Nothing invented',
+        body: 'An AI writing a client document must not pad hours, summarise away meeting minutes or link to a meeting that doesn’t exist.',
+      },
+    ],
+    built: [
+      {
+        title: 'Explicit logging',
+        body: 'Work and meetings are logged only when a developer runs the skill, so the record never fills with half-formed entries from mid-task chatter.',
+      },
+      {
+        title: 'Automatic classification',
+        body: 'The skill decides whether each entry is a new feature, change request, enhancement or bug fix, from who asked: the client or the team.',
+      },
+      {
+        title: 'One HTML report',
+        body: 'A Python script with no dependencies turns the two markdown files into a single report that opens on the work log and switches to the meetings.',
+      },
+      {
+        title: 'Questions answered from the record',
+        body: '“How many change requests since the last invoice?” is answered straight from the markdown, with counts and dates.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'The skill assigns the type, not the developer',
+        why: 'Classification follows fixed rules and the client-or-team tag, so the change-request count means the same thing across the whole team. It asks one short question only when a case is genuinely ambiguous.',
+      },
+      {
+        title: 'Fail loudly on a broken link',
+        why: 'If an entry points to a meeting that isn’t in the record, the build stops. A link that looks like evidence but leads nowhere is worse than no link.',
+      },
+      {
+        title: 'Markdown in, generated HTML out',
+        why: 'The markdown is the source of truth and lives in the project; the report is always rebuilt, never edited, so the two can’t drift apart.',
+        tradeoff: 'The entry format is strict, so edits by hand have to follow it exactly.',
+      },
+    ],
+    results: [
+      { value: '22', label: 'automated tests on the report builder' },
+      { label: 'Open source on GitHub' },
+    ],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',

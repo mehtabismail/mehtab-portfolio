@@ -1133,7 +1133,7 @@ export const projects: Project[] = [
       'Work entries and meeting notes are captured in a structured log, then rendered into a report the client can read.',
     year: '2026',
     stack: ['Python', 'Claude Code', 'Cursor', 'Markdown'],
-    outcome: '', // TODO: add a concrete outcome
+    outcome: 'Open source on GitHub, with 22 automated tests.',
     figure: figures.worklog,
     links: { repo: 'https://github.com/mehtabismail/project-journal' },
   },
