@@ -1867,6 +1867,47 @@ export const caseStudies: Record<string, CaseStudy> = {
       { label: 'Open source on GitHub' },
     ],
   },
+  'outreach-agent': {
+    headline:
+      'An agent that finds local businesses, builds each one a sample website with AI, and emails it to them, so a pitch starts with something they can see.',
+    facts: [{ label: 'Type', value: 'Personal automation' }],
+    context: [
+      'Finding businesses and pitching each one by hand doesn’t scale, and a generic cold email is easy to ignore. A sample website made for that business is a much stronger opening.',
+      'I planned and built the whole pipeline for my own freelance outreach. It finds businesses on Google Maps, has a language model write a sample site for each one, and sends a personalised email with it.',
+    ],
+    challenges: [
+      {
+        title: 'Personal at scale',
+        body: 'Every site and email has to feel made for that one business, even though the pipeline runs across many of them.',
+      },
+      {
+        title: 'AI output you can send',
+        body: 'Generated sites and emails go to real businesses under my name, so they have to be accurate and professional every time.',
+      },
+    ],
+    built: [
+      {
+        title: 'Find businesses',
+        body: 'Searches Google Maps for businesses by type and area.',
+      },
+      {
+        title: 'Generate a sample site',
+        body: 'A language model, from Claude or OpenAI, writes a sample website for each business from its details.',
+      },
+      {
+        title: 'Send outreach',
+        body: 'A personalised email to each business with its sample site.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Lead with a finished sample',
+        why: 'Showing a business its own site, already built, says more than any description of what I could do, and gives them a reason to reply.',
+        tradeoff: 'Each lead costs model calls before anyone has replied.',
+      },
+    ],
+    results: [{ label: 'Running for my own outreach; too early for results' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',

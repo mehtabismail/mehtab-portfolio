@@ -1110,9 +1110,9 @@ export const projects: Project[] = [
     problem: 'Finding businesses and pitching each one by hand doesn’t scale.',
     role: 'Planned and built the whole pipeline.',
     architecture:
-      'A pipeline that finds businesses, generates a sample website for each one, then sends personalised outreach with a link to it.',
-    stack: ['Node.js', 'TypeScript'], // TODO: verify
-    outcome: '', // TODO: add a concrete outcome
+      'A pipeline that finds businesses on Google Maps, has a language model (Claude or OpenAI) write a sample website for each one, then sends a personalised email with it.',
+    stack: ['Google Maps Places', 'Claude API', 'OpenAI API'],
+    outcome: 'Running for my own outreach; too early for results.',
     figure: figures.outreach,
     links: {},
   },
