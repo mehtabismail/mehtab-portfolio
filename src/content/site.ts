@@ -1055,7 +1055,7 @@ export const projects: Project[] = [
     problem: 'A simple way to follow workouts and BMI over time.',
     role: 'Designed and built it.',
     stack: ['React Native', 'Redux Toolkit', 'Firebase', 'Reanimated'],
-    outcome: '',
+    outcome: 'A personal project; not released.',
     figure: figures.fitness,
     links: {},
   },
@@ -1148,12 +1148,12 @@ export const projects: Project[] = [
     categories: ['Mobile', 'Architecture'],
     year: '2022–24',
     summary:
-      'Open-source React Native templates that start a new app with navigation, Redux Toolkit, RTK Query and validation already wired up.',
+      'My React Native starter, adapted from TheCodingMachine’s open-source boilerplate: navigation, Redux Toolkit, RTK Query, theming, translations and custom components ready on day one.',
     problem:
       'Every new app repeats the same setup; a documented template starts projects on solid ground.',
-    role: 'Author and maintainer.',
+    role: 'Adapted and maintain it, building on TheCodingMachine’s boilerplate.',
     architecture:
-      'Business logic is kept apart from the UI, and every piece is documented. Start a new app from it with `npx react-native init AppName --template`.',
+      'Business logic is kept apart from the UI. Start a new app from it with `npx react-native init AppName --template`.',
     stack: ['React Native', 'TypeScript', 'React Navigation', 'Redux Toolkit', 'RTK Query'],
     outcome: '',
     figure: figures.boilerplate,
@@ -1172,8 +1172,8 @@ export const projects: Project[] = [
     summary:
       'Final-year project at The University of Lahore: a medical report system that stores records on a blockchain.',
     problem: 'Medical reports need a history that can’t be quietly changed after the fact.',
-    role: 'Final-year project: design and build.',
-    stack: ['React', 'Web3.js', 'Solidity', 'Truffle', 'Tailwind CSS'],
+    role: 'Final-year group project; I led the development.',
+    stack: ['React', 'Web3.js', 'Solidity', 'Truffle', 'IPFS', 'Express', 'MongoDB', 'Tailwind CSS'],
     outcome: '',
     figure: figures.medical,
     links: { repo: 'https://github.com/mehtabismail/FypTest' },

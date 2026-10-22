@@ -1688,6 +1688,125 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     results: [{ label: 'Delivered to the client' }],
   },
+  'rn-boilerplate': {
+    headline:
+      'The starting point I use for new React Native apps: navigation, state, theming, translations and a set of custom components ready on day one.',
+    facts: [{ label: 'Based on', value: 'TheCodingMachine’s boilerplate' }],
+    context: [
+      'Every new app repeats the same setup: navigation, a store, an API layer, theming, translations and the same handful of components. I adapted TheCodingMachine’s open-source React Native boilerplate into my own template, so a new project starts with all of that in place.',
+      'When I start a project I create it from this template with one command, and the app is ready for its first real screen.',
+    ],
+    challenges: [
+      {
+        title: 'Useful, not bloated',
+        body: 'A template that includes too much gets stripped out on every project; one that includes too little gets rebuilt every time.',
+      },
+      {
+        title: 'Staying current',
+        body: 'React Native and its libraries move quickly, so the template had to be kept up to date to stay a head start rather than a migration.',
+      },
+    ],
+    built: [
+      {
+        title: 'Navigation',
+        body: 'Auth, tab, home, profile and chat navigators already wired together with React Navigation.',
+      },
+      {
+        title: 'State and API',
+        body: 'Redux Toolkit with an auth slice, RTK Query with the token added to every request and a sign-out on expiry, and redux-persist on MMKV.',
+      },
+      {
+        title: 'Theme and translations',
+        body: 'A theme system for layout, fonts, gutters and images, and i18next with English and French.',
+      },
+      {
+        title: 'Custom components',
+        body: 'Buttons, inputs, dropdowns, headers, modals, search, ratings, chat and notification lists, ready to reuse.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Start from a proven template',
+        why: 'TheCodingMachine’s boilerplate already had a clean split between UI and business logic, so I built on it and spent my time on what my projects keep needing: the component set, navigators and API layer.',
+        tradeoff: 'Its structure and conventions come with it, so the template follows their layout rather than one designed from scratch.',
+      },
+    ],
+    results: [{ label: 'The base for my own new React Native projects; public on GitHub' }],
+  },
+  fitness: {
+    headline:
+      'A personal workout and BMI tracker with an exercise library and animated progress, built to try ideas outside client work.',
+    facts: [{ label: 'Type', value: 'Personal project' }],
+    context: [
+      'I wanted a simple way to follow my own workouts and BMI over time, and a place to try ideas without a client’s constraints. The app has an exercise library, workout logging, BMI tracking and a history of progress.',
+      'I designed and built it myself in React Native, with Firebase behind it.',
+    ],
+    challenges: [
+      {
+        title: 'Each person’s data stays theirs',
+        body: 'Workouts and BMI readings are saved per user in Firebase, so every account sees only its own history.',
+      },
+      {
+        title: 'Progress that is easy to read',
+        body: 'A list of numbers doesn’t motivate anyone. Progress had to be visual and quick to understand.',
+      },
+    ],
+    built: [
+      { title: 'Exercise library', body: 'Exercises to choose from when logging a workout.' },
+      { title: 'Workouts and BMI', body: 'Log workouts and BMI readings, saved to Firebase per user.' },
+      { title: 'Animated progress', body: 'Progress history animated with Reanimated.' },
+    ],
+    results: [{ label: 'A personal project; not released' }],
+  },
+  'medical-records-blockchain': {
+    headline:
+      'A final-year project where medical reports live on IPFS and their fingerprints on a blockchain, so a record can’t be quietly changed later.',
+    facts: [{ label: 'Team', value: 'Led development' }],
+    context: [
+      'Medical reports need a history that can’t be altered after the fact. For our final-year project at The University of Lahore, we built a medical report system for hospitals, doctors and patients that stores each report’s fingerprint on a blockchain.',
+      'It was a group project, and I led the development.',
+    ],
+    challenges: [
+      {
+        title: 'Files are too big for a blockchain',
+        body: 'Storing whole reports on chain would be slow and expensive, but the point of the project was that they can’t be changed.',
+      },
+      {
+        title: 'Three kinds of user',
+        body: 'Hospitals, doctors and patients each have their own dashboard and permissions.',
+      },
+      {
+        title: 'New tools for the team',
+        body: 'Solidity, Truffle and Web3 were new to all of us, alongside a normal web stack.',
+      },
+    ],
+    built: [
+      {
+        title: 'Report upload',
+        body: 'A report is uploaded to IPFS, and the hash IPFS returns is written to a smart contract.',
+      },
+      {
+        title: 'Dashboards by role',
+        body: 'React dashboards for hospitals, doctors and patients, with forms to add each.',
+      },
+      {
+        title: 'Accounts API',
+        body: 'An Express and MongoDB API with JWT auth for hospitals, doctors and patients.',
+      },
+    ],
+    decisions: [
+      {
+        title: 'Report on IPFS, hash on chain',
+        why: 'IPFS addresses a file by its content, so the hash stored in the contract changes if even one byte of the report changes. That gives tamper evidence without putting the file itself on the blockchain.',
+        tradeoff: 'A file on IPFS only stays available while someone keeps it pinned.',
+      },
+      {
+        title: 'Accounts off chain',
+        why: 'User accounts and profiles live in MongoDB, where they are cheap to change; only what must be tamper-proof goes on chain.',
+      },
+    ],
+    results: [{ label: 'Final-year project, BS Software Engineering, The University of Lahore' }],
+  },
   portfolio: {
     headline:
       'A portfolio drawn like a set of technical drawings, with a system diagram for every project and every page prerendered for speed.',
